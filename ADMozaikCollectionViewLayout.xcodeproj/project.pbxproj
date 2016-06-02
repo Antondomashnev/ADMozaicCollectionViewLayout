@@ -7,9 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		258B2C918DBDF0CC2033EB6F /* Pods_ADMozaikCollectionViewLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC6A745BFE7EB7442AB6481 /* Pods_ADMozaikCollectionViewLayoutTests.framework */; };
 		6D7BE5B51CEA148400A41445 /* ADMozaikCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D7BE5BC1CEA148400A41445 /* ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */; };
-		6D7BE5C11CEA148400A41445 /* ADMozaikCollectionViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5C01CEA148400A41445 /* ADMozaikCollectionViewLayoutTests.swift */; };
+		6D7BE5E11CEA3A8F00A41445 /* ADMozaikLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5DE1CEA3A8F00A41445 /* ADMozaikLayout.swift */; };
+		6D7BE5E21CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5DF1CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift */; };
+		6D7BE5E31CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5E01CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift */; };
+		6D7BE5E51CEA3AA100A41445 /* ADMozaikLayoutMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5E41CEA3AA100A41445 /* ADMozaikLayoutMatrix.swift */; };
+		6D9C663F1CFF921B00968F9F /* ADMozaikLayoutCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C663E1CFF921B00968F9F /* ADMozaikLayoutCacheTests.swift */; };
+		6D9C66411CFF9D0D00968F9F /* ADMozaikLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C66401CFF9D0D00968F9F /* ADMozaikLayoutTests.swift */; };
+		6DBFA7D21CF646B4003D60B7 /* ADMozaikLayoutMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBFA7D11CF646B4003D60B7 /* ADMozaikLayoutMatrixTests.swift */; };
+		6DD7FBFC1CFB7BC500E7F048 /* ADMozaikLayoutCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD7FBFB1CFB7BC500E7F048 /* ADMozaikLayoutCache.swift */; };
+		6DD7FBFE1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD7FBFD1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift */; };
+		6DD7FC001CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD7FBFF1CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift */; };
+		C529FFCE551654115F04296E /* Pods_ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3D13A00F5D84BC3E279302 /* Pods_ADMozaikCollectionViewLayout.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +34,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F6CEBB417A17107190EB906 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
+		329D55429C6049EC35E52990 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout.release.xcconfig"; sourceTree = "<group>"; };
+		56362461893C1B86220985F0 /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
+		5F3D13A00F5D84BC3E279302 /* Pods_ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMozaikCollectionViewLayout.h; sourceTree = "<group>"; };
 		6D7BE5B61CEA148400A41445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D7BE5BB1CEA148400A41445 /* ADMozaikCollectionViewLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ADMozaikCollectionViewLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D7BE5C01CEA148400A41445 /* ADMozaikCollectionViewLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADMozaikCollectionViewLayoutTests.swift; sourceTree = "<group>"; };
 		6D7BE5C21CEA148400A41445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D7BE5DE1CEA3A8F00A41445 /* ADMozaikLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayout.swift; sourceTree = "<group>"; };
+		6D7BE5DF1CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutDelegate.swift; sourceTree = "<group>"; };
+		6D7BE5E01CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutStructs.swift; sourceTree = "<group>"; };
+		6D7BE5E41CEA3AA100A41445 /* ADMozaikLayoutMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutMatrix.swift; sourceTree = "<group>"; };
+		6D9C663E1CFF921B00968F9F /* ADMozaikLayoutCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutCacheTests.swift; sourceTree = "<group>"; };
+		6D9C66401CFF9D0D00968F9F /* ADMozaikLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutTests.swift; sourceTree = "<group>"; };
+		6DBFA7D11CF646B4003D60B7 /* ADMozaikLayoutMatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutMatrixTests.swift; sourceTree = "<group>"; };
+		6DD7FBFB1CFB7BC500E7F048 /* ADMozaikLayoutCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutCache.swift; sourceTree = "<group>"; };
+		6DD7FBFD1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutGeometry.swift; sourceTree = "<group>"; };
+		6DD7FBFF1CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutGeometryTests.swift; sourceTree = "<group>"; };
+		7CC6A745BFE7EB7442AB6481 /* Pods_ADMozaikCollectionViewLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C119A3C6A8E892EBC54514D /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C529FFCE551654115F04296E /* Pods_ADMozaikCollectionViewLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,18 +71,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D7BE5BC1CEA148400A41445 /* ADMozaikCollectionViewLayout.framework in Frameworks */,
+				258B2C918DBDF0CC2033EB6F /* Pods_ADMozaikCollectionViewLayoutTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16621CFD1FF0ACF692DFA70B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F3D13A00F5D84BC3E279302 /* Pods_ADMozaikCollectionViewLayout.framework */,
+				7CC6A745BFE7EB7442AB6481 /* Pods_ADMozaikCollectionViewLayoutTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6D7BE5A71CEA148400A41445 = {
 			isa = PBXGroup;
 			children = (
 				6D7BE5B31CEA148400A41445 /* ADMozaikCollectionViewLayout */,
 				6D7BE5BF1CEA148400A41445 /* ADMozaikCollectionViewLayoutTests */,
 				6D7BE5B21CEA148400A41445 /* Products */,
+				BE246D3F17D33727CB423265 /* Pods */,
+				16621CFD1FF0ACF692DFA70B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +110,8 @@
 		6D7BE5B31CEA148400A41445 /* ADMozaikCollectionViewLayout */ = {
 			isa = PBXGroup;
 			children = (
+				6D7BE5D61CEA3A4C00A41445 /* Private */,
+				6D7BE5D51CEA3A4500A41445 /* Public */,
 				6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */,
 				6D7BE5B61CEA148400A41445 /* Info.plist */,
 			);
@@ -80,10 +121,44 @@
 		6D7BE5BF1CEA148400A41445 /* ADMozaikCollectionViewLayoutTests */ = {
 			isa = PBXGroup;
 			children = (
-				6D7BE5C01CEA148400A41445 /* ADMozaikCollectionViewLayoutTests.swift */,
 				6D7BE5C21CEA148400A41445 /* Info.plist */,
+				6DBFA7D11CF646B4003D60B7 /* ADMozaikLayoutMatrixTests.swift */,
+				6DD7FBFF1CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift */,
+				6D9C663E1CFF921B00968F9F /* ADMozaikLayoutCacheTests.swift */,
+				6D9C66401CFF9D0D00968F9F /* ADMozaikLayoutTests.swift */,
 			);
 			path = ADMozaikCollectionViewLayoutTests;
+			sourceTree = "<group>";
+		};
+		6D7BE5D51CEA3A4500A41445 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				6D7BE5DE1CEA3A8F00A41445 /* ADMozaikLayout.swift */,
+				6D7BE5DF1CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift */,
+				6D7BE5E01CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		6D7BE5D61CEA3A4C00A41445 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6D7BE5E41CEA3AA100A41445 /* ADMozaikLayoutMatrix.swift */,
+				6DD7FBFB1CFB7BC500E7F048 /* ADMozaikLayoutCache.swift */,
+				6DD7FBFD1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		BE246D3F17D33727CB423265 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C119A3C6A8E892EBC54514D /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */,
+				329D55429C6049EC35E52990 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */,
+				1F6CEBB417A17107190EB906 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */,
+				56362461893C1B86220985F0 /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,10 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D7BE5C51CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayout" */;
 			buildPhases = (
+				3896F4CA21655076479A8692 /* 📦 Check Pods Manifest.lock */,
 				6D7BE5AC1CEA148400A41445 /* Sources */,
 				6D7BE5AD1CEA148400A41445 /* Frameworks */,
 				6D7BE5AE1CEA148400A41445 /* Headers */,
 				6D7BE5AF1CEA148400A41445 /* Resources */,
+				EDDDB534CE3E6BEA287E6C8B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,9 +199,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D7BE5C81CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayoutTests" */;
 			buildPhases = (
+				6FA5C5D4BC52F2855D7B58EC /* 📦 Check Pods Manifest.lock */,
 				6D7BE5B71CEA148400A41445 /* Sources */,
 				6D7BE5B81CEA148400A41445 /* Frameworks */,
 				6D7BE5B91CEA148400A41445 /* Resources */,
+				0E65DB978CE2F4EFD35B898D /* 📦 Embed Pods Frameworks */,
+				C8F0184B852EE0FDDCDA062B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,11 +269,95 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E65DB978CE2F4EFD35B898D /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3896F4CA21655076479A8692 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6FA5C5D4BC52F2855D7B58EC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C8F0184B852EE0FDDCDA062B /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDDDB534CE3E6BEA287E6C8B /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6D7BE5AC1CEA148400A41445 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D7BE5E51CEA3AA100A41445 /* ADMozaikLayoutMatrix.swift in Sources */,
+				6DD7FBFE1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift in Sources */,
+				6D7BE5E21CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift in Sources */,
+				6D7BE5E31CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift in Sources */,
+				6D7BE5E11CEA3A8F00A41445 /* ADMozaikLayout.swift in Sources */,
+				6DD7FBFC1CFB7BC500E7F048 /* ADMozaikLayoutCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +365,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D7BE5C11CEA148400A41445 /* ADMozaikCollectionViewLayoutTests.swift in Sources */,
+				6D9C663F1CFF921B00968F9F /* ADMozaikLayoutCacheTests.swift in Sources */,
+				6D9C66411CFF9D0D00968F9F /* ADMozaikLayoutTests.swift in Sources */,
+				6DBFA7D21CF646B4003D60B7 /* ADMozaikLayoutMatrixTests.swift in Sources */,
+				6DD7FC001CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +476,9 @@
 		};
 		6D7BE5C61CEA148400A41445 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C119A3C6A8E892EBC54514D /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +489,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.antondomashnev.ADMozaikCollectionViewLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		6D7BE5C71CEA148400A41445 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 329D55429C6049EC35E52990 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -341,21 +513,30 @@
 		};
 		6D7BE5C91CEA148400A41445 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F6CEBB417A17107190EB906 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ADMozaikCollectionViewLayoutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antondomashnev.ADMozaikCollectionViewLayoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		6D7BE5CA1CEA148400A41445 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56362461893C1B86220985F0 /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ADMozaikCollectionViewLayoutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antondomashnev.ADMozaikCollectionViewLayoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
@@ -378,6 +559,7 @@
 				6D7BE5C71CEA148400A41445 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D7BE5C81CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayoutTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +568,7 @@
 				6D7BE5CA1CEA148400A41445 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
