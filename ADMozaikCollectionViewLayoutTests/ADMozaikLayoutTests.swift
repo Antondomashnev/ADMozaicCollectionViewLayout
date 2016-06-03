@@ -220,7 +220,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     override func setUp() {
         super.setUp()
-        self.recordMode = true
+        self.recordMode = false
     }
     
     override func tearDown() {
