@@ -22,6 +22,20 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
     
     //*******************************//
     
+    override public var minimumLineSpacing: CGFloat {
+        didSet {
+            self.layoutGeometry?.minimumLineSpacing = minimumLineSpacing
+        }
+    }
+    
+    override public var minimumInteritemSpacing: CGFloat {
+        didSet {
+            self.layoutGeometry?.minimumInteritemSpacing = minimumInteritemSpacing
+        }
+    }
+    
+    //*******************************//
+    
     /// Current layout geometry
     private var layoutGeometry: ADMozaikLayoutGeometry!
     
@@ -79,6 +93,8 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
         }
     
         self.layoutGeometry = ADMozaikLayoutGeometry(layoutColumns: self.columns, rowHeight: self.rowHeight)
+        self.layoutGeometry.minimumLineSpacing = self.minimumLineSpacing
+        self.layoutGeometry.minimumInteritemSpacing = self.minimumInteritemSpacing
         self.layoutMatrix = ADMozaikLayoutMatrix(numberOfRows: self.calculateRowsCount(), numberOfColumns: self.columns.count)
         self.layoutAttributesArray = self.buildLayoutAttributesForNumberOfSections(self.layoutCache!.numberOfSections(), withLayoutMatrix: self.layoutMatrix)
         self.unionRectsArray = self.buildUnionRectsFromLayoutAttributes(self.layoutAttributesArray)

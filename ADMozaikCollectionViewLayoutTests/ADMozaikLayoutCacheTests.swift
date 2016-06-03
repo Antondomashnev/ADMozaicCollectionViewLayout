@@ -25,8 +25,8 @@ private class ADMozaikLayoutCacheTestsCollectionView: UICollectionView {
 
 private class ADMozaikLayoutCacheTestsADMozaikLayoutDelegate: NSObject, ADMozaikLayoutDelegate {
     
-    private func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath: NSIndexPath) -> ADMozaikLayoutSize {
-        return ADMozaikLayoutSize(columns: mozaikSizeForItemAtIndexPath.section, rows: mozaikSizeForItemAtIndexPath.item)
+    private func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize {
+        return ADMozaikLayoutSize(columns: indexPath.section, rows: indexPath.item)
     }
     
 }

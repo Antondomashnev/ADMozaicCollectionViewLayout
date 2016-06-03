@@ -45,7 +45,7 @@ class ViewController: UIViewController, ADMozaikLayoutDelegate, UICollectionView
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath: NSIndexPath) -> ADMozaikLayoutSize {
+    func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize {
         return ADMozaikLayoutSize(columns: 1, rows: 1)
     }
     
