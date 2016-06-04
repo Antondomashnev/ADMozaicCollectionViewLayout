@@ -32,8 +32,19 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQ4-VI-EJs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="dQ4-VI-EJs" firstAttribute="top" secondItem="cjs-gJ-cGq" secondAttribute="top" id="5io-fz-N89"/>
+                                            <constraint firstAttribute="trailing" secondItem="dQ4-VI-EJs" secondAttribute="trailing" id="Cd0-28-Fa6"/>
+                                            <constraint firstAttribute="bottom" secondItem="dQ4-VI-EJs" secondAttribute="bottom" id="LFw-ZT-2bn"/>
+                                            <constraint firstItem="dQ4-VI-EJs" firstAttribute="leading" secondItem="cjs-gJ-cGq" secondAttribute="leading" id="dhI-x1-fgR"/>
+                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

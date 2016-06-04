@@ -11,6 +11,8 @@ import ADMozaikCollectionViewLayout
 
 class ViewController: UIViewController, ADMozaikLayoutDelegate, UICollectionViewDataSource {
 
+    private let ADMozaikCollectionViewLayoutExampleImagesCount = 22
+    
     @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -26,27 +28,29 @@ class ViewController: UIViewController, ADMozaikLayoutDelegate, UICollectionView
     //MARK: - Helpers
     
     private func createLayout() -> ADMozaikLayout {
-        let thirdOfScreen: CGFloat = (CGRectGetWidth(UIScreen.mainScreen().bounds) - 2) / 3
-
-        let columns: [ADMozaikLayoutColumn]
-        if (CGRectGetWidth(UIScreen.mainScreen().bounds) - 2) % 3 == 0 {
-            columns = [ADMozaikLayoutColumn(width: thirdOfScreen), ADMozaikLayoutColumn(width: thirdOfScreen), ADMozaikLayoutColumn(width: thirdOfScreen)]
-        }
-        else {
-            columns = [ADMozaikLayoutColumn(width: thirdOfScreen), ADMozaikLayoutColumn(width: thirdOfScreen + 1), ADMozaikLayoutColumn(width: thirdOfScreen)]
-        }
-        
-        let layout = ADMozaikLayout(rowHeight: thirdOfScreen, columns: columns)
+        let columns = [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)]
+        let layout = ADMozaikLayout(rowHeight: 93, columns: columns)
         layout.delegate = self
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
         return layout;
     }
     
     //MARK: - ADMozaikLayoutDelegate
     
     func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize {
-        return ADMozaikLayoutSize(columns: 1, rows: 1)
+        if indexPath.item % 8 == 0 {
+            return ADMozaikLayoutSize(columns: 2, rows: 2)
+        }
+        else if indexPath.item % 6 == 0 {
+            return ADMozaikLayoutSize(columns: 3, rows: 1)
+        }
+        else if indexPath.item % 4 == 0 {
+            return ADMozaikLayoutSize(columns: 1, rows: 3)
+        }
+        else {
+            return ADMozaikLayoutSize(columns: 1, rows: 1)
+        }
     }
     
     //MARK: - UICollectionViewDataSource
@@ -61,7 +65,8 @@ class ViewController: UIViewController, ADMozaikLayoutDelegate, UICollectionView
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ADMozaikLayoutCell", forIndexPath: indexPath) as UICollectionViewCell
-        cell.backgroundColor = UIColor(red: CGFloat(arc4random_uniform(100)) / 100, green: CGFloat(arc4random_uniform(100)) / 100, blue: CGFloat(arc4random_uniform(100)) / 100, alpha: 1)
+        let imageView: UIImageView = cell.viewWithTag(1000) as! UIImageView
+        imageView.image = UIImage(named: "\(indexPath.item % ADMozaikCollectionViewLayoutExampleImagesCount)")
         return cell
     }
     
