@@ -19,3 +19,22 @@ And also this project has some advantages you can find below=)
 
 The idea behind this layout is to split `UICollectionView` bounds into kind of "matrix". 
 To do this `ADMozaikCollectionViewLayout` requires row `height` and `width` for each column.
+```swift
+/**
+ *  Defines the layout's column
+ */
+public struct ADMozaikLayoutColumn {
+    /// Width of the column in points
+    let width: CGFloat
+}
+
+/**
+     Designated initializer to create new instance of `ADMozaikLayout`
+     
+     - parameter rowHeight: height for each row
+     - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+     
+     - returns: newly created instance of `ADMozaikLayout`
+     */
+    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn])
+```
