@@ -29,12 +29,12 @@ public struct ADMozaikLayoutColumn {
 }
 
 /**
-     Designated initializer to create new instance of `ADMozaikLayout`
+ Designated initializer to create new instance of `ADMozaikLayout`
      
-     - parameter rowHeight: height for each row
-     - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+ - parameter rowHeight: height for each row
+ - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
      
-     - returns: newly created instance of `ADMozaikLayout`
-     */
-    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn])
+ - returns: newly created instance of `ADMozaikLayout`
+ */
+public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn])
 ```
