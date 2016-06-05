@@ -38,3 +38,27 @@ public struct ADMozaikLayoutColumn {
  */
 public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn])
 ```
+
+And it requires the delegate with implemented protocol `ADMozaikLayoutDelegate` to get the size of each cell
+```swift
+/**
+ Method should return `ADMozaikLayoutSize` for specific indexPath
+     
+ - parameter collectionView: collection view is using layout
+ - parameter layout:         layout itself
+ - parameter indexPath:      indexPath of item for the size it asks for
+ 
+ - returns: `ADMozaikLayoutSize` struct object describes the size
+ */
+func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize
+
+/**
+ *  Defines the size of the layout item
+ */
+public struct ADMozaikLayoutSize {
+    /// Columns number that item requires
+    let columns: Int
+    /// Rows number that item requires
+    let rows: Int
+}
+```
