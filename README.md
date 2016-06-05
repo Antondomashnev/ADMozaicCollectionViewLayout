@@ -66,4 +66,4 @@ public struct ADMozaikLayoutSize {
     let rows: Int
 }
 ```
-For the complete exaple please check the example project. Note that current examplr project is supposed to be run on iPhone 6 screen's size.
+For the complete example please check the example project. Note that current examplr project is supposed to be run on iPhone 6 screen's size.
