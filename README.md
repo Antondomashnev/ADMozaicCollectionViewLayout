@@ -21,14 +21,6 @@ The idea behind this layout is to split `UICollectionView` bounds into kind of "
 To do this `ADMozaikCollectionViewLayout` requires row `height` and `width` for each column.
 ```swift
 /**
- *  Defines the layout's column
- */
-public struct ADMozaikLayoutColumn {
-    /// Width of the column in points
-    let width: CGFloat
-}
-
-/**
  Designated initializer to create new instance of `ADMozaikLayout`
      
  - parameter rowHeight: height for each row
@@ -38,8 +30,18 @@ public struct ADMozaikLayoutColumn {
  */
 public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn])
 ```
+Where `ADMozaikLayoutColumn` is the column description
+```swift
+/**
+ *  Defines the layout's column
+ */
+public struct ADMozaikLayoutColumn {
+    /// Width of the column in points
+    let width: CGFloat
+}
+```
 
-And it requires the delegate with implemented protocol `ADMozaikLayoutDelegate` to get the size of each cell
+Also it requires the delegate object that is conformed to protocol `ADMozaikLayoutDelegate` to get the size of each cell
 ```swift
 /**
  Method should return `ADMozaikLayoutSize` for specific indexPath
@@ -51,7 +53,9 @@ And it requires the delegate with implemented protocol `ADMozaikLayoutDelegate` 
  - returns: `ADMozaikLayoutSize` struct object describes the size
  */
 func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize
-
+```
+Where `ADMozaikLayoutSize` describes the size of each cell in terms of `ADMozaikCollectionViewLayout`
+```swift
 /**
  *  Defines the size of the layout item
  */
@@ -62,3 +66,4 @@ public struct ADMozaikLayoutSize {
     let rows: Int
 }
 ```
+For the complete exaple please check the example project. Note that current examplr project is supposed to be run on iPhone 6 screen's size.
