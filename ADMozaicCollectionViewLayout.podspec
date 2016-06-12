@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-  s.name         = 'ADMozaikCollectionViewLayout'
+  s.name         = 'ADMozaicCollectionViewLayout'
   s.version      = '1.0.0'
   s.summary      = "Custom mozaic style collection view layout"
 
@@ -12,9 +12,10 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/Antondomashnev/ADMozaicCollectionViewLayout'
   s.author       = { 'Anton Domashnev' => 'antondomashnev@gmail.com' }
 
-  s.source       = { :git => "https://github.com/Antondomashnev/ADPuzzleAnimation.git", :tag => s.version.to_s}
+  s.source       = { :git => "https://github.com/Antondomashnev/ADMozaicCollectionViewLayout.git", :tag => s.version.to_s}
   s.platform = :ios, '8.0'
   s.ios.deployment_target = '8.0'
-  s.source_files = 'Source/**/*.swift'
+  s.source_files = 'ADMozaikCollectionViewLayout/**/*.swift'
+  s.frameworks = 'UIKit'
 
 end
