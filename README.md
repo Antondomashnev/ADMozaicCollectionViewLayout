@@ -17,48 +17,48 @@ But this project is pure `swift` implementation, so if you don't want to mess up
 ## Usage
 
 The idea behind this layout is to split `UICollectionView` bounds into some kind of "matrix". 
-To do this `ADMozaicCollectionViewLayout` requires `height` for rows and `width` for columns.
+To do this `ADMozaikCollectionViewLayout` requires `height` for rows and `width` for columns.
 ```swift
 /**
- Designated initializer to create new instance of `ADMozaicLayout`
+ Designated initializer to create new instance of `ADMozaikLayout`
      
  - parameter rowHeight: height for each row
- - parameter columns:   array of `ADMozaicLayoutColumn` for the layout
+ - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
      
- - returns: newly created instance of `ADMozaicLayout`
+ - returns: newly created instance of `ADMozaikLayout`
  */
-public init(rowHeight: CGFloat, columns: [ADMozaicLayoutColumn])
+public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn])
 ```
-Where `ADMozaicLayoutColumn` is the column description
+Where `ADMozaikLayoutColumn` is the column description
 ```swift
 /**
  *  Defines the layout's column
  */
-public struct ADMozaicLayoutColumn {
+public struct ADMozaikLayoutColumn {
     /// Width of the column in points
     let width: CGFloat
 }
 ```
 
-Also, it requires the delegate object that is conformed to protocol `ADMozaicLayoutDelegate` to get the size of each cell
+Also, it requires the delegate object that is conformed to protocol `ADMozaikLayoutDelegate` to get the size of each cell
 ```swift
 /**
- Method should return `ADMozaicLayoutSize` for specific indexPath
+ Method should return `ADMozaikLayoutSize` for specific indexPath
      
  - parameter collectionView: collection view is using layout
  - parameter layout:         layout itself
  - parameter indexPath:      indexPath of an item for the size it asks for
  
- - returns: `ADMozaicLayoutSize` struct object describes the size
+ - returns: `ADMozaikLayoutSize` struct object describes the size
  */
-func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaicSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaicLayoutSize
+func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize
 ```
-Where `ADMozaicLayoutSize` describes the size of each cell in terms of `ADMozaicCollectionViewLayout`
+Where `ADMozaikLayoutSize` describes the size of each cell in terms of `ADMozaikCollectionViewLayout`
 ```swift
 /**
  *  Defines the size of the layout item
  */
-public struct ADMozaicLayoutSize {
+public struct ADMozaikLayoutSize {
     /// Columns number that item requires
     let columns: Int
     /// Rows number that item requires
