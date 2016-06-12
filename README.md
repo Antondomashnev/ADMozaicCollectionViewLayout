@@ -17,8 +17,8 @@ And also this project has some advantages you can find below=)
 
 ## Usage
 
-The idea behind this layout is to split `UICollectionView` bounds into kind of "matrix". 
-To do this `ADMozaikCollectionViewLayout` requires row `height` and `width` for each column.
+The idea behind this layout is to split `UICollectionView` bounds into some kind of "matrix". 
+To do this `ADMozaikCollectionViewLayout` requires `height` for rows and `width` for columns.
 ```swift
 /**
  Designated initializer to create new instance of `ADMozaikLayout`
