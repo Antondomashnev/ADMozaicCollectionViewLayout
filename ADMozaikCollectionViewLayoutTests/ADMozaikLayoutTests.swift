@@ -231,7 +231,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithoutInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .A
-        self.viewController.view.frame = UIScreen.mainScreen().bounds
+        self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
         self.FBSnapshotVerifyView(self.viewController.view)
@@ -240,7 +240,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithInteritemInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .B
-        self.viewController.view.frame = UIScreen.mainScreen().bounds
+        self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
         self.FBSnapshotVerifyView(self.viewController.view)
@@ -249,7 +249,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithInterLineInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .C
-        self.viewController.view.frame = UIScreen.mainScreen().bounds
+        self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
         self.FBSnapshotVerifyView(self.viewController.view)
@@ -258,7 +258,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithInterLineInsetsAndInterItemInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .D
-        self.viewController.view.frame = UIScreen.mainScreen().bounds
+        self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
         self.FBSnapshotVerifyView(self.viewController.view)
@@ -267,7 +267,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithInterLineInsetsAndInterItemInsetsAndFourColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .E
-        self.viewController.view.frame = UIScreen.mainScreen().bounds
+        self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
         self.FBSnapshotVerifyView(self.viewController.view)
@@ -276,7 +276,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithComplexLayout() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .F
-        self.viewController.view.frame = UIScreen.mainScreen().bounds
+        self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
         self.FBSnapshotVerifyView(self.viewController.view)
@@ -285,12 +285,16 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithZeroNumberOfSections() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .G
-        self.viewController.view.frame = UIScreen.mainScreen().bounds
+        self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
         self.FBSnapshotVerifyView(self.viewController.view)
     }
     
+    //MARK - Private
     
+    private func testingFrame() -> CGRect {
+        return CGRect(x: 0, y: 0, width: 320, height: 568)
+    }
     
 }
