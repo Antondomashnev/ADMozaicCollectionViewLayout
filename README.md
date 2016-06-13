@@ -69,3 +69,16 @@ For the complete example please check the example project. Note that current exa
 
 ## Limitation
 This is the early bird release so this layout doesn't support headers, footers and sections at the moment. It's on my roadmap but PRs are very welcome=)
+
+## Easy to install
+
+### CocoaPods
+
+To integrate ADPuzzleAnimation into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'ADMozaicCollectionViewLayout', '~> 1.0.0'
