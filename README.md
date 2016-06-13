@@ -1,5 +1,7 @@
 # ADMozaicCollectionViewLayout
 
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/ADMozaicCollectionViewLayout.svg)](https://img.shields.io/cocoapods/v/ADMozaicCollectionViewLayout.svg)
+
 ## What is it
 `ADMozaicCollectionViewLayout` is yet another `UICollectionViewLayout` subclass that implements "brick" or "mozaic" 
  layout. 
