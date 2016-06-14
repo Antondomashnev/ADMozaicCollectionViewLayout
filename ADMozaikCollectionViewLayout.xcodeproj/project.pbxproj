@@ -182,12 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D7BE5C51CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayout" */;
 			buildPhases = (
-				3896F4CA21655076479A8692 /* 📦 Check Pods Manifest.lock */,
+				3896F4CA21655076479A8692 /* [CP] Check Pods Manifest.lock */,
 				6D7BE5AC1CEA148400A41445 /* Sources */,
 				6D7BE5AD1CEA148400A41445 /* Frameworks */,
 				6D7BE5AE1CEA148400A41445 /* Headers */,
 				6D7BE5AF1CEA148400A41445 /* Resources */,
-				EDDDB534CE3E6BEA287E6C8B /* 📦 Copy Pods Resources */,
+				EDDDB534CE3E6BEA287E6C8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,12 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D7BE5C81CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayoutTests" */;
 			buildPhases = (
-				6FA5C5D4BC52F2855D7B58EC /* 📦 Check Pods Manifest.lock */,
+				6FA5C5D4BC52F2855D7B58EC /* [CP] Check Pods Manifest.lock */,
 				6D7BE5B71CEA148400A41445 /* Sources */,
 				6D7BE5B81CEA148400A41445 /* Frameworks */,
 				6D7BE5B91CEA148400A41445 /* Resources */,
-				0E65DB978CE2F4EFD35B898D /* 📦 Embed Pods Frameworks */,
-				C8F0184B852EE0FDDCDA062B /* 📦 Copy Pods Resources */,
+				0E65DB978CE2F4EFD35B898D /* [CP] Embed Pods Frameworks */,
+				C8F0184B852EE0FDDCDA062B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,14 +273,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E65DB978CE2F4EFD35B898D /* 📦 Embed Pods Frameworks */ = {
+		0E65DB978CE2F4EFD35B898D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,14 +288,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3896F4CA21655076479A8692 /* 📦 Check Pods Manifest.lock */ = {
+		3896F4CA21655076479A8692 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,14 +303,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6FA5C5D4BC52F2855D7B58EC /* 📦 Check Pods Manifest.lock */ = {
+		6FA5C5D4BC52F2855D7B58EC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,14 +318,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C8F0184B852EE0FDDCDA062B /* 📦 Copy Pods Resources */ = {
+		C8F0184B852EE0FDDCDA062B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,14 +333,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EDDDB534CE3E6BEA287E6C8B /* 📦 Copy Pods Resources */ = {
+		EDDDB534CE3E6BEA287E6C8B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
