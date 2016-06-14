@@ -42,21 +42,11 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
     /// Current layout cache to speed up calculations
     private var layoutCache: ADMozaikLayoutCache!
     
-    /// Current number of rows in layout
-    private var rowCount: Int = 0
-    
-    /// Layout content height
-    private var contentHeight: CGFloat = 0
-    
     /// `ADMozaikLayoutMatrix` object that represents current layout
     private var layoutMatrix: ADMozaikLayoutMatrix!
     
-    /// Array of `UICollectionViewLayoutAttributes`
-    private var layoutAttributesArray: [UICollectionViewLayoutAttributes] = []
-    
-    private var unionRectsArray: [CGRect] = []
-    
-    private let ADMozaikLayoutUnionSize: Int = 20
+    /// Keeps information about current layout attributes
+    private var layoutAttrbutes: ADMozaikLayoutAttributes!
     
     //*******************************//
     
@@ -112,8 +102,7 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
         self.layoutGeometry.minimumLineSpacing = self.minimumLineSpacing
         self.layoutGeometry.minimumInteritemSpacing = self.minimumInteritemSpacing
         self.layoutMatrix = ADMozaikLayoutMatrix(numberOfRows: self.calculateRowsCount(), numberOfColumns: self.columns.count)
-        self.layoutAttributesArray = self.buildLayoutAttributesForNumberOfSections(self.layoutCache!.numberOfSections(), withLayoutMatrix: self.layoutMatrix)
-        self.unionRectsArray = self.buildUnionRectsFromLayoutAttributes(self.layoutAttributesArray)
+        self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: self.layoutCache, layoutMatrix: self.layoutMatrix, layoutGeometry: self.layoutGeometry)
     }
     
     public override func collectionViewContentSize() -> CGSize {
@@ -127,11 +116,11 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
         }
         let contentSize = super.collectionViewContentSize()
         let delta = CGRectGetHeight(self.collectionView!.bounds) - self.collectionView!.contentInset.top - self.collectionView!.contentInset.bottom
-        return CGSizeMake(contentSize.width, max(self.contentHeight, delta));
+        return CGSizeMake(contentSize.width, max(self.layoutGeometry.contentHeight, delta));
     }
     
     public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        return indexPath.item < self.layoutAttributesArray.count ? nil : self.layoutAttributesArray[indexPath.item]
+        return self.layoutAttrbutes?.layoutAttributesForItemAtIndexPath(indexPath)
     }
  
     public override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
@@ -139,90 +128,16 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
     }
 
     public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var resultAttributes: [UICollectionViewLayoutAttributes] = []
-        let unionRectsCount = self.unionRectsArray.count
-        var begin = 0
-        var end = unionRectsCount
-        
-        for unionRectIndex in (0..<unionRectsCount) {
-            if !CGRectIntersectsRect(rect, self.unionRectsArray[unionRectIndex]) {
-                continue
-            }
-            begin = unionRectIndex * ADMozaikLayoutUnionSize
-            break
-        }
-        
-        for unionRectIndex in (0..<unionRectsCount).reverse() {
-            if !CGRectIntersectsRect(rect, self.unionRectsArray[unionRectIndex]) {
-                continue
-            }
-            end = min((unionRectIndex + 1) * ADMozaikLayoutUnionSize, self.layoutAttributesArray.count)
-            break
-        }
-        
-        for i in begin..<end {
-            let attributes = self.layoutAttributesArray[i]
-            if CGRectIntersectsRect(rect, attributes.frame) {
-                resultAttributes.append(attributes)
-            }
-        }
-        
-        return resultAttributes
+        return self.layoutAttrbutes?.layoutAttributesForElementsInRect(rect)
     }
     
     //MARK: - Helpers
     
     private func resetLayout() {
-        self.rowCount = 0
-        self.contentHeight = 0
-        self.unionRectsArray.removeAll()
-        self.layoutAttributesArray.removeAll()
+        self.layoutAttrbutes = nil
         self.layoutMatrix = nil
         self.layoutCache = nil
         self.layoutGeometry = nil
-    }
-    
-    private func buildUnionRectsFromLayoutAttributes(attributes: [UICollectionViewLayoutAttributes]) -> [CGRect] {
-        var index = 0
-        var unionRectsArray: [CGRect] = []
-        let itemsCount = attributes.count
-        while index < itemsCount {
-            let frame1 = attributes[index].frame
-            index = min(index + ADMozaikLayoutUnionSize, itemsCount) - 1
-            let frame2 = attributes[index].frame
-            unionRectsArray.append(CGRectUnion(frame1, frame2))
-            index += 1
-        }
-        return unionRectsArray
-    }
-    
-    private func buildLayoutAttributesForNumberOfSections(numberOfSections: Int, withLayoutMatrix layoutMatrix: ADMozaikLayoutMatrix) -> [UICollectionViewLayoutAttributes] {
-        var allAttributes: [UICollectionViewLayoutAttributes] = []
-        for section in 0..<numberOfSections {
-            let itemsCount = self.layoutCache.numberOfItemsInSection(section)
-            for item in 0..<itemsCount {
-                let indexPath = NSIndexPath(forItem: item, inSection: section)
-                let itemSize = self.layoutCache.mozaikSizeForItemAtIndexPath(indexPath)
-                guard let itemPosition = self.layoutMatrix.positionForItemWithSize(itemSize) else {
-                    continue
-                }
-                let xOffset = self.layoutGeometry.xOffsetForItemAtPosition(itemPosition)
-                let yOffset = self.layoutGeometry.yOffsetForItemAtPosition(itemPosition)
-                let itemGeometrySize = self.layoutGeometry.sizeForItemWithMozaikSize(itemSize, atPosition: itemPosition)
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-                attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemGeometrySize.width, height: itemGeometrySize.height)
-                allAttributes.append(attributes)
-                
-                self.contentHeight = fmax(self.contentHeight, yOffset + itemGeometrySize.height)
-                do {
-                    try self.layoutMatrix.addItemWithSize(itemSize, atPosition: itemPosition)
-                }
-                catch {
-                    fatalError((error as! CustomStringConvertible).description)
-                }
-            }
-        }
-        return allAttributes
     }
 
     private func calculateRowsCount() -> Int {

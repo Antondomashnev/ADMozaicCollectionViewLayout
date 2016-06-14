@@ -18,6 +18,9 @@ class ADMozaikLayoutGeometry {
     /// Minimum space between lines
     var minimumLineSpacing: CGFloat = 0.0
     
+    /// Layout content height
+    var contentHeight: CGFloat = 0
+    
     /// Array that contains information about layout columns
     private let layoutColumns: [ADMozaikLayoutColumn]
     
