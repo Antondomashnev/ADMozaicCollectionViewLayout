@@ -20,9 +20,6 @@ install:
 - bundle install
 - bundle exec pod repo update
 - bundle exec pod install
-before_install:
-- set -o pipefail && xcodebuild -workspace ADMozaikCollectionViewLayout.xcworkspace
-  -scheme ADMozaikCollectionViewLayout -sdk iphonesimulator build | xcpretty -c
 script:
 - xcodebuild -workspace ADMozaikCollectionViewLayout.xcworkspace -scheme ADMozaikCollectionViewLayout -configuration Debug test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' | second_curtain | xcpretty -c --test
 after_success:
