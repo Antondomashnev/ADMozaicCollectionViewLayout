@@ -1,5 +1,6 @@
 # ADMozaicCollectionViewLayout
 
+![](https://travis-ci.org/Antondomashnev/ADMozaicCollectionViewLayout.svg?branch=master)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/ADMozaicCollectionViewLayout.svg)](https://img.shields.io/cocoapods/v/ADMozaicCollectionViewLayout.svg)
 [![codebeat badge](https://codebeat.co/badges/17a86057-b1be-497d-886a-c9cfdb17da10)](https://codebeat.co/projects/github-com-antondomashnev-admozaiccollectionviewlayout)
 
