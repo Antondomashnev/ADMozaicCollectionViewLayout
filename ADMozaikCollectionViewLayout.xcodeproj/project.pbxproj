@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		258B2C918DBDF0CC2033EB6F /* Pods_ADMozaikCollectionViewLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC6A745BFE7EB7442AB6481 /* Pods_ADMozaikCollectionViewLayoutTests.framework */; };
 		6D7BE5B51CEA148400A41445 /* ADMozaikCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D7BE5BC1CEA148400A41445 /* ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */; };
 		6D7BE5E11CEA3A8F00A41445 /* ADMozaikLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5DE1CEA3A8F00A41445 /* ADMozaikLayout.swift */; };
@@ -21,7 +20,8 @@
 		6DD7FBFE1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD7FBFD1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift */; };
 		6DD7FC001CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD7FBFF1CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift */; };
 		6DEC646E1D109C2F002AAD54 /* ADMozaikLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEC646D1D109C2F002AAD54 /* ADMozaikLayoutAttributes.swift */; };
-		C529FFCE551654115F04296E /* Pods_ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3D13A00F5D84BC3E279302 /* Pods_ADMozaikCollectionViewLayout.framework */; };
+		9B48B2CA3CCEB5666F4C4C00 /* Pods_ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FC2CDDA93188FECCCD4D966 /* Pods_ADMozaikCollectionViewLayout.framework */; };
+		D5196777448A869011C714DE /* Pods_ADMozaikCollectionViewLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E3BBF7B49C76EE34AA3E0B /* Pods_ADMozaikCollectionViewLayoutTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F6CEBB417A17107190EB906 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
-		329D55429C6049EC35E52990 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout.release.xcconfig"; sourceTree = "<group>"; };
-		56362461893C1B86220985F0 /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
-		5F3D13A00F5D84BC3E279302 /* Pods_ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21E3BBF7B49C76EE34AA3E0B /* Pods_ADMozaikCollectionViewLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMozaikCollectionViewLayout.h; sourceTree = "<group>"; };
 		6D7BE5B61CEA148400A41445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,8 +52,11 @@
 		6DD7FBFD1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutGeometry.swift; sourceTree = "<group>"; };
 		6DD7FBFF1CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutGeometryTests.swift; sourceTree = "<group>"; };
 		6DEC646D1D109C2F002AAD54 /* ADMozaikLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutAttributes.swift; sourceTree = "<group>"; };
-		7CC6A745BFE7EB7442AB6481 /* Pods_ADMozaikCollectionViewLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C119A3C6A8E892EBC54514D /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout.debug.xcconfig"; sourceTree = "<group>"; };
+		70CFD8A40B5AEF62231F4DE8 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7FC2CDDA93188FECCCD4D966 /* Pods_ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5DDCDFA592477E1AE596DEE /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
+		EC99CF274D4EC3331940DEDC /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout.debug.xcconfig"; sourceTree = "<group>"; };
+		F3486C42048D6CF2108F8E46 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADMozaikCollectionViewLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C529FFCE551654115F04296E /* Pods_ADMozaikCollectionViewLayout.framework in Frameworks */,
+				9B48B2CA3CCEB5666F4C4C00 /* Pods_ADMozaikCollectionViewLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,20 +73,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D7BE5BC1CEA148400A41445 /* ADMozaikCollectionViewLayout.framework in Frameworks */,
-				258B2C918DBDF0CC2033EB6F /* Pods_ADMozaikCollectionViewLayoutTests.framework in Frameworks */,
+				D5196777448A869011C714DE /* Pods_ADMozaikCollectionViewLayoutTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		16621CFD1FF0ACF692DFA70B /* Frameworks */ = {
+		1084DE787FC0BB107D9923F2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5F3D13A00F5D84BC3E279302 /* Pods_ADMozaikCollectionViewLayout.framework */,
-				7CC6A745BFE7EB7442AB6481 /* Pods_ADMozaikCollectionViewLayoutTests.framework */,
+				EC99CF274D4EC3331940DEDC /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */,
+				F3486C42048D6CF2108F8E46 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */,
+				70CFD8A40B5AEF62231F4DE8 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */,
+				A5DDCDFA592477E1AE596DEE /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		6D7BE5A71CEA148400A41445 = {
@@ -95,8 +97,8 @@
 				6D7BE5B31CEA148400A41445 /* ADMozaikCollectionViewLayout */,
 				6D7BE5BF1CEA148400A41445 /* ADMozaikCollectionViewLayoutTests */,
 				6D7BE5B21CEA148400A41445 /* Products */,
-				BE246D3F17D33727CB423265 /* Pods */,
-				16621CFD1FF0ACF692DFA70B /* Frameworks */,
+				1084DE787FC0BB107D9923F2 /* Pods */,
+				9E252F1493D5F645854B7C72 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,15 +155,13 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
-		BE246D3F17D33727CB423265 /* Pods */ = {
+		9E252F1493D5F645854B7C72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8C119A3C6A8E892EBC54514D /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */,
-				329D55429C6049EC35E52990 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */,
-				1F6CEBB417A17107190EB906 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */,
-				56362461893C1B86220985F0 /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */,
+				7FC2CDDA93188FECCCD4D966 /* Pods_ADMozaikCollectionViewLayout.framework */,
+				21E3BBF7B49C76EE34AA3E0B /* Pods_ADMozaikCollectionViewLayoutTests.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,12 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D7BE5C51CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayout" */;
 			buildPhases = (
-				3896F4CA21655076479A8692 /* 📦 Check Pods Manifest.lock */,
+				88E79A6DCE69D60D0BFD5B86 /* [CP] Check Pods Manifest.lock */,
 				6D7BE5AC1CEA148400A41445 /* Sources */,
 				6D7BE5AD1CEA148400A41445 /* Frameworks */,
 				6D7BE5AE1CEA148400A41445 /* Headers */,
 				6D7BE5AF1CEA148400A41445 /* Resources */,
-				EDDDB534CE3E6BEA287E6C8B /* 📦 Copy Pods Resources */,
+				FF33B20BD9FD0AFBE378E5BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,12 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D7BE5C81CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayoutTests" */;
 			buildPhases = (
-				6FA5C5D4BC52F2855D7B58EC /* 📦 Check Pods Manifest.lock */,
+				6FA5C5D4BC52F2855D7B58EC /* [CP] Check Pods Manifest.lock */,
 				6D7BE5B71CEA148400A41445 /* Sources */,
 				6D7BE5B81CEA148400A41445 /* Frameworks */,
 				6D7BE5B91CEA148400A41445 /* Resources */,
-				0E65DB978CE2F4EFD35B898D /* 📦 Embed Pods Frameworks */,
-				C8F0184B852EE0FDDCDA062B /* 📦 Copy Pods Resources */,
+				0E65DB978CE2F4EFD35B898D /* [CP] Embed Pods Frameworks */,
+				C8F0184B852EE0FDDCDA062B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,14 +273,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E65DB978CE2F4EFD35B898D /* 📦 Embed Pods Frameworks */ = {
+		0E65DB978CE2F4EFD35B898D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,14 +288,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3896F4CA21655076479A8692 /* 📦 Check Pods Manifest.lock */ = {
+		6FA5C5D4BC52F2855D7B58EC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,14 +303,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6FA5C5D4BC52F2855D7B58EC /* 📦 Check Pods Manifest.lock */ = {
+		88E79A6DCE69D60D0BFD5B86 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,14 +318,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C8F0184B852EE0FDDCDA062B /* 📦 Copy Pods Resources */ = {
+		C8F0184B852EE0FDDCDA062B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,14 +333,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EDDDB534CE3E6BEA287E6C8B /* 📦 Copy Pods Resources */ = {
+		FF33B20BD9FD0AFBE378E5BC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,7 +480,7 @@
 		};
 		6D7BE5C61CEA148400A41445 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C119A3C6A8E892EBC54514D /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */;
+			baseConfigurationReference = EC99CF274D4EC3331940DEDC /* Pods-ADMozaikCollectionViewLayout.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -500,7 +500,7 @@
 		};
 		6D7BE5C71CEA148400A41445 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 329D55429C6049EC35E52990 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */;
+			baseConfigurationReference = F3486C42048D6CF2108F8E46 /* Pods-ADMozaikCollectionViewLayout.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -519,8 +519,9 @@
 		};
 		6D7BE5C91CEA148400A41445 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F6CEBB417A17107190EB906 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */;
+			baseConfigurationReference = 70CFD8A40B5AEF62231F4DE8 /* Pods-ADMozaikCollectionViewLayoutTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ADMozaikCollectionViewLayoutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -534,8 +535,9 @@
 		};
 		6D7BE5CA1CEA148400A41445 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56362461893C1B86220985F0 /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */;
+			baseConfigurationReference = A5DDCDFA592477E1AE596DEE /* Pods-ADMozaikCollectionViewLayoutTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ADMozaikCollectionViewLayoutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
