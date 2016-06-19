@@ -13,6 +13,8 @@ env:
 cache:
 - bundler
 - cocoapods
+- xcpretty
+- second_curtain
 install:
 - bundle install
 - bundle exec pod repo update
