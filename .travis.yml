@@ -24,8 +24,6 @@ before_install:
 - set -o pipefail && xcodebuild -workspace ADMozaikCollectionViewLayout.xcworkspace
   -scheme ADMozaikCollectionViewLayout -sdk iphonesimulator build | xcpretty -c
 script:
-- set -o pipefail && xcodebuild -workspace ADMozaikCollectionViewLayout.xcworkspace
-  -scheme ADMozaikCollectionViewLayout -configuration Debug test -sdk iphonesimulator
-  | second_curtain | xcpretty -c --test
+- xcodebuild -workspace ADMozaikCollectionViewLayout.xcworkspace -scheme ADMozaikCollectionViewLayout -configuration Debug test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' | second_curtain | xcpretty -c --test
 after_success:
 - bash <(curl -s https://codecov.io/bash)

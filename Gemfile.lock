@@ -7,6 +7,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     claide (1.0.0)
     cocoapods (1.0.1)
       activesupport (>= 4.0.2)
@@ -45,10 +48,18 @@ GEM
     fuzzy_match (2.0.4)
     i18n (0.7.0)
     json (1.8.3)
+    mini_portile2 (2.0.0)
     minitest (5.9.0)
     molinillo (0.4.5)
+    mustache (0.99.8)
     nap (1.1.0)
     netrc (0.7.8)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
+    rouge (1.11.1)
+    second_curtain (0.6.0)
+      aws-sdk-v1 (~> 1.52)
+      mustache (~> 0.99)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -56,12 +67,16 @@ GEM
       activesupport (>= 3)
       claide (>= 1.0.0, < 2.0)
       colored (~> 1.2)
+    xcpretty (0.2.2)
+      rouge (~> 1.8)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cocoapods
+  second_curtain (~> 0.2)
+  xcpretty
 
 BUNDLED WITH
    1.12.5
