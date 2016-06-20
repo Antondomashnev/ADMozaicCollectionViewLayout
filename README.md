@@ -1,13 +1,14 @@
 # ADMozaicCollectionViewLayout
 
+![](https://travis-ci.org/Antondomashnev/ADMozaicCollectionViewLayout.svg?branch=master)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/ADMozaicCollectionViewLayout.svg)](https://img.shields.io/cocoapods/v/ADMozaicCollectionViewLayout.svg)
 [![codebeat badge](https://codebeat.co/badges/17a86057-b1be-497d-886a-c9cfdb17da10)](https://codebeat.co/projects/github-com-antondomashnev-admozaiccollectionviewlayout)
 
 ## What is it
 `ADMozaicCollectionViewLayout` is yet another `UICollectionViewLayout` subclass that implements "brick" or "mozaic" 
  layout. 
-
-<img src="http://i.giphy.com/aEuFnblI9AQ24.gif" width="375" />
+ 
+![Animated GIF](http://i.giphy.com/aEuFnblI9AQ24.gif)
 
 ## Why do anybody need yet another one?
 Because there are plenty of kind of the same layouts already:
