@@ -87,12 +87,12 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'ADMozaicCollectionViewLayout', '~> 1.0.0'
-
+```
 ### Carthage
 
 To integrate ADMozaicCollectionViewLayout into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-```ogdl
+```ruby
 github "Antondomashnev/ADMozaicCollectionViewLayout" ~> 1.0
 ```
 
