@@ -9,7 +9,7 @@
 `ADMozaicCollectionViewLayout` is yet another `UICollectionViewLayout` subclass that implements "brick" or "mozaic" 
  layout. 
  
-![Animated GIF](http://i.giphy.com/aEuFnblI9AQ24.gif)
+![example](https://api.monosnap.com/rpc/file/download?id=ynSWYnVPN7CASGzYycTlA3TV9WCnos)
 
 ## Why do anybody need yet another one?
 Because there are plenty of kind of the same layouts already:
