@@ -47,28 +47,26 @@ class ADMozaikLayoutMatrix {
  
     //MARK: - Interface
     
-    /**
-     Designated initializer to create new instance of `ADMozaikLayoutMatrix`
-     
-     - parameter numberOfRows: expected number of rows in layout
-     - parameter columns:      number of coumns in layout
-     
-     - returns: newly created instance of `ADMozaikLayoutMatrix`
-     */
+    ///
+    /// Designated initializer to create new instance of `ADMozaikLayoutMatrix`
+    ///
+    /// - parameter numberOfRows: expected number of rows in layout
+    /// - parameter columns:      number of coumns in layout
+    ///
+    /// - returns: newly created instance of `ADMozaikLayoutMatrix`
     init(numberOfRows: Int, numberOfColumns: Int) {
         self.numberOfRows = numberOfRows
         self.numberOfColumns = numberOfColumns
         self.arrayRepresentation = self.buildArrayRepresentation(numberOfRows, numberOfColumns: numberOfColumns)
     }
 
-    /**
-     Adds item into the layout matrix
-     
-     - parameter size:     size of the adding item
-     - parameter position: position to be added at
-     
-     - throws: error if item (size.width + position.x) or (size.height + position.y) is out if bounds of the matrix or
-     */
+    ///
+    /// Adds item into the layout matrix
+    ///
+    /// - parameter size:     size of the adding item
+    /// - parameter position: position to be added at
+    ///
+    /// - throws: error if item (size.width + position.x) or (size.height + position.y) is out if bounds of the matrix or
     func addItemWithSize(_ size: ADMozaikLayoutSize, atPosition position: ADMozaikLayoutPosition) throws -> Void {
         let lastColumn = position.column + size.columns - 1
         guard lastColumn < arrayRepresentation.count else {
@@ -87,13 +85,12 @@ class ADMozaikLayoutMatrix {
         }
     }
     
-    /**
-     Calculates the first available position for the item with the given size
-     
-     - parameter size: size of the adding item
-     
-     - returns: position of the item, returns nil if there is no available position fir the item
-     */
+    ///
+    /// Calculates the first available position for the item with the given size
+    ///
+    /// - parameter size: size of the adding item
+    ///
+    /// - returns: position of the item, returns nil if there is no available position fir the item
     func positionForItemWithSize(_ size: ADMozaikLayoutSize) -> ADMozaikLayoutPosition? {
         let maximumColumn = self.numberOfColumns - size.columns
         let maximumRow = self.numberOfRows - size.rows
@@ -104,7 +101,7 @@ class ADMozaikLayoutMatrix {
         
         for row in 0...maximumRow {
             for column in 0...maximumColumn {
-                let possiblePosition = ADMozaikLayoutPosition(column: column, row: row)
+                let possiblePosition = ADMozaikLayoutPosition(atColumn: column, atRow: row)
                 var isPositionFree = false
                 do {
                     try isPositionFree = self.isPositionFree(possiblePosition, forItemWithSize: size)

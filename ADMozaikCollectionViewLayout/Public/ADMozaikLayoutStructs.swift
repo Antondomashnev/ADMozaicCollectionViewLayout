@@ -24,7 +24,7 @@ public struct ADMozaikLayoutPosition {
     /// - parameter row:    roe number
     ///
     /// - returns: newly created `ADMozaikLayoutPosition`
-    public init(column: Int, row: Int) {
+    public init(atColumn column: Int, atRow row: Int) {
         self.column = column
         self.row = row
     }
@@ -46,7 +46,7 @@ public struct ADMozaikLayoutSize {
     /// - parameter rows:    number of rows (basically the height)
     ///
     /// - returns: newly created `ADMozaikLayoutSize`
-    public init(columns: Int, rows: Int) {
+    public init(numberOfColumns columns: Int, numberOfRows rows: Int) {
         self.columns = columns
         self.rows = rows
     }

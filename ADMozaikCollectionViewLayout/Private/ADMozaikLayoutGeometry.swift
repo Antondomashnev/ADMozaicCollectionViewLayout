@@ -27,14 +27,13 @@ class ADMozaikLayoutGeometry {
     /// Row height of the layout
     fileprivate let rowHeight: CGFloat
     
-    /**
-     Initializes the layout geometry instance
-     
-     - parameter layoutColumns: layout columns array
-     - parameter rowHeight:     row height of the layout
-     
-     - returns: newly created layout geometry instance
-     */
+    ///
+    /// Initializes the layout geometry instance
+    ///
+    /// - parameter layoutColumns: layout columns array
+    /// - parameter rowHeight:     row height of the layout
+    ///
+    /// - returns: newly created layout geometry instance
     init(layoutColumns: [ADMozaikLayoutColumn], rowHeight: CGFloat) {
         self.layoutColumns = layoutColumns
         self.rowHeight = rowHeight
@@ -42,15 +41,14 @@ class ADMozaikLayoutGeometry {
     
     //MARK: - Interface
  
-    /**
-     Calculates the geometry size in points for the item with the given size at the given position
-     
-     - parameter size:     size of the item in terms of mozaik layout
-     - parameter position: position of the item in mozaik layout
-     
-     - returns: geometry size of the item
-     */
-    func sizeForItemWithMozaikSize(_ size: ADMozaikLayoutSize, atPosition position: ADMozaikLayoutPosition) -> CGSize {
+    ///
+    /// Calculates the geometry size in points for the item with the given size at the given position
+    ///
+    /// - parameter size:     size of the item in terms of mozaik layout
+    /// - parameter position: position of the item in mozaik layout
+    ///
+    /// - returns: geometry size of the item
+    func sizeForItem(withMozaikSize size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) -> CGSize {
         var width: CGFloat = 0.0
         for column in position.column...(position.column + size.columns - 1) {
             width += self.layoutColumns[column].width
@@ -60,14 +58,13 @@ class ADMozaikLayoutGeometry {
         return CGSize(width: width, height: height)
     }
     
-    /**
-     Calculates the x origin for the item at the given position
-     
-     - parameter position: position of the item in mozaik layout
-     
-     - returns: geometry x offset of the item
-     */
-    func xOffsetForItemAtPosition(_ position: ADMozaikLayoutPosition) -> CGFloat {
+    ///
+    /// Calculates the x origin for the item at the given position
+    ///
+    /// - parameter position: position of the item in mozaik layout
+    ///
+    /// - returns: geometry x offset of the item
+    func xOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
         var xOffset: CGFloat = 0.0
         if position.column == 0 {
             return 0.0
@@ -78,14 +75,13 @@ class ADMozaikLayoutGeometry {
         return xOffset
     }
     
-    /**
-     Calculates the y origin for the item at the given position
-     
-     - parameter position: position of the item in mozaik layout
-     
-     - returns: geometry y offset of the item
-     */
-    func yOffsetForItemAtPosition(_ position: ADMozaikLayoutPosition) -> CGFloat {
+    ///
+    /// Calculates the y origin for the item at the given position
+    ///
+    /// - parameter position: position of the item in mozaik layout
+    ///
+    /// - returns: geometry y offset of the item
+    func yOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
         return (self.rowHeight + self.minimumLineSpacing) * CGFloat(position.row)
     }
 }

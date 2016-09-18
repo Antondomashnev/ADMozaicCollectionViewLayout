@@ -26,14 +26,13 @@ class ADMozaikLayoutCache {
     /// Reference to mozaik layout delegate
     fileprivate let mozaikLayoutDelegate: ADMozaikLayoutDelegate
     
-    /**
-     Designated initializer for the `ADMozaikLayoutCache`
-     
-     - parameter collectionView:       attached to layout collection view
-     - parameter mozaikLayoutDelegate: layout delegate
-     
-     - returns: newly created class `ADMozaikLayoutCache`
-     */
+    ///
+    /// Designated initializer for the `ADMozaikLayoutCache`
+    ///
+    /// - parameter collectionView:       attached to layout collection view
+    /// - parameter mozaikLayoutDelegate: layout delegate
+    ///
+    /// - returns: newly created class `ADMozaikLayoutCache`
     init(collectionView: UICollectionView, mozaikLayoutDelegate: ADMozaikLayoutDelegate) {
         self.collectionView = collectionView
         self.mozaikLayoutDelegate = mozaikLayoutDelegate
@@ -43,14 +42,13 @@ class ADMozaikLayoutCache {
     
     //MARK: - Interface
     
-    /**
-     Returns number of items in the given section
-     It either uses the cached value or the value from collectionView and caches it
-     
-     - parameter section: section number to get number of items in
-     
-     - returns: number of items in the given section
-     */
+    ///
+    /// Returns number of items in the given section
+    /// It either uses the cached value or the value from collectionView and caches it
+    ///
+    /// - parameter section: section number to get number of items in
+    ///
+    /// - returns: number of items in the given section
     func numberOfItemsInSection(_ section: Int) -> Int {
         if self.cachedNumberOfItemsInSectionDictionary[section] == nil {
             self.cachedNumberOfItemsInSectionDictionary[section] = self.collectionView.numberOfItems(inSection: section)
@@ -58,12 +56,11 @@ class ADMozaikLayoutCache {
         return self.cachedNumberOfItemsInSectionDictionary[section]!
     }
     
-    /**
-     Returns number of sections in attached collectionView
-     It either uses the cached value or the value from collectionView and caches it
-     
-     - returns: number of sections in attached collectionView
-     */
+    ///
+    /// Returns number of sections in attached collectionView
+    /// It either uses the cached value or the value from collectionView and caches it
+    ///
+    /// - returns: number of sections in attached collectionView
     func numberOfSections() -> Int {
         if self.cachedNumberOfSections == nil {
             self.cachedNumberOfSections = self.collectionView.numberOfSections
@@ -71,14 +68,13 @@ class ADMozaikLayoutCache {
         return self.cachedNumberOfSections!
     }
     
-    /**
-     Returns size for an item at the given indexPath
-     It either uses the cached value or the value from collectionView and caches it
-     
-     - parameter indexPath: index path to get the size of an item at
-     
-     - returns: size for an item at the given indexPath
-     */
+    ///
+    /// Returns size for an item at the given indexPath
+    /// It either uses the cached value or the value from collectionView and caches it
+    ///
+    /// - parameter indexPath: index path to get the size of an item at
+    ///
+    /// - returns: size for an item at the given indexPath
     func mozaikSizeForItemAtIndexPath(_ indexPath: IndexPath) -> ADMozaikLayoutSize {
         var size: ADMozaikLayoutSize? = self.cachedSizeOfItemAtIndexPathDictionary[indexPath]
         if size == nil {

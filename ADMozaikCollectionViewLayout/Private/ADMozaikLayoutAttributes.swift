@@ -76,9 +76,9 @@ class ADMozaikLayoutAttributes {
                 guard let itemPosition = layoutMatrix.positionForItemWithSize(itemSize) else {
                     continue
                 }
-                let xOffset = layoutGeometry.xOffsetForItemAtPosition(itemPosition)
-                let yOffset = layoutGeometry.yOffsetForItemAtPosition(itemPosition)
-                let itemGeometrySize = layoutGeometry.sizeForItemWithMozaikSize(itemSize, atPosition: itemPosition)
+                let xOffset = layoutGeometry.xOffsetForItem(at: itemPosition)
+                let yOffset = layoutGeometry.yOffsetForItem(at: itemPosition)
+                let itemGeometrySize = layoutGeometry.sizeForItem(withMozaikSize: itemSize, at: itemPosition)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemGeometrySize.width, height: itemGeometrySize.height)
                 allAttributes.append(attributes)
