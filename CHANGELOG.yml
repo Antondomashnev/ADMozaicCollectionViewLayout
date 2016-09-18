@@ -1,8 +1,11 @@
 ---
 upcoming:
-  version:
+  version: 2.1.0
   notes:
 releases:
+- version: 2.0.0
+  notes:
+  - Swift 3.0 compatibility
 - version: 1.0.2
   notes:
   - Integrate travis CI
