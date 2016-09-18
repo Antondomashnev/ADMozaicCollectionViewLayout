@@ -11,13 +11,13 @@ import Foundation
 class ADMozaikLayoutAttributes {
     
     /// Array of `UICollectionViewLayoutAttributes`
-    private(set) var layoutAttributesArray: [UICollectionViewLayoutAttributes] = []
+    fileprivate(set) var layoutAttributesArray: [UICollectionViewLayoutAttributes] = []
     
     /// Array of unified rects of each 20 layout attributes
-    private(set) var unionRectsArray: [CGRect] = []
+    fileprivate(set) var unionRectsArray: [CGRect] = []
     
     /// Default number of attributes in one union
-    private let ADMozaikLayoutUnionSize: Int = 20
+    fileprivate let ADMozaikLayoutUnionSize: Int = 20
     
     init(layoutCache: ADMozaikLayoutCache, layoutMatrix: ADMozaikLayoutMatrix, layoutGeometry: ADMozaikLayoutGeometry) {
         self.layoutAttributesArray = self.buildLayoutAttributesForLayoutGeometry(layoutGeometry, withLayoutMatrix: layoutMatrix, andLayoutCache: layoutCache)
@@ -26,26 +26,26 @@ class ADMozaikLayoutAttributes {
     
     //MARK: - Interface
     
-    func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        return indexPath.item < self.layoutAttributesArray.count ? nil : self.layoutAttributesArray[indexPath.item]
+    func layoutAttributesForItemAtIndexPath(_ indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return (indexPath as NSIndexPath).item < self.layoutAttributesArray.count ? nil : self.layoutAttributesArray[(indexPath as NSIndexPath).item]
     }
     
-    func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    func layoutAttributesForElementsInRect(_ rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var resultAttributes: [UICollectionViewLayoutAttributes] = []
         let unionRectsCount = self.unionRectsArray.count
         var begin = 0
         var end = unionRectsCount
         
         for unionRectIndex in (0..<unionRectsCount) {
-            if !CGRectIntersectsRect(rect, self.unionRectsArray[unionRectIndex]) {
+            if !rect.intersects(self.unionRectsArray[unionRectIndex]) {
                 continue
             }
             begin = unionRectIndex * ADMozaikLayoutUnionSize
             break
         }
         
-        for unionRectIndex in (0..<unionRectsCount).reverse() {
-            if !CGRectIntersectsRect(rect, self.unionRectsArray[unionRectIndex]) {
+        for unionRectIndex in (0..<unionRectsCount).reversed() {
+            if !rect.intersects(self.unionRectsArray[unionRectIndex]) {
                 continue
             }
             end = min((unionRectIndex + 1) * ADMozaikLayoutUnionSize, self.layoutAttributesArray.count)
@@ -54,7 +54,7 @@ class ADMozaikLayoutAttributes {
         
         for i in begin..<end {
             let attributes = self.layoutAttributesArray[i]
-            if CGRectIntersectsRect(rect, attributes.frame) {
+            if rect.intersects(attributes.frame) {
                 resultAttributes.append(attributes)
             }
         }
@@ -64,14 +64,14 @@ class ADMozaikLayoutAttributes {
     
     //MARK: - Helper
     
-    private func buildLayoutAttributesForLayoutGeometry(layoutGeometry: ADMozaikLayoutGeometry, withLayoutMatrix layoutMatrix: ADMozaikLayoutMatrix, andLayoutCache layoutCache: ADMozaikLayoutCache) -> [UICollectionViewLayoutAttributes] {
+    fileprivate func buildLayoutAttributesForLayoutGeometry(_ layoutGeometry: ADMozaikLayoutGeometry, withLayoutMatrix layoutMatrix: ADMozaikLayoutMatrix, andLayoutCache layoutCache: ADMozaikLayoutCache) -> [UICollectionViewLayoutAttributes] {
         let numberOfSections = layoutCache.numberOfSections()
         var allAttributes: [UICollectionViewLayoutAttributes] = []
         var currentItemBottom: CGFloat = 0
         for section in 0..<numberOfSections {
             let itemsCount = layoutCache.numberOfItemsInSection(section)
             for item in 0..<itemsCount {
-                let indexPath = NSIndexPath(forItem: item, inSection: section)
+                let indexPath = IndexPath(item: item, section: section)
                 let itemSize = layoutCache.mozaikSizeForItemAtIndexPath(indexPath)
                 guard let itemPosition = layoutMatrix.positionForItemWithSize(itemSize) else {
                     continue
@@ -79,10 +79,10 @@ class ADMozaikLayoutAttributes {
                 let xOffset = layoutGeometry.xOffsetForItemAtPosition(itemPosition)
                 let yOffset = layoutGeometry.yOffsetForItemAtPosition(itemPosition)
                 let itemGeometrySize = layoutGeometry.sizeForItemWithMozaikSize(itemSize, atPosition: itemPosition)
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemGeometrySize.width, height: itemGeometrySize.height)
                 allAttributes.append(attributes)
-                currentItemBottom = CGRectGetMaxY(attributes.frame)
+                currentItemBottom = attributes.frame.maxY
                 
                 do {
                     try layoutMatrix.addItemWithSize(itemSize, atPosition: itemPosition)
@@ -96,7 +96,7 @@ class ADMozaikLayoutAttributes {
         return allAttributes
     }
     
-    private func buildUnionRectsFromLayoutAttributes(attributes: [UICollectionViewLayoutAttributes]) -> [CGRect] {
+    fileprivate func buildUnionRectsFromLayoutAttributes(_ attributes: [UICollectionViewLayoutAttributes]) -> [CGRect] {
         var index = 0
         var unionRectsArray: [CGRect] = []
         let itemsCount = attributes.count
@@ -104,7 +104,7 @@ class ADMozaikLayoutAttributes {
             let frame1 = attributes[index].frame
             index = min(index + ADMozaikLayoutUnionSize, itemsCount) - 1
             let frame2 = attributes[index].frame
-            unionRectsArray.append(CGRectUnion(frame1, frame2))
+            unionRectsArray.append(frame1.union(frame2))
             index += 1
         }
         return unionRectsArray

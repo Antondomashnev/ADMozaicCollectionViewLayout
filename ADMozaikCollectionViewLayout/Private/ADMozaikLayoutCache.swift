@@ -12,19 +12,19 @@ import Foundation
 class ADMozaikLayoutCache {
     
     /// Stores number of sections in collection view
-    private var cachedNumberOfSections: Int?
+    fileprivate var cachedNumberOfSections: Int?
     
     /// Stores number of items in specific section
-    private var cachedNumberOfItemsInSectionDictionary: [Int: Int]
+    fileprivate var cachedNumberOfItemsInSectionDictionary: [Int: Int]
     
     /// Stores number size of item at specific indexPath
-    private var cachedSizeOfItemAtIndexPathDictionary: [NSIndexPath: ADMozaikLayoutSize]
+    fileprivate var cachedSizeOfItemAtIndexPathDictionary: [IndexPath: ADMozaikLayoutSize]
     
     /// Reference to collectionView
-    private let collectionView: UICollectionView
+    fileprivate let collectionView: UICollectionView
     
     /// Reference to mozaik layout delegate
-    private let mozaikLayoutDelegate: ADMozaikLayoutDelegate
+    fileprivate let mozaikLayoutDelegate: ADMozaikLayoutDelegate
     
     /**
      Designated initializer for the `ADMozaikLayoutCache`
@@ -51,9 +51,9 @@ class ADMozaikLayoutCache {
      
      - returns: number of items in the given section
      */
-    func numberOfItemsInSection(section: Int) -> Int {
+    func numberOfItemsInSection(_ section: Int) -> Int {
         if self.cachedNumberOfItemsInSectionDictionary[section] == nil {
-            self.cachedNumberOfItemsInSectionDictionary[section] = self.collectionView.numberOfItemsInSection(section)
+            self.cachedNumberOfItemsInSectionDictionary[section] = self.collectionView.numberOfItems(inSection: section)
         }
         return self.cachedNumberOfItemsInSectionDictionary[section]!
     }
@@ -66,7 +66,7 @@ class ADMozaikLayoutCache {
      */
     func numberOfSections() -> Int {
         if self.cachedNumberOfSections == nil {
-            self.cachedNumberOfSections = self.collectionView.numberOfSections()
+            self.cachedNumberOfSections = self.collectionView.numberOfSections
         }
         return self.cachedNumberOfSections!
     }
@@ -79,7 +79,7 @@ class ADMozaikLayoutCache {
      
      - returns: size for an item at the given indexPath
      */
-    func mozaikSizeForItemAtIndexPath(indexPath: NSIndexPath) -> ADMozaikLayoutSize {
+    func mozaikSizeForItemAtIndexPath(_ indexPath: IndexPath) -> ADMozaikLayoutSize {
         var size: ADMozaikLayoutSize? = self.cachedSizeOfItemAtIndexPathDictionary[indexPath]
         if size == nil {
             size = self.mozaikLayoutDelegate.collectionView(self.collectionView, layout: self.collectionView.collectionViewLayout, mozaikSizeForItemAtIndexPath: indexPath)

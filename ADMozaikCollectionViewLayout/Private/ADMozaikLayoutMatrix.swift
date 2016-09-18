@@ -14,18 +14,18 @@ import Foundation
  - ColumnOutOfBounds: mozaic's layout column is out of bounds
  - RowOutOfBounds:    mozaic's layout row is out of bounds
  */
-enum ADMozaikLayoutMatrixError : ErrorType {
-    case ColumnOutOfBounds
-    case RowOutOfBounds
+enum ADMozaikLayoutMatrixError : Error {
+    case columnOutOfBounds
+    case rowOutOfBounds
 }
 
 extension ADMozaikLayoutMatrixError : CustomStringConvertible {
     var description: String {
         switch self {
-        case .ColumnOutOfBounds:
+        case .columnOutOfBounds:
             return "Invalid column. Out of bounds"
             
-        case .RowOutOfBounds:
+        case .rowOutOfBounds:
             return "Invalid row. Out of bounds"
         }
     }
@@ -37,13 +37,13 @@ extension ADMozaikLayoutMatrixError : CustomStringConvertible {
 class ADMozaikLayoutMatrix {
     
     /// Array representation of the matrix: 1 if cell is not empty and 0 if it's empty
-    private var arrayRepresentation: [[Bool]] = []
+    fileprivate var arrayRepresentation: [[Bool]] = []
     
     /// Number of rows in the matrix
-    private let numberOfRows: Int
+    fileprivate let numberOfRows: Int
     
     /// Number of columns in the matrix
-    private let numberOfColumns: Int
+    fileprivate let numberOfColumns: Int
  
     //MARK: - Interface
     
@@ -69,15 +69,15 @@ class ADMozaikLayoutMatrix {
      
      - throws: error if item (size.width + position.x) or (size.height + position.y) is out if bounds of the matrix or
      */
-    func addItemWithSize(size: ADMozaikLayoutSize, atPosition position: ADMozaikLayoutPosition) throws -> Void {
+    func addItemWithSize(_ size: ADMozaikLayoutSize, atPosition position: ADMozaikLayoutPosition) throws -> Void {
         let lastColumn = position.column + size.columns - 1
         guard lastColumn < arrayRepresentation.count else {
-            throw ADMozaikLayoutMatrixError.ColumnOutOfBounds
+            throw ADMozaikLayoutMatrixError.columnOutOfBounds
         }
         
         let lastRow = position.row + size.rows - 1
         guard lastRow < arrayRepresentation[lastColumn].count else {
-            throw ADMozaikLayoutMatrixError.RowOutOfBounds
+            throw ADMozaikLayoutMatrixError.rowOutOfBounds
         }
         
         for column in position.column...lastColumn {
@@ -94,7 +94,7 @@ class ADMozaikLayoutMatrix {
      
      - returns: position of the item, returns nil if there is no available position fir the item
      */
-    func positionForItemWithSize(size: ADMozaikLayoutSize) -> ADMozaikLayoutPosition? {
+    func positionForItemWithSize(_ size: ADMozaikLayoutSize) -> ADMozaikLayoutPosition? {
         let maximumColumn = self.numberOfColumns - size.columns
         let maximumRow = self.numberOfRows - size.rows
         
@@ -122,7 +122,7 @@ class ADMozaikLayoutMatrix {
     
     //MARK: - Helpers
     
-    private func buildArrayRepresentation(numberOfRows: Int, numberOfColumns: Int) -> [[Bool]] {
+    fileprivate func buildArrayRepresentation(_ numberOfRows: Int, numberOfColumns: Int) -> [[Bool]] {
         var arrayRepresentation: [[Bool]] = []
         for _ in 0..<numberOfColumns {
             var rows: [Bool] = []
@@ -134,15 +134,15 @@ class ADMozaikLayoutMatrix {
         return arrayRepresentation
     }
     
-    private func isPositionFree(position: ADMozaikLayoutPosition, forItemWithSize size: ADMozaikLayoutSize) throws -> Bool {
+    fileprivate func isPositionFree(_ position: ADMozaikLayoutPosition, forItemWithSize size: ADMozaikLayoutSize) throws -> Bool {
         let lastColumn = position.column + size.columns - 1
         guard lastColumn < arrayRepresentation.count else {
-            throw ADMozaikLayoutMatrixError.ColumnOutOfBounds
+            throw ADMozaikLayoutMatrixError.columnOutOfBounds
         }
         
         let lastRow = position.row + size.rows - 1
         guard lastRow < arrayRepresentation[lastColumn].count else {
-            throw ADMozaikLayoutMatrixError.RowOutOfBounds
+            throw ADMozaikLayoutMatrixError.rowOutOfBounds
         }
         
         for column in position.column...lastColumn {

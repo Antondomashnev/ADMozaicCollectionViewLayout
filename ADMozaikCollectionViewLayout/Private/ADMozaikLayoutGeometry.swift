@@ -22,10 +22,10 @@ class ADMozaikLayoutGeometry {
     var contentHeight: CGFloat = 0
     
     /// Array that contains information about layout columns
-    private let layoutColumns: [ADMozaikLayoutColumn]
+    fileprivate let layoutColumns: [ADMozaikLayoutColumn]
     
     /// Row height of the layout
-    private let rowHeight: CGFloat
+    fileprivate let rowHeight: CGFloat
     
     /**
      Initializes the layout geometry instance
@@ -50,7 +50,7 @@ class ADMozaikLayoutGeometry {
      
      - returns: geometry size of the item
      */
-    func sizeForItemWithMozaikSize(size: ADMozaikLayoutSize, atPosition position: ADMozaikLayoutPosition) -> CGSize {
+    func sizeForItemWithMozaikSize(_ size: ADMozaikLayoutSize, atPosition position: ADMozaikLayoutPosition) -> CGSize {
         var width: CGFloat = 0.0
         for column in position.column...(position.column + size.columns - 1) {
             width += self.layoutColumns[column].width
@@ -67,7 +67,7 @@ class ADMozaikLayoutGeometry {
      
      - returns: geometry x offset of the item
      */
-    func xOffsetForItemAtPosition(position: ADMozaikLayoutPosition) -> CGFloat {
+    func xOffsetForItemAtPosition(_ position: ADMozaikLayoutPosition) -> CGFloat {
         var xOffset: CGFloat = 0.0
         if position.column == 0 {
             return 0.0
@@ -85,7 +85,7 @@ class ADMozaikLayoutGeometry {
      
      - returns: geometry y offset of the item
      */
-    func yOffsetForItemAtPosition(position: ADMozaikLayoutPosition) -> CGFloat {
+    func yOffsetForItemAtPosition(_ position: ADMozaikLayoutPosition) -> CGFloat {
         return (self.rowHeight + self.minimumLineSpacing) * CGFloat(position.row)
     }
 }

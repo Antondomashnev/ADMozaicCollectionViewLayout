@@ -20,5 +20,5 @@ public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
      
      - returns: `ADMozaikLayoutSize` struct object describes the size
      */
-    func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize
+    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize
 }

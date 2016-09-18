@@ -13,117 +13,117 @@ import UIKit
 
 enum ADMozaikLayoutTestsUseCase {
     /// Use case when there are three columns and interitem and interline space are zero
-    case A
+    case a
     
     /// Use case when there are three columns and interitem is 2 and interline space is zero
-    case B
+    case b
     
     /// Use case when there are three columns and interitem is 0 and interline space is 2
-    case C
+    case c
     
     /// Use case when there are three columns and interitem is 2 and interline space is 2
-    case D
+    case d
     
     /// Use case when there are four columns and interitem is 2 and interline space is 2
-    case E
+    case e
     
     /// Use case when there are three columns and interitem is 2 and interline space is 2 and complex layout
-    case F
+    case f
     
     /// Use case when there are no sections
-    case G
+    case g
     
     var minimumLineSpacing: CGFloat {
         switch self {
-        case A:
+        case .a:
             return 0
-        case B:
+        case .b:
             return 0
-        case C:
+        case .c:
             return 2
-        case D:
+        case .d:
             return 2
-        case E:
+        case .e:
             return 2
-        case F:
+        case .f:
             return 1
-        case G:
+        case .g:
             return 0
         }
     }
     
     var minimumInteritemSpacing: CGFloat {
         switch self {
-        case A:
+        case .a:
             return 0
-        case B:
+        case .b:
             return 2
-        case C:
+        case .c:
             return 0
-        case D:
+        case .d:
             return 2
-        case E:
+        case .e:
             return 2
-        case F:
+        case .f:
             return 1
-        case G:
+        case .g:
             return 1
         }
     }
     
     var columns: [ADMozaikLayoutColumn] {
         switch self {
-        case A:
+        case .a:
             return [ADMozaikLayoutColumn(width: 107), ADMozaikLayoutColumn(width: 106), ADMozaikLayoutColumn(width: 107)]
-        case B:
+        case .b:
             return [ADMozaikLayoutColumn(width: 105), ADMozaikLayoutColumn(width: 106), ADMozaikLayoutColumn(width: 105)]
-        case C:
+        case .c:
             return [ADMozaikLayoutColumn(width: 107), ADMozaikLayoutColumn(width: 106), ADMozaikLayoutColumn(width: 107)]
-        case D:
+        case .d:
             return [ADMozaikLayoutColumn(width: 105), ADMozaikLayoutColumn(width: 106), ADMozaikLayoutColumn(width: 105)]
-        case E:
+        case .e:
             return [ADMozaikLayoutColumn(width: 78.5), ADMozaikLayoutColumn(width: 78.5), ADMozaikLayoutColumn(width: 78.5), ADMozaikLayoutColumn(width: 78.5)]
-        case F:
+        case .f:
             return [ADMozaikLayoutColumn(width: 63), ADMozaikLayoutColumn(width: 63), ADMozaikLayoutColumn(width: 64), ADMozaikLayoutColumn(width: 63), ADMozaikLayoutColumn(width: 63)]
-        case G:
+        case .g:
             return [ADMozaikLayoutColumn(width: 107), ADMozaikLayoutColumn(width: 106), ADMozaikLayoutColumn(width: 107)]
         }
     }
     
     var rowHeight: CGFloat {
         switch self {
-        case A:
+        case .a:
             return 107
-        case B:
+        case .b:
             return 105
-        case C:
+        case .c:
             return 107
-        case D:
+        case .d:
             return 105
-        case E:
+        case .e:
             return 78.5
-        case F:
+        case .f:
             return 63
-        case G:
+        case .g:
             return 107
         }
     }
     
     var numberOfItems: Int {
         switch self {
-        case A:
+        case .a:
             return 40
-        case B:
+        case .b:
             return 40
-        case C:
+        case .c:
             return 40
-        case D:
+        case .d:
             return 40
-        case E:
+        case .e:
             return 40
-        case F:
+        case .f:
             return 40
-        case G:
+        case .g:
             return 40
         }
     }
@@ -163,21 +163,21 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         self.view.addSubview(self.collectionView)
         self.collectionView.dataSource = self
-        self.collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "ADMozaikLayoutCell")
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ADMozaikLayoutCell")
     }
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize {
+    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize {
         switch self.useCase! {
-        case .F:
-            if indexPath.item % 8 == 0 {
+        case .f:
+            if (indexPath as NSIndexPath).item % 8 == 0 {
                 return ADMozaikLayoutSize(columns: 2, rows: 2)
             }
-            else if indexPath.item % 6 == 0 {
+            else if (indexPath as NSIndexPath).item % 6 == 0 {
                 return ADMozaikLayoutSize(columns: 3, rows: 1)
             }
-            else if indexPath.item % 4 == 0 {
+            else if (indexPath as NSIndexPath).item % 4 == 0 {
                 return ADMozaikLayoutSize(columns: 1, rows: 3)
             }
             else {
@@ -191,22 +191,22 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     
     //MARK: - UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         switch self.useCase! {
-        case .G:
+        case .g:
             return 0
         default:
             return 1
         }
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.useCase.numberOfItems
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ADMozaikLayoutCell", forIndexPath: indexPath) as UICollectionViewCell
-        cell.backgroundColor = self.colors[indexPath.item]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ADMozaikLayoutCell", for: indexPath) as UICollectionViewCell
+        cell.backgroundColor = self.colors[(indexPath as NSIndexPath).item]
         return cell
     }
     
@@ -230,7 +230,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     func testADMozaikLayoutRepresentationWithoutInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
-        self.viewController.useCase = .A
+        self.viewController.useCase = .a
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
@@ -239,7 +239,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     func testADMozaikLayoutRepresentationWithInteritemInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
-        self.viewController.useCase = .B
+        self.viewController.useCase = .b
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
@@ -248,7 +248,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     func testADMozaikLayoutRepresentationWithInterLineInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
-        self.viewController.useCase = .C
+        self.viewController.useCase = .c
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
@@ -257,7 +257,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     func testADMozaikLayoutRepresentationWithInterLineInsetsAndInterItemInsetsAndThreeColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
-        self.viewController.useCase = .D
+        self.viewController.useCase = .d
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
@@ -266,7 +266,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     func testADMozaikLayoutRepresentationWithInterLineInsetsAndInterItemInsetsAndFourColumns() {
         self.viewController = ADMozaikLayoutTestsViewController()
-        self.viewController.useCase = .E
+        self.viewController.useCase = .e
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
@@ -275,7 +275,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     func testADMozaikLayoutRepresentationWithComplexLayout() {
         self.viewController = ADMozaikLayoutTestsViewController()
-        self.viewController.useCase = .F
+        self.viewController.useCase = .f
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
@@ -284,7 +284,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     func testADMozaikLayoutRepresentationWithZeroNumberOfSections() {
         self.viewController = ADMozaikLayoutTestsViewController()
-        self.viewController.useCase = .G
+        self.viewController.useCase = .g
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
@@ -293,7 +293,7 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     
     //MARK - Private
     
-    private func testingFrame() -> CGRect {
+    fileprivate func testingFrame() -> CGRect {
         return CGRect(x: 0, y: 0, width: 320, height: 568)
     }
     
