@@ -50,14 +50,13 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     
     //*******************************//
     
-    /**
-     Designated initializer to create new instance of `ADMozaikLayout`
-     
-     - parameter rowHeight: height for each row
-     - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
-     
-     - returns: newly created instance of `ADMozaikLayout`
-     */
+    ///
+    /// Designated initializer to create new instance of `ADMozaikLayout`
+    ///
+    /// - parameter rowHeight: height for each row
+    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    ///
+    /// - returns: newly created instance of `ADMozaikLayout`
     public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn]) {
         assert(columns.count > 0)
         assert(rowHeight > 0)
@@ -66,14 +65,13 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         super.init()
     }
     
-    /**
-     Initializer to create new instance of `ADMozaikLayout` from storyboard or xib
-     
-     - parameter rowHeight: height for each row
-     - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
-     
-     - returns: newly created instance of `ADMozaikLayout`
-     */
+    ///
+    /// Initializer to create new instance of `ADMozaikLayout` from storyboard or xib
+    ///
+    /// - parameter rowHeight: height for each row
+    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    ///
+    /// - returns: newly created instance of `ADMozaikLayout`
     required public init?(coder aDecoder: NSCoder) {
         self.columns = []
         self.rowHeight = 0
