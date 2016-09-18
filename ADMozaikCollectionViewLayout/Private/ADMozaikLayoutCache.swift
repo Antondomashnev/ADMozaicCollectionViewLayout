@@ -75,7 +75,7 @@ class ADMozaikLayoutCache {
     /// - parameter indexPath: index path to get the size of an item at
     ///
     /// - returns: size for an item at the given indexPath
-    func mozaikSizeForItemAtIndexPath(_ indexPath: IndexPath) -> ADMozaikLayoutSize {
+    func mozaikSizeForItem(atIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize {
         var size: ADMozaikLayoutSize? = self.cachedSizeOfItemAtIndexPathDictionary[indexPath]
         if size == nil {
             size = self.mozaikLayoutDelegate.collectionView(self.collectionView, layout: self.collectionView.collectionViewLayout, mozaikSizeForItemAtIndexPath: indexPath)

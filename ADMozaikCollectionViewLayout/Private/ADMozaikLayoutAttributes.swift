@@ -72,8 +72,8 @@ class ADMozaikLayoutAttributes {
             let itemsCount = layoutCache.numberOfItemsInSection(section)
             for item in 0..<itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
-                let itemSize = layoutCache.mozaikSizeForItemAtIndexPath(indexPath)
-                guard let itemPosition = layoutMatrix.positionForItemWithSize(itemSize) else {
+                let itemSize = layoutCache.mozaikSizeForItem(atIndexPath: indexPath)
+                guard let itemPosition = layoutMatrix.positionForItem(withSize: itemSize) else {
                     continue
                 }
                 let xOffset = layoutGeometry.xOffsetForItem(at: itemPosition)
@@ -85,7 +85,7 @@ class ADMozaikLayoutAttributes {
                 currentItemBottom = attributes.frame.maxY
                 
                 do {
-                    try layoutMatrix.addItemWithSize(itemSize, atPosition: itemPosition)
+                    try layoutMatrix.addItem(withSize: itemSize, at: itemPosition)
                 }
                 catch {
                     fatalError((error as! CustomStringConvertible).description)

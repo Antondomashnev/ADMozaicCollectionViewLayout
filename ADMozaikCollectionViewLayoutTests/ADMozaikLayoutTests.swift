@@ -172,19 +172,19 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
         switch self.useCase! {
         case .f:
             if (indexPath as NSIndexPath).item % 8 == 0 {
-                return ADMozaikLayoutSize(columns: 2, rows: 2)
+                return ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2)
             }
             else if (indexPath as NSIndexPath).item % 6 == 0 {
-                return ADMozaikLayoutSize(columns: 3, rows: 1)
+                return ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 1)
             }
             else if (indexPath as NSIndexPath).item % 4 == 0 {
-                return ADMozaikLayoutSize(columns: 1, rows: 3)
+                return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 3)
             }
             else {
-                return ADMozaikLayoutSize(columns: 1, rows: 1)
+                return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
             }
         default:
-            return ADMozaikLayoutSize(columns: 1, rows: 1)
+            return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
         }
         
     }

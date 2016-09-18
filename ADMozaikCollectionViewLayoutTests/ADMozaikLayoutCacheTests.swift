@@ -26,7 +26,7 @@ private class ADMozaikLayoutCacheTestsCollectionView: UICollectionView {
 private class ADMozaikLayoutCacheTestsADMozaikLayoutDelegate: NSObject, ADMozaikLayoutDelegate {
     
     fileprivate func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize {
-        return ADMozaikLayoutSize(columns: (indexPath as NSIndexPath).section, rows: (indexPath as NSIndexPath).item)
+        return ADMozaikLayoutSize(numberOfColumns: (indexPath as NSIndexPath).section, numberOfRows: (indexPath as NSIndexPath).item)
     }
     
 }
@@ -61,15 +61,15 @@ class ADMozaikLayoutCacheTests: XCTestCase {
     }
     
     func testThatMozaikSizeForItemAtIndexPathShouldReturnCorrectValue() {
-        let size1 = self.layoutCache.mozaikSizeForItemAtIndexPath(IndexPath(item: 1, section: 1))
-        let size2 = self.layoutCache.mozaikSizeForItemAtIndexPath(IndexPath(item: 2, section: 2))
+        let size1 = self.layoutCache.mozaikSizeForItem(atIndexPath: IndexPath(item: 1, section: 1))
+        let size2 = self.layoutCache.mozaikSizeForItem(atIndexPath: IndexPath(item: 2, section: 2))
         expect(size1.columns).to(equal(1))
         expect(size1.rows).to(equal(1))
         expect(size2.columns).to(equal(2))
         expect(size2.rows).to(equal(2))
         
-        let cachedSize1 = self.layoutCache.mozaikSizeForItemAtIndexPath(IndexPath(item: 1, section: 1))
-        let cachedSize2 = self.layoutCache.mozaikSizeForItemAtIndexPath(IndexPath(item: 2, section: 2))
+        let cachedSize1 = self.layoutCache.mozaikSizeForItem(atIndexPath: IndexPath(item: 1, section: 1))
+        let cachedSize2 = self.layoutCache.mozaikSizeForItem(atIndexPath: IndexPath(item: 2, section: 2))
         expect(cachedSize1.columns).to(equal(1))
         expect(cachedSize1.rows).to(equal(1))
         expect(cachedSize2.columns).to(equal(2))

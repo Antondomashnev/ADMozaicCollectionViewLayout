@@ -67,7 +67,7 @@ class ADMozaikLayoutMatrix {
     /// - parameter position: position to be added at
     ///
     /// - throws: error if item (size.width + position.x) or (size.height + position.y) is out if bounds of the matrix or
-    func addItemWithSize(_ size: ADMozaikLayoutSize, atPosition position: ADMozaikLayoutPosition) throws -> Void {
+    func addItem(withSize size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) throws -> Void {
         let lastColumn = position.column + size.columns - 1
         guard lastColumn < arrayRepresentation.count else {
             throw ADMozaikLayoutMatrixError.columnOutOfBounds
@@ -91,7 +91,7 @@ class ADMozaikLayoutMatrix {
     /// - parameter size: size of the adding item
     ///
     /// - returns: position of the item, returns nil if there is no available position fir the item
-    func positionForItemWithSize(_ size: ADMozaikLayoutSize) -> ADMozaikLayoutPosition? {
+    func positionForItem(withSize size: ADMozaikLayoutSize) -> ADMozaikLayoutPosition? {
         let maximumColumn = self.numberOfColumns - size.columns
         let maximumRow = self.numberOfRows - size.rows
         

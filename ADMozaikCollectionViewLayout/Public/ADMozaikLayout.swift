@@ -152,7 +152,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         for section in 0..<numberOfSections {
             let numberOfItemsInSection = self.layoutCache.numberOfItemsInSection(section)
             for item in 0..<numberOfItemsInSection {
-                let itemSize = self.layoutCache.mozaikSizeForItemAtIndexPath(IndexPath(item: item, section: section))
+                let itemSize = self.layoutCache.mozaikSizeForItem(atIndexPath: IndexPath(item: item, section: section))
                 totalCells += itemSize.totalCells()
             }
         }
