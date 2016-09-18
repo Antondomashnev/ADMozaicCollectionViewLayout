@@ -61,7 +61,7 @@ public struct ADMozaikLayoutSize {
 }
 
 /**
- *  Defines the layput's column
+ *  Defines the layout's column
  */
 public struct ADMozaikLayoutColumn {
     /// Width of the column in points
