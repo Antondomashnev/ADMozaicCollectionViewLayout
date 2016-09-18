@@ -1,9 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
 use_frameworks!
+inhibit_all_warnings!
 
 target 'ADMozaikCollectionViewLayout' do
-  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
   target 'ADMozaikCollectionViewLayoutTests' do
     inherit! :search_paths
     pod 'FBSnapshotTestCase'

@@ -18,6 +18,7 @@ class ViewController: UIViewController, ADMozaikLayoutDelegate, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.collectionViewLayout = self.createLayout()
+        self.collectionView.collectionViewLayout.collectionViewContentSize()
     }
 
     override func viewWillAppear(animated: Bool) {
