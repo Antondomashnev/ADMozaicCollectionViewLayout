@@ -14,6 +14,4 @@ FOUNDATION_EXPORT double ADMozaikCollectionViewLayoutVersionNumber;
 //! Project version string for ADMozaikCollectionViewLayout.
 FOUNDATION_EXPORT const unsigned char ADMozaikCollectionViewLayoutVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <ADMozaikCollectionViewLayout/PublicHeader.h>
-
 

@@ -32,28 +32,28 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
     }
     
     func testThatSizeForItemWithMozaikSizeShouldReturnCorrectSize() {
-        let size1 = self.layoutGeometry.sizeForItemWithMozaikSize(ADMozaikLayoutSize(columns: 2, rows: 2), atPosition: ADMozaikLayoutPosition(column: 0, row: 0))
+        let size1 = self.layoutGeometry.sizeForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2), at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0))
         expect(size1.width).to(equal(212))
         expect(size1.height).to(equal(214))
         
-        let size2 = self.layoutGeometry.sizeForItemWithMozaikSize(ADMozaikLayoutSize(columns: 1, rows: 1), atPosition: ADMozaikLayoutPosition(column: 2, row: 0))
+        let size2 = self.layoutGeometry.sizeForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: ADMozaikLayoutPosition(atColumn: 2, atRow: 0))
         expect(size2.width).to(equal(106))
         expect(size2.height).to(equal(106))
     }
     
     func testThatXOffsetForItemAtPositionShouldReturnCorrectValue() {
-        let xOffset1 = self.layoutGeometry.xOffsetForItemAtPosition(ADMozaikLayoutPosition(column: 0, row: 0))
+        let xOffset1 = self.layoutGeometry.xOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0))
         expect(xOffset1).to(equal(0))
         
-        let offset2 = self.layoutGeometry.xOffsetForItemAtPosition(ADMozaikLayoutPosition(column: 2, row: 0))
+        let offset2 = self.layoutGeometry.xOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 2, atRow: 0))
         expect(offset2).to(equal(213))
     }
     
     func testThatYOffsetForItemAtPositionShouldReturnCorrectValue() {
-        let xOffset1 = self.layoutGeometry.yOffsetForItemAtPosition(ADMozaikLayoutPosition(column: 0, row: 0))
+        let xOffset1 = self.layoutGeometry.yOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0))
         expect(xOffset1).to(equal(0))
         
-        let offset2 = self.layoutGeometry.yOffsetForItemAtPosition(ADMozaikLayoutPosition(column: 1, row: 2))
+        let offset2 = self.layoutGeometry.yOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 1, atRow: 2))
         expect(offset2).to(equal(216))
     }
 }

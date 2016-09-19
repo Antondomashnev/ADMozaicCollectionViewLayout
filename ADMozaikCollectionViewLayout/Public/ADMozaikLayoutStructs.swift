@@ -17,15 +17,14 @@ public struct ADMozaikLayoutPosition {
     /// Row number of the item's position
     let row: Int
     
-    /**
-     Designated initializer for structure
-     
-     - parameter column: column number
-     - parameter row:    roe number
-     
-     - returns: newly created `ADMozaikLayoutPosition`
-     */
-    public init(column: Int, row: Int) {
+    ///
+    /// Designated initializer for structure
+    ///
+    /// - parameter column: column number
+    /// - parameter row:    roe number
+    ///
+    /// - returns: newly created `ADMozaikLayoutPosition`
+    public init(atColumn column: Int, atRow row: Int) {
         self.column = column
         self.row = row
     }
@@ -40,24 +39,22 @@ public struct ADMozaikLayoutSize {
     /// Rows number that item requires
     let rows: Int
     
-    /**
-     Designated initializer for structure
-     
-     - parameter columns: number of colums (basically the width)
-     - parameter rows:    number of rows (basically the height)
-     
-     - returns: newly created `ADMozaikLayoutSize`
-     */
-    public init(columns: Int, rows: Int) {
+    ///
+    /// Designated initializer for structure
+    ///
+    /// - parameter columns: number of colums (basically the width)
+    /// - parameter rows:    number of rows (basically the height)
+    ///
+    /// - returns: newly created `ADMozaikLayoutSize`
+    public init(numberOfColumns columns: Int, numberOfRows rows: Int) {
         self.columns = columns
         self.rows = rows
     }
     
-    /**
-     Calculates number of total cells in mozaik layout that item fills
-     
-     - returns: number of required mozaik cells for item
-     */
+    ///
+    /// Calculates number of total cells in mozaik layout that item fills
+    ///
+    /// - returns: number of required mozaik cells for item
     public func totalCells() -> Int {
         return self.columns * self.rows
     }
@@ -70,13 +67,12 @@ public struct ADMozaikLayoutColumn {
     /// Width of the column in points
     let width: CGFloat
     
-    /**
-     Designated initializer for structure
-     
-     - parameter width: column's width in points
-     
-     - returns: newly created `ADMozaikLayoutColumn`
-     */
+    ///
+    /// Designated initializer for structure
+    ///
+    /// - parameter width: column's width in points
+    ///
+    /// - returns: newly created `ADMozaikLayoutColumn`
     public init(width: CGFloat) {
         self.width = width
     }

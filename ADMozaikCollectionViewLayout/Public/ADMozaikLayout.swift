@@ -9,26 +9,26 @@
 import Foundation
 
 /// The `ADMozaikLayout` defines the custom `UICollectionViewFlowLayout` subclass
-public class ADMozaikLayout: UICollectionViewFlowLayout {
+open class ADMozaikLayout: UICollectionViewFlowLayout {
     
     /// Delegate for the layout. It's required
-    public weak var delegate: ADMozaikLayoutDelegate!
+    open weak var delegate: ADMozaikLayoutDelegate!
     
     /// Columns of the layout
-    public let columns: [ADMozaikLayoutColumn]
+    open let columns: [ADMozaikLayoutColumn]
     
     /// Height of each layout's row
-    public let rowHeight: CGFloat
+    open let rowHeight: CGFloat
     
     //*******************************//
     
-    override public var minimumLineSpacing: CGFloat {
+    override open var minimumLineSpacing: CGFloat {
         didSet {
             self.layoutGeometry?.minimumLineSpacing = minimumLineSpacing
         }
     }
     
-    override public var minimumInteritemSpacing: CGFloat {
+    override open var minimumInteritemSpacing: CGFloat {
         didSet {
             self.layoutGeometry?.minimumInteritemSpacing = minimumInteritemSpacing
         }
@@ -37,27 +37,26 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
     //*******************************//
     
     /// Current layout geometry
-    private var layoutGeometry: ADMozaikLayoutGeometry!
+    fileprivate var layoutGeometry: ADMozaikLayoutGeometry!
     
     /// Current layout cache to speed up calculations
-    private var layoutCache: ADMozaikLayoutCache!
+    fileprivate var layoutCache: ADMozaikLayoutCache!
     
     /// `ADMozaikLayoutMatrix` object that represents current layout
-    private var layoutMatrix: ADMozaikLayoutMatrix!
+    fileprivate var layoutMatrix: ADMozaikLayoutMatrix!
     
     /// Keeps information about current layout attributes
-    private var layoutAttrbutes: ADMozaikLayoutAttributes!
+    fileprivate var layoutAttrbutes: ADMozaikLayoutAttributes!
     
     //*******************************//
     
-    /**
-     Designated initializer to create new instance of `ADMozaikLayout`
-     
-     - parameter rowHeight: height for each row
-     - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
-     
-     - returns: newly created instance of `ADMozaikLayout`
-     */
+    ///
+    /// Designated initializer to create new instance of `ADMozaikLayout`
+    ///
+    /// - parameter rowHeight: height for each row
+    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    ///
+    /// - returns: newly created instance of `ADMozaikLayout`
     public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn]) {
         assert(columns.count > 0)
         assert(rowHeight > 0)
@@ -66,14 +65,13 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
         super.init()
     }
     
-    /**
-     Initializer to create new instance of `ADMozaikLayout` from storyboard or xib
-     
-     - parameter rowHeight: height for each row
-     - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
-     
-     - returns: newly created instance of `ADMozaikLayout`
-     */
+    ///
+    /// Initializer to create new instance of `ADMozaikLayout` from storyboard or xib
+    ///
+    /// - parameter rowHeight: height for each row
+    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    ///
+    /// - returns: newly created instance of `ADMozaikLayout`
     required public init?(coder aDecoder: NSCoder) {
         self.columns = []
         self.rowHeight = 0
@@ -82,7 +80,7 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
     
     //MARK: - UICollectionViewLayout
     
-    public override func prepareLayout() {
+    open override func prepare() {
         guard self.collectionView != nil else {
             fatalError("self.collectionView expected to be not nil when execute prepareLayout()")
         }
@@ -91,7 +89,7 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
             fatalError("self.delegate expected to be not nil when execute prepareLayout()")
         }
         
-        super.prepareLayout()
+        super.prepare()
         self.resetLayout()
         self.layoutCache = ADMozaikLayoutCache(collectionView: self.collectionView!, mozaikLayoutDelegate: self.delegate)
         if self.layoutCache.numberOfSections() == 0 {
@@ -105,42 +103,42 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
         self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: self.layoutCache, layoutMatrix: self.layoutMatrix, layoutGeometry: self.layoutGeometry)
     }
     
-    public override func collectionViewContentSize() -> CGSize {
+    open override var collectionViewContentSize : CGSize {
         guard self.collectionView != nil else {
             fatalError("self.collectionView expected to be not nil when execute collectionViewContentSize()")
         }
         
         let numberOfSections = self.layoutCache!.numberOfSections()
         if numberOfSections == 0 {
-            return CGSizeZero
+            return CGSize.zero
         }
-        let contentSize = super.collectionViewContentSize()
-        let delta = CGRectGetHeight(self.collectionView!.bounds) - self.collectionView!.contentInset.top - self.collectionView!.contentInset.bottom
-        return CGSizeMake(contentSize.width, max(self.layoutGeometry.contentHeight, delta));
+        let contentSize = super.collectionViewContentSize
+        let delta = self.collectionView!.bounds.height - self.collectionView!.contentInset.top - self.collectionView!.contentInset.bottom
+        return CGSize(width: contentSize.width, height: max(self.layoutGeometry.contentHeight, delta));
     }
     
-    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return self.layoutAttrbutes?.layoutAttributesForItemAtIndexPath(indexPath)
     }
  
-    public override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return nil
     }
 
-    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return self.layoutAttrbutes?.layoutAttributesForElementsInRect(rect)
     }
     
     //MARK: - Helpers
     
-    private func resetLayout() {
+    fileprivate func resetLayout() {
         self.layoutAttrbutes = nil
         self.layoutMatrix = nil
         self.layoutCache = nil
         self.layoutGeometry = nil
     }
 
-    private func calculateRowsCount() -> Int {
+    fileprivate func calculateRowsCount() -> Int {
         guard self.collectionView != nil else {
             fatalError("self.collectionView expected to be not nil at that moment")
         }
@@ -154,7 +152,7 @@ public class ADMozaikLayout: UICollectionViewFlowLayout {
         for section in 0..<numberOfSections {
             let numberOfItemsInSection = self.layoutCache.numberOfItemsInSection(section)
             for item in 0..<numberOfItemsInSection {
-                let itemSize = self.layoutCache.mozaikSizeForItemAtIndexPath(NSIndexPath(forItem: item, inSection: section))
+                let itemSize = self.layoutCache.mozaikSizeForItem(atIndexPath: IndexPath(item: item, section: section))
                 totalCells += itemSize.totalCells()
             }
         }
