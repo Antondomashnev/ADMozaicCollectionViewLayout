@@ -26,8 +26,9 @@ class ADMozaikLayoutAttributes {
     
     //MARK: - Interface
     
-    func layoutAttributesForItemAtIndexPath(_ indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return (indexPath as NSIndexPath).item < self.layoutAttributesArray.count ? nil : self.layoutAttributesArray[(indexPath as NSIndexPath).item]
+    func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attribute = self.layoutAttributesArray[indexPath.item]
+        return attribute
     }
     
     func layoutAttributesForElementsInRect(_ rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

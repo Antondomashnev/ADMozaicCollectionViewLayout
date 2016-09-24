@@ -57,9 +57,23 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
     ///
     /// - returns: newly created instance of `ADMozaikLayout`
+    public init(geometryInfo: ADMozaikLayoutGeometryInfo, for orientation: UIDeviceOrientation) {
+        assert(geometryInfo.isValid())
+//        self.columns = columns
+//        self.rowHeight = rowHeight
+        self.columns = []
+        self.rowHeight = 0
+        super.init()
+    }
+    
+    ///
+    /// Designated initializer to create new instance of `ADMozaikLayout`
+    ///
+    /// - parameter rowHeight: height for each row
+    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    ///
+    /// - returns: newly created instance of `ADMozaikLayout`
     public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn]) {
-        assert(columns.count > 0)
-        assert(rowHeight > 0)
         self.columns = columns
         self.rowHeight = rowHeight
         super.init()
@@ -118,7 +132,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     }
     
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return self.layoutAttrbutes?.layoutAttributesForItemAtIndexPath(indexPath)
+        return self.layoutAttrbutes.layoutAttributesForItem(at: indexPath)
     }
  
     open override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
