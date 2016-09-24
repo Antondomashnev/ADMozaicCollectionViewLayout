@@ -68,7 +68,7 @@ class ADMozaikLayoutAttributes {
     fileprivate func buildLayoutAttributesForLayoutGeometry(_ layoutGeometry: ADMozaikLayoutGeometry, withLayoutMatrix layoutMatrix: ADMozaikLayoutMatrix, andLayoutCache layoutCache: ADMozaikLayoutCache) -> [UICollectionViewLayoutAttributes] {
         let numberOfSections = layoutCache.numberOfSections()
         var allAttributes: [UICollectionViewLayoutAttributes] = []
-        var currentItemBottom: CGFloat = 0
+        var maximumContentBottom: CGFloat = 0
         for section in 0..<numberOfSections {
             let itemsCount = layoutCache.numberOfItemsInSection(section)
             for item in 0..<itemsCount {
@@ -83,7 +83,7 @@ class ADMozaikLayoutAttributes {
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemGeometrySize.width, height: itemGeometrySize.height)
                 allAttributes.append(attributes)
-                currentItemBottom = attributes.frame.maxY
+                maximumContentBottom = max(attributes.frame.maxY, maximumContentBottom)
                 
                 do {
                     try layoutMatrix.addItem(withSize: itemSize, at: itemPosition)
@@ -93,7 +93,7 @@ class ADMozaikLayoutAttributes {
                 }
             }
         }
-        layoutGeometry.contentHeight = fmax(layoutGeometry.contentHeight, currentItemBottom)
+        layoutGeometry.contentHeight = max(layoutGeometry.contentHeight, maximumContentBottom)
         return allAttributes
     }
     
