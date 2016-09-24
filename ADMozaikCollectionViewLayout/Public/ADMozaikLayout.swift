@@ -15,10 +15,23 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     open weak var delegate: ADMozaikLayoutDelegate!
     
     /// Columns of the layout
-    open let columns: [ADMozaikLayoutColumn]
+    /// Deprecated
+    open var columns: [ADMozaikLayoutColumn] {
+        get {
+            return self.geometryInfo.columns
+        }
+    }
     
     /// Height of each layout's row
-    open let rowHeight: CGFloat
+    /// Deprecated
+    open var rowHeight: CGFloat {
+        get {
+            return self.geometryInfo.rowHeight
+        }
+    }
+    
+    /// Current geometry info of the layout
+    private(set) open var geometryInfo: ADMozaikLayoutGeometryInfo
     
     //*******************************//
     
@@ -52,17 +65,17 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     
     ///
     /// Designated initializer to create new instance of `ADMozaikLayout`
+    /// This geometry info will be used as a default for all missing orienations
     ///
-    /// - parameter rowHeight: height for each row
-    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    /// - parameter geometryInfo: information about layout geometry
+    /// - parameter orientation: for which orientation apply the given geometry info
     ///
     /// - returns: newly created instance of `ADMozaikLayout`
-    public init(geometryInfo: ADMozaikLayoutGeometryInfo, for orientation: UIDeviceOrientation) {
-        assert(geometryInfo.isValid())
-//        self.columns = columns
-//        self.rowHeight = rowHeight
-        self.columns = []
-        self.rowHeight = 0
+    public init(geometryInfo: ADMozaikLayoutGeometryInfo, for deviceOrientation: UIDeviceOrientation) {
+        guard geometryInfo.isValid() else {
+            fatalError("geometryInfo must be valid")
+        }
+        self.geometryInfo = geometryInfo
         super.init()
     }
     
@@ -73,26 +86,29 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
     ///
     /// - returns: newly created instance of `ADMozaikLayout`
-    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn]) {
-        self.columns = columns
-        self.rowHeight = rowHeight
-        super.init()
+    /// Deprecated
+    public convenience init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn]) {
+        let geometryInfo = ADMozaikLayoutGeometryInfo(rowHeight: rowHeight, columns: columns)
+        self.init(geometryInfo: geometryInfo, for: UIDeviceOrientation.portrait)
     }
     
     ///
     /// Initializer to create new instance of `ADMozaikLayout` from storyboard or xib
     ///
-    /// - parameter rowHeight: height for each row
-    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    /// - parameter coder: encoded information about layout
     ///
     /// - returns: newly created instance of `ADMozaikLayout`
     required public init?(coder aDecoder: NSCoder) {
-        self.columns = []
-        self.rowHeight = 0
+        let geometryInfo = ADMozaikLayoutGeometryInfo(rowHeight: 1, columns: [])
+        self.geometryInfo = geometryInfo
         super.init(coder: aDecoder)
     }
     
     //MARK: - UICollectionViewLayout
+    
+    open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
+    }
     
     open override func prepare() {
         guard self.collectionView != nil else {
@@ -110,10 +126,10 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
             return
         }
     
-        self.layoutGeometry = ADMozaikLayoutGeometry(layoutColumns: self.columns, rowHeight: self.rowHeight)
+        self.layoutGeometry = ADMozaikLayoutGeometry(layoutColumns: self.geometryInfo.columns, rowHeight: self.geometryInfo.rowHeight)
         self.layoutGeometry.minimumLineSpacing = self.minimumLineSpacing
         self.layoutGeometry.minimumInteritemSpacing = self.minimumInteritemSpacing
-        self.layoutMatrix = ADMozaikLayoutMatrix(numberOfRows: self.calculateRowsCount(), numberOfColumns: self.columns.count)
+        self.layoutMatrix = ADMozaikLayoutMatrix(numberOfRows: self.calculateRowsCount(), numberOfColumns: self.geometryInfo.columns.count)
         self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: self.layoutCache, layoutMatrix: self.layoutMatrix, layoutGeometry: self.layoutGeometry)
     }
     
@@ -170,7 +186,12 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
                 totalCells += itemSize.totalCells()
             }
         }
-        return totalCells / self.columns.count + ((totalCells % self.columns.count != 0) ? 1 : 0)
+        return totalCells / self.geometryInfo.columns.count + ((totalCells % self.geometryInfo.columns.count != 0) ? 1 : 0)
     }
-    
+}
+
+extension ADMozaikLayout {
+    internal func currentDeviceOrientation() -> UIDeviceOrientation {
+        return UIDevice.current.orientation
+    }
 }

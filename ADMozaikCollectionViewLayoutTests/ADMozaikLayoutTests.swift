@@ -7,6 +7,7 @@
 //
 
 import FBSnapshotTestCase
+import XCTest
 import UIKit
 
 @testable import ADMozaikCollectionViewLayout
@@ -214,7 +215,7 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
 
 //******************************************************//
 
-class ADMozaikLayoutTests: FBSnapshotTestCase {
+class ADMozaikLayoutSnapshotTests: FBSnapshotTestCase {
     
     var viewController: ADMozaikLayoutTestsViewController!
     
@@ -298,3 +299,25 @@ class ADMozaikLayoutTests: FBSnapshotTestCase {
     }
     
 }
+
+//******************************************************//
+
+class ADMozaikLayoutTests: XCTestCase {
+    
+    func testThatRowHeightShouldReturnRowHeightFromGeometryInfo() {
+        let geometryInfo1 = ADMozaikLayoutGeometryInfo(rowHeight: 10, columns: [ADMozaikLayoutColumn(width: 10)])
+        let layout = ADMozaikLayout(geometryInfo: geometryInfo1, for: UIDeviceOrientation.portrait)
+        
+        XCTAssertTrue(layout.rowHeight == geometryInfo1.rowHeight)
+    }
+    
+    func testThatColumnsShouldReturnColumnsFromGeometryInfo() {
+        let geometryInfo1 = ADMozaikLayoutGeometryInfo(rowHeight: 10, columns: [ADMozaikLayoutColumn(width: 10)])
+        let layout = ADMozaikLayout(geometryInfo: geometryInfo1, for: UIDeviceOrientation.portrait)
+        
+        XCTAssertTrue(layout.columns.elementsEqual(geometryInfo1.columns, by: { (column1, column2) -> Bool in
+            return column1 == column2
+        }))
+    }
+}
+
