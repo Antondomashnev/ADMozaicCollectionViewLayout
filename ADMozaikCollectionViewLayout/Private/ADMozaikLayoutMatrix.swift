@@ -97,15 +97,24 @@ class ADMozaikLayoutMatrix {
         if maximumColumn < 0 {
             throw ADMozaikLayoutMatrixError.columnOutOfBounds
         }
-        
-        for row in 0...numberOfRows {
+        return self.positionForItem(of: size, startingFrom: 0, maximumPositionColumn: maximumColumn)
+    }
+    
+    //MARK: - Helpers
+    
+    fileprivate func positionForItem(of size: ADMozaikLayoutSize, startingFrom startRow: Int, maximumPositionColumn maximumColumn: Int) -> ADMozaikLayoutPosition {
+        for row in startRow...numberOfRows {
             for column in 0...maximumColumn {
                 let possiblePosition = ADMozaikLayoutPosition(atColumn: column, atRow: row)
                 var isPositionFree = false
                 do {
-                    try isPositionFree = self.isPositionFree(possiblePosition, forItemOf: size)
+                    isPositionFree = try self.isPositionFree(possiblePosition, forItemOf: size)
                 }
-                catch {
+                catch ADMozaikLayoutMatrixError.rowOutOfBounds {
+                    self.extendMatrix(by: size.rows)
+                    return self.positionForItem(of: size, startingFrom: row, maximumPositionColumn: maximumColumn)
+                }
+                catch  {
                     print(error)
                 }
                 if isPositionFree {
@@ -113,17 +122,8 @@ class ADMozaikLayoutMatrix {
                 }
             }
         }
-        self.extendMatrix(by: size.rows)
-        
-        do {
-            return try self.positionForItem(of: size)
-        }
-        catch {
-            fatalError((error as! CustomStringConvertible).description)
-        }
+        return ADMozaikLayoutPosition(atColumn: 0, atRow: 0)
     }
-    
-    //MARK: - Helpers
     
     fileprivate func extendMatrix(by rowsCount: Int) {
         for column in 0..<numberOfColumns {
