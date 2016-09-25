@@ -17,7 +17,7 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.matrixLayout = ADMozaikLayoutMatrix(numberOfRows: 4, numberOfColumns: 3)
+        self.matrixLayout = ADMozaikLayoutMatrix(numberOfColumns: 3)
     }
     
     override func tearDown() {
@@ -26,48 +26,49 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
     }
     
     func testThatEmptyMatrixShouldReturnTopLeftPositionForNewItem() {
-        let position: ADMozaikLayoutPosition = self.matrixLayout.positionForItem(withSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2))!
-        expect(position.column).to(equal(0))
-        expect(position.row).to(equal(0))
-    }
-    
-    func testThatEmptyMatrixShouldReturnNilPositionForNewItemWiderThanPossible() {
-        let position: ADMozaikLayoutPosition? = self.matrixLayout.positionForItem(withSize: ADMozaikLayoutSize(numberOfColumns: 4, numberOfRows: 2))
-        expect(position).to(beNil())
-    }
-    
-    func testThatEmptyMatrixShouldReturnNilPositionForNewItemHigherThanPossible() {
-        let position: ADMozaikLayoutPosition? = self.matrixLayout.positionForItem(withSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 5))
-        expect(position).to(beNil())
-    }
-    
-    func testThatFilledMatrixShouldReturnNilPositionIfTherIsNoSpaceLeft() {
         do {
-            try self.matrixLayout.addItem(withSize: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 3), at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0))
-            try self.matrixLayout.addItem(withSize: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: ADMozaikLayoutPosition(atColumn: 0, atRow: 3))
+            let position: ADMozaikLayoutPosition = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2))
+            expect(position.column).to(equal(0))
+            expect(position.row).to(equal(0))
         }
-        catch {
-            
+        catch { fatalError() }
+    }
+    
+    func testThatEmptyMatrixShouldReturnCorrectPositionForNewItemHigherThanPossible() {
+        do {
+            let position: ADMozaikLayoutPosition = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 5))
+            expect(position.column).to(equal(0))
+            expect(position.row).to(equal(0))
         }
-        let position: ADMozaikLayoutPosition? = self.matrixLayout.positionForItem(withSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2))
-        expect(position).to(beNil())
+        catch { fatalError() }
+    }
+    
+    func testThatFilledMatrixShouldExtendMatrixHeightIfThereIsNoSpaceLeft() {
+        do {
+            var position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 3))
+            try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 3), at: position)
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1))
+            try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: position)
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2))
+            expect(position.column).to(equal(1))
+            expect(position.row).to(equal(3))
+        }
+        catch { fatalError() }
     }
     
     func testThatPositionForItemWithSizeShouldReturnCorrectPosition() {
         do {
-            try self.matrixLayout.addItem(withSize: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0))
+            var position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2))
+            try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: position)
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2))
+            expect(position.row).to(equal(1))
+            expect(position.column).to(equal(0))
+            
+            try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2), at: position)
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 1))
+            expect(position.row).to(equal(0))
+            expect(position.column).to(equal(1))
         }
-        catch {}
-        var nextPosition = self.matrixLayout.positionForItem(withSize: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2))!
-        expect(nextPosition.row).to(equal(1))
-        expect(nextPosition.column).to(equal(0))
-        
-        do {
-            try self.matrixLayout.addItem(withSize: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2), at: nextPosition)
-        }
-        catch {}
-        nextPosition = self.matrixLayout.positionForItem(withSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 1))!
-        expect(nextPosition.row).to(equal(0))
-        expect(nextPosition.column).to(equal(1))
+        catch { fatalError() }
     }
 }

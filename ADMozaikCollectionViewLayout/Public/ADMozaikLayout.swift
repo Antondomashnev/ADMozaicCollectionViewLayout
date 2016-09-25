@@ -129,7 +129,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         self.layoutGeometry = ADMozaikLayoutGeometry(layoutColumns: self.geometryInfo.columns, rowHeight: self.geometryInfo.rowHeight)
         self.layoutGeometry.minimumLineSpacing = self.minimumLineSpacing
         self.layoutGeometry.minimumInteritemSpacing = self.minimumInteritemSpacing
-        self.layoutMatrix = ADMozaikLayoutMatrix(numberOfRows: self.calculateRowsCount(), numberOfColumns: self.geometryInfo.columns.count)
+        self.layoutMatrix = ADMozaikLayoutMatrix(numberOfColumns: self.geometryInfo.columns.count)
         self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: self.layoutCache, layoutMatrix: self.layoutMatrix, layoutGeometry: self.layoutGeometry)
     }
     
@@ -166,27 +166,6 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         self.layoutMatrix = nil
         self.layoutCache = nil
         self.layoutGeometry = nil
-    }
-
-    fileprivate func calculateRowsCount() -> Int {
-        guard self.collectionView != nil else {
-            fatalError("self.collectionView expected to be not nil at that moment")
-        }
-        guard self.delegate != nil else {
-            assertionFailure("self.delegate expected to be not nil at that moment")
-            return 0
-        }
-        
-        let numberOfSections = self.layoutCache.numberOfSections()
-        var totalCells: Int = 0
-        for section in 0..<numberOfSections {
-            let numberOfItemsInSection = self.layoutCache.numberOfItemsInSection(section)
-            for item in 0..<numberOfItemsInSection {
-                let itemSize = self.layoutCache.mozaikSizeForItem(atIndexPath: IndexPath(item: item, section: section))
-                totalCells += itemSize.totalCells()
-            }
-        }
-        return totalCells / self.geometryInfo.columns.count + ((totalCells % self.geometryInfo.columns.count != 0) ? 1 : 0)
     }
 }
 
