@@ -74,19 +74,17 @@ class ADMozaikLayoutAttributes {
             for item in 0..<itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
                 let itemSize = layoutCache.mozaikSizeForItem(atIndexPath: indexPath)
-                guard let itemPosition = layoutMatrix.positionForItem(withSize: itemSize) else {
-                    continue
-                }
-                let xOffset = layoutGeometry.xOffsetForItem(at: itemPosition)
-                let yOffset = layoutGeometry.yOffsetForItem(at: itemPosition)
-                let itemGeometrySize = layoutGeometry.sizeForItem(withMozaikSize: itemSize, at: itemPosition)
-                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemGeometrySize.width, height: itemGeometrySize.height)
-                allAttributes.append(attributes)
-                maximumContentBottom = max(attributes.frame.maxY, maximumContentBottom)
-                
                 do {
-                    try layoutMatrix.addItem(withSize: itemSize, at: itemPosition)
+                    let itemPosition = try layoutMatrix.positionForItem(of: itemSize)
+                    let xOffset = layoutGeometry.xOffsetForItem(at: itemPosition)
+                    let yOffset = layoutGeometry.yOffsetForItem(at: itemPosition)
+                    let itemGeometrySize = layoutGeometry.sizeForItem(withMozaikSize: itemSize, at: itemPosition)
+                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                    attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemGeometrySize.width, height: itemGeometrySize.height)
+                    allAttributes.append(attributes)
+                    maximumContentBottom = max(attributes.frame.maxY, maximumContentBottom)
+    
+                    try layoutMatrix.addItem(of: itemSize, at: itemPosition)
                 }
                 catch {
                     fatalError((error as! CustomStringConvertible).description)
