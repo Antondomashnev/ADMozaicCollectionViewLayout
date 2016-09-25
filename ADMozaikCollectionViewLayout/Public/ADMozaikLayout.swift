@@ -50,16 +50,19 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     //*******************************//
     
     /// Current layout geometry
-    fileprivate var layoutGeometry: ADMozaikLayoutGeometry!
+    fileprivate var layoutGeometry: ADMozaikLayoutGeometry?
     
     /// Current layout cache to speed up calculations
-    fileprivate var layoutCache: ADMozaikLayoutCache!
+    fileprivate var layoutCache: ADMozaikLayoutCache?
     
     /// `ADMozaikLayoutMatrix` object that represents current layout
-    fileprivate var layoutMatrix: ADMozaikLayoutMatrix!
+    fileprivate var layoutMatrix: ADMozaikLayoutMatrix?
     
     /// Keeps information about current layout attributes
-    fileprivate var layoutAttrbutes: ADMozaikLayoutAttributes!
+    fileprivate var layoutAttrbutes: ADMozaikLayoutAttributes?
+    
+    /// Keeps information about current layout bounds size
+    fileprivate var currentLayoutBounds: CGSize = CGSize.zero
     
     //*******************************//
     
@@ -107,35 +110,49 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     //MARK: - UICollectionViewLayout
     
     open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return true
+        return self.currentLayoutBounds != newBounds.size
+    }
+    
+    open override func invalidateLayout() {
+        super.invalidateLayout()
+        self.resetLayout()
     }
     
     open override func prepare() {
-        guard self.collectionView != nil else {
+        guard let collectionView = self.collectionView else {
             fatalError("self.collectionView expected to be not nil when execute prepareLayout()")
         }
         
         guard self.delegate != nil else {
             fatalError("self.delegate expected to be not nil when execute prepareLayout()")
         }
-        
         super.prepare()
-        self.resetLayout()
-        self.layoutCache = ADMozaikLayoutCache(collectionView: self.collectionView!, mozaikLayoutDelegate: self.delegate)
-        if self.layoutCache.numberOfSections() == 0 {
+        if self.isLayoutReady() {
             return
         }
-    
+        
+        self.currentLayoutBounds = collectionView.bounds.size
+        self.layoutCache = ADMozaikLayoutCache(collectionView: collectionView, mozaikLayoutDelegate: self.delegate)
+        if self.layoutCache?.numberOfSections() == 0 {
+            return
+        }
+        
         self.layoutGeometry = ADMozaikLayoutGeometry(layoutColumns: self.geometryInfo.columns, rowHeight: self.geometryInfo.rowHeight)
-        self.layoutGeometry.minimumLineSpacing = self.minimumLineSpacing
-        self.layoutGeometry.minimumInteritemSpacing = self.minimumInteritemSpacing
+        self.layoutGeometry?.minimumLineSpacing = self.minimumLineSpacing
+        self.layoutGeometry?.minimumInteritemSpacing = self.minimumInteritemSpacing
         self.layoutMatrix = ADMozaikLayoutMatrix(numberOfColumns: self.geometryInfo.columns.count)
-        self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: self.layoutCache, layoutMatrix: self.layoutMatrix, layoutGeometry: self.layoutGeometry)
+        if let layoutCache = self.layoutCache, let layoutMatrix = self.layoutMatrix, let layoutGeometry = self.layoutGeometry {
+            self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: layoutCache, layoutMatrix: layoutMatrix, layoutGeometry: layoutGeometry)
+        }
+        
     }
     
     open override var collectionViewContentSize : CGSize {
         guard self.collectionView != nil else {
             fatalError("self.collectionView expected to be not nil when execute collectionViewContentSize()")
+        }
+        guard let layoutGeometry = self.layoutGeometry else {
+            return CGSize.zero
         }
         
         let numberOfSections = self.layoutCache!.numberOfSections()
@@ -144,11 +161,11 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         }
         let contentSize = super.collectionViewContentSize
         let delta = self.collectionView!.bounds.height - self.collectionView!.contentInset.top - self.collectionView!.contentInset.bottom
-        return CGSize(width: contentSize.width, height: max(self.layoutGeometry.contentHeight, delta));
+        return CGSize(width: contentSize.width, height: max(layoutGeometry.contentHeight, delta));
     }
     
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return self.layoutAttrbutes.layoutAttributesForItem(at: indexPath)
+        return self.layoutAttrbutes?.layoutAttributesForItem(at: indexPath)
     }
  
     open override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -160,6 +177,10 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     }
     
     //MARK: - Helpers
+    
+    fileprivate func isLayoutReady() -> Bool {
+        return self.layoutCache != nil && self.layoutGeometry != nil && self.layoutMatrix != nil && self.layoutAttrbutes != nil
+    }
     
     fileprivate func resetLayout() {
         self.layoutAttrbutes = nil
