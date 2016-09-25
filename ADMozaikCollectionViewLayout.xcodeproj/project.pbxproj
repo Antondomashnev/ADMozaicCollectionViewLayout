@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D3A4F5C1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A4F5B1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift */; };
 		6D7BE5B51CEA148400A41445 /* ADMozaikCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D7BE5BC1CEA148400A41445 /* ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */; };
 		6D7BE5E11CEA3A8F00A41445 /* ADMozaikLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5DE1CEA3A8F00A41445 /* ADMozaikLayout.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		21E3BBF7B49C76EE34AA3E0B /* Pods_ADMozaikCollectionViewLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D3A4F5B1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutGeometryInfoTests.swift; sourceTree = "<group>"; };
 		6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMozaikCollectionViewLayout.h; sourceTree = "<group>"; };
 		6D7BE5B61CEA148400A41445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				6DD7FBFF1CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift */,
 				6D9C663E1CFF921B00968F9F /* ADMozaikLayoutCacheTests.swift */,
 				6D9C66401CFF9D0D00968F9F /* ADMozaikLayoutTests.swift */,
+				6D3A4F5B1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift */,
 			);
 			path = ADMozaikCollectionViewLayoutTests;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			files = (
 				6D9C663F1CFF921B00968F9F /* ADMozaikLayoutCacheTests.swift in Sources */,
 				6D9C66411CFF9D0D00968F9F /* ADMozaikLayoutTests.swift in Sources */,
+				6D3A4F5C1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift in Sources */,
 				6DBFA7D21CF646B4003D60B7 /* ADMozaikLayoutMatrixTests.swift in Sources */,
 				6DD7FC001CFB94CF00E7F048 /* ADMozaikLayoutGeometryTests.swift in Sources */,
 			);

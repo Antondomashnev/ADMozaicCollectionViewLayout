@@ -76,4 +76,51 @@ public struct ADMozaikLayoutColumn {
     public init(width: CGFloat) {
         self.width = width
     }
+    
+    //MARK: - Equatable
+    
+    public static func ==(lhs: ADMozaikLayoutColumn, rhs: ADMozaikLayoutColumn) -> Bool {
+        return lhs.width == rhs.width
+    }
 }
+
+/**
+ *  Defines the layout's information
+ */
+public struct ADMozaikLayoutGeometryInfo: Equatable {
+    /// array of `ADMozaikLayoutColumn` for the layout
+    let columns: [ADMozaikLayoutColumn]
+    
+    /// height for each row in points
+    let rowHeight: CGFloat
+    
+    ///
+    /// Designated initializer for structure
+    ///
+    /// - parameter rowHeight: height for each row in points
+    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    ///
+    /// - returns: newly created `ADMozaikLayoutColumn`
+    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn]) {
+        self.columns = columns
+        self.rowHeight = rowHeight
+    }
+    
+    ///
+    /// Checks whether the geometry info is valid
+    ///
+    /// - returns: true if the info has non zero columns number and non zero rowHeight
+    public func isValid() -> Bool {
+        return self.columns.count > 0 && self.rowHeight > 0
+    }
+
+    //MARK: - Equatable
+    
+    public static func ==(lhs: ADMozaikLayoutGeometryInfo, rhs: ADMozaikLayoutGeometryInfo) -> Bool {
+        return lhs.rowHeight == rhs.rowHeight && lhs.columns.elementsEqual(rhs.columns, by: { (column1, column2) -> Bool in
+            return column1 == column2
+        })
+    }
+}
+
+

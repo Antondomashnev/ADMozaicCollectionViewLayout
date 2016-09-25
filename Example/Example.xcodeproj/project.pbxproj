@@ -15,6 +15,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6D28C4EF1D9716450078F70B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DC978161CFE212700B7679E /* ADMozaikCollectionViewLayout.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D7BE5B01CEA148400A41445;
+			remoteInfo = ADMozaikCollectionViewLayout;
+		};
 		6DC9781B1CFE212700B7679E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6DC978161CFE212700B7679E /* ADMozaikCollectionViewLayout.xcodeproj */;
@@ -106,6 +113,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6D28C4F01D9716450078F70B /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -124,6 +132,7 @@
 				TargetAttributes = {
 					6DC978001CFE211A00B7679E = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -192,6 +201,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D28C4F01D9716450078F70B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ADMozaikCollectionViewLayout;
+			targetProxy = 6D28C4EF1D9716450078F70B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6DC978081CFE211A00B7679E /* Main.storyboard */ = {
@@ -304,6 +321,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antondomashnev.admozaikcollectionviewlayout.example.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -315,6 +333,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antondomashnev.admozaikcollectionviewlayout.example.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
