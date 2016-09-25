@@ -319,24 +319,5 @@ class ADMozaikLayoutTests: XCTestCase {
             return column1 == column2
         }))
     }
-    
-    func testPerformanceTestToPrepareLayout() {
-        class MockCollectionView: UICollectionView {
-            private override var numberOfSections: Int {
-                return 1
-            }
-            
-            private override func numberOfItems(inSection section: Int) -> Int {
-                return 10000
-            }
-        }
-        
-        let geometryInfo1 = ADMozaikLayoutGeometryInfo(rowHeight: 10, columns: [ADMozaikLayoutColumn(width: 10), ADMozaikLayoutColumn(width: 10), ADMozaikLayoutColumn(width: 10)])
-        let layout = ADMozaikLayout(geometryInfo: geometryInfo1, for: UIDeviceOrientation.portrait)
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
-        layout.collectionView = 
-        
-    }
 }
 
