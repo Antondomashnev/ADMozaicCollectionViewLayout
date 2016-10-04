@@ -42,9 +42,28 @@ class ADMozaikLayoutMatrix {
     /// Number of rows in the matrix
     fileprivate var numberOfRows: Int = 0
     
+    /// This is very important dictionary
+    /// It contains information of the last item with specific size position
+    /// E.x. the following items in the following order are added into the matrix
+    /// (columns: 1, rows 1) at (column: 0, row: 0)
+    /// (columns: 2, rows 2) at (column: 1, row: 0)
+    /// (columns: 1, rows 2) at (column: 0, row: 1)
+    /// (columns: 3, rows 3) at (column: 0, row: 3)
+    /// (columns: 1, rows 1) at (column: 1, row: 1)
+    /// Then the dictionary contains the following info:
+    /// [
+    ///  (columns: 1, rows 1): (column: 1, row: 1),
+    ///  (columns: 2, rows 2): (column: 1, row: 0),
+    ///  (columns: 1, rows 2): (column: 0, row: 1),
+    ///  (columns: 3, rows 3): (column: 0, row: 3)
+    /// ]
+    /// The general idea of it, that e.x. for item with size (columns: 1, rows 1), 
+    /// that we can not place it earlier that that position. So we can start iterating from that position
+    fileprivate var lastItemPositionOfSize: [ADMozaikLayoutSize: ADMozaikLayoutPosition]
+    
     /// Number of columns in the matrix
     fileprivate let numberOfColumns: Int
- 
+    
     //MARK: - Interface
     
     ///
