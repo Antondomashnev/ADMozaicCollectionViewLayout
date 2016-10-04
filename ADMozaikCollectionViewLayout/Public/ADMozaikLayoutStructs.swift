@@ -8,14 +8,19 @@
 
 import Foundation
 
+public typealias ADMozaikLayoutPositionRow = Int
+public typealias ADMozaikLayoutPositionColumn = Int
+public typealias ADMozaikLayoutSizeRows = Int
+public typealias ADMozaikLayoutSizeColumns = Int
+
 /**
  *  Defines the structure to identify the position of the layout item
  */
-public struct ADMozaikLayoutPosition {
+public struct ADMozaikLayoutPosition: Hashable {
     /// Column number of the item's position
-    let column: Int
+    let column: ADMozaikLayoutPositionColumn
     /// Row number of the item's position
-    let row: Int
+    let row: ADMozaikLayoutPositionRow
     
     ///
     /// Designated initializer for structure
@@ -24,16 +29,26 @@ public struct ADMozaikLayoutPosition {
     /// - parameter row:    roe number
     ///
     /// - returns: newly created `ADMozaikLayoutPosition`
-    public init(atColumn column: Int, atRow row: Int) {
+    public init(atColumn column: ADMozaikLayoutPositionRow, atRow row: ADMozaikLayoutPositionColumn) {
         self.column = column
         self.row = row
+    }
+    
+    //MARK: - Hashable
+    
+    public var hashValue: Int {
+        return column.hashValue ^ row.hashValue
+    }
+    
+    public static func == (lhs: ADMozaikLayoutPosition, rhs: ADMozaikLayoutPosition) -> Bool {
+        return lhs.row == rhs.row && lhs.column == rhs.column
     }
 }
 
 /**
  *  Defines the size of the layout item
  */
-public struct ADMozaikLayoutSize {
+public struct ADMozaikLayoutSize: Hashable {
     /// Columns number that item requires
     let columns: Int
     /// Rows number that item requires
@@ -57,6 +72,16 @@ public struct ADMozaikLayoutSize {
     /// - returns: number of required mozaik cells for item
     public func totalCells() -> Int {
         return self.columns * self.rows
+    }
+
+    //MARK: - Hashable
+    
+    public var hashValue: Int {
+        return columns.hashValue ^ rows.hashValue
+    }
+    
+    public static func == (lhs: ADMozaikLayoutSize, rhs: ADMozaikLayoutSize) -> Bool {
+        return lhs.rows == rhs.rows && lhs.columns == rhs.columns
     }
 }
 

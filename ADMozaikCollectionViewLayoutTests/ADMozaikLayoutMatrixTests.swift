@@ -71,4 +71,25 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
         }
         catch { fatalError() }
     }
+    
+    func testPositionForItemPerformance() {
+        let sizesArray = [ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1),
+                          ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2),
+                          ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 1),
+                          ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 2),
+                          ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 3),
+                          ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2),
+                          ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 1),
+                          ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 3)]
+        measure {
+            do {
+                for i in 0...200 {
+                    let size = sizesArray[i % 8]
+                    let position = try self.matrixLayout.positionForItem(of: size)
+                    try self.matrixLayout.addItem(of: size, at: position)
+                }
+            }
+            catch { fatalError() }
+        }
+    }
 }
