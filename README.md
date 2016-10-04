@@ -86,14 +86,14 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'ADMozaicCollectionViewLayout', '~> 1.0.0'
+pod 'ADMozaicCollectionViewLayout', '~> 2.0'
 ```
 ### Carthage
 
 To integrate ADMozaicCollectionViewLayout into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ruby
-github "Antondomashnev/ADMozaicCollectionViewLayout" ~> 1.0
+github "Antondomashnev/ADMozaicCollectionViewLayout" ~> 2.0
 ```
 
 Run `carthage update` to build the framework and drag the built `ADMozaikCollectionViewLayout.framework` into your Xcode project.
