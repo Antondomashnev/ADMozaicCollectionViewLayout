@@ -2,7 +2,8 @@
 upcoming:
   version: 2.1.0
   notes:
-  - support different orientations for layout
+  - Support different orientations for layout
+  - Item position calculation performance win 💥
 releases:
 - version: 2.0.0
   notes:
