@@ -60,7 +60,7 @@ class ViewController: UIViewController, ADMozaikLayoutDelegate, UICollectionView
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize {
+    func collectionView(_ collectionView: UICollectionView, mozaik layout: UICollectionViewLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
         if indexPath.item == 0 {
             return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
         }
