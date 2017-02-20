@@ -169,7 +169,7 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize {
+    func collectionView(_ collectionView: UICollectionView, mozaik layout: UICollectionViewLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
         switch self.useCase! {
         case .f:
             if (indexPath as NSIndexPath).item % 8 == 0 {
