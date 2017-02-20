@@ -1,10 +1,13 @@
 ---
 upcoming:
-  version: 2.1.0
+  version: 3.0.0
+  notes:
+  - incompatible renaming in ADMozaikLayoutDelegate to silence Xcode warning [#15](https://github.com/Antondomashnev/ADMozaicCollectionViewLayout/issues/15)
+releases:
+- version: 2.1.0
   notes:
   - Support different orientations for layout
   - Item position calculation performance win 💥
-releases:
 - version: 2.0.0
   notes:
   - Swift 3.0 compatibility
