@@ -31,17 +31,21 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     }
     
     /// Current geometry info of the layout
-    private(set) open var geometryInfo: ADMozaikLayoutGeometryInfo
+    open var geometryInfo: ADMozaikLayoutGeometryInfo {
+        didSet {
+            invalidateLayout()
+        }
+    }
     
     //*******************************//
     
-    override open var minimumLineSpacing: CGFloat {
+    @IBInspectable override open var minimumLineSpacing: CGFloat {
         didSet {
             self.layoutGeometry?.minimumLineSpacing = minimumLineSpacing
         }
     }
     
-    override open var minimumInteritemSpacing: CGFloat {
+    @IBInspectable override open var minimumInteritemSpacing: CGFloat {
         didSet {
             self.layoutGeometry?.minimumInteritemSpacing = minimumInteritemSpacing
         }
