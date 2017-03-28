@@ -27,7 +27,7 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
     
     func testThatEmptyMatrixShouldReturnTopLeftPositionForNewItem() {
         do {
-            let position: ADMozaikLayoutPosition = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2))
+            let position: ADMozaikLayoutPosition = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2), in: 0)
             expect(position.column).to(equal(0))
             expect(position.row).to(equal(0))
         }
@@ -36,7 +36,7 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
     
     func testThatEmptyMatrixShouldReturnCorrectPositionForNewItemHigherThanPossible() {
         do {
-            let position: ADMozaikLayoutPosition = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 5))
+            let position: ADMozaikLayoutPosition = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 5), in: 0)
             expect(position.column).to(equal(0))
             expect(position.row).to(equal(0))
         }
@@ -45,11 +45,11 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
     
     func testThatFilledMatrixShouldExtendMatrixHeightIfThereIsNoSpaceLeft() {
         do {
-            var position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 3))
+            var position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 3), in: 0)
             try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 3), at: position)
-            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1))
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), in: 0)
             try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: position)
-            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2))
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2), in: 0)
             expect(position.column).to(equal(1))
             expect(position.row).to(equal(3))
         }
@@ -58,14 +58,14 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
     
     func testThatPositionForItemWithSizeShouldReturnCorrectPosition() {
         do {
-            var position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2))
+            var position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2), in: 0)
             try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: position)
-            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2))
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2), in: 0)
             expect(position.row).to(equal(1))
             expect(position.column).to(equal(0))
             
             try self.matrixLayout.addItem(of: ADMozaikLayoutSize(numberOfColumns: 3, numberOfRows: 2), at: position)
-            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 1))
+            position = try self.matrixLayout.positionForItem(of: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 1), in: 0)
             expect(position.row).to(equal(0))
             expect(position.column).to(equal(1))
         }
@@ -85,7 +85,7 @@ class ADMozaikLayoutMatrixTests: XCTestCase {
             do {
                 for i in 0...200 {
                     let size = sizesArray[i % 8]
-                    let position = try self.matrixLayout.positionForItem(of: size)
+                    let position = try self.matrixLayout.positionForItem(of: size, in: 0)
                     try self.matrixLayout.addItem(of: size, at: position)
                 }
             }

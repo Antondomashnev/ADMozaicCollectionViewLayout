@@ -8,6 +8,7 @@
 
 import Foundation
 
+public typealias ADMozaikLayoutSection = Int
 public typealias ADMozaikLayoutPositionRow = Int
 public typealias ADMozaikLayoutPositionColumn = Int
 public typealias ADMozaikLayoutSizeRows = Int
@@ -21,6 +22,8 @@ public struct ADMozaikLayoutPosition: Hashable {
     let column: ADMozaikLayoutPositionColumn
     /// Row number of the item's position
     let row: ADMozaikLayoutPositionRow
+    /// Section number of the item's
+    let section: ADMozaikLayoutSection
     
     ///
     /// Designated initializer for structure
@@ -29,19 +32,20 @@ public struct ADMozaikLayoutPosition: Hashable {
     /// - parameter row:    roe number
     ///
     /// - returns: newly created `ADMozaikLayoutPosition`
-    public init(atColumn column: ADMozaikLayoutPositionRow, atRow row: ADMozaikLayoutPositionColumn) {
+    public init(atColumn column: ADMozaikLayoutPositionRow, atRow row: ADMozaikLayoutPositionColumn, inSection section: ADMozaikLayoutSection) {
         self.column = column
         self.row = row
+        self.section = section
     }
     
     //MARK: - Hashable
     
     public var hashValue: Int {
-        return column.hashValue ^ row.hashValue
+        return column.hashValue ^ row.hashValue ^ section.hashValue
     }
     
     public static func == (lhs: ADMozaikLayoutPosition, rhs: ADMozaikLayoutPosition) -> Bool {
-        return lhs.row == rhs.row && lhs.column == rhs.column
+        return lhs.row == rhs.row && lhs.column == rhs.column && lhs.section == rhs.section
     }
 }
 

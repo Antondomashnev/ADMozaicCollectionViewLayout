@@ -75,7 +75,7 @@ class ADMozaikLayoutAttributes {
                 let indexPath = IndexPath(item: item, section: section)
                 let itemSize = layoutCache.mozaikSizeForItem(atIndexPath: indexPath)
                 do {
-                    let itemPosition = try layoutMatrix.positionForItem(of: itemSize)
+                    let itemPosition = try layoutMatrix.positionForItem(of: itemSize, in: section)
                     let xOffset = layoutGeometry.xOffsetForItem(at: itemPosition)
                     let yOffset = layoutGeometry.yOffsetForItem(at: itemPosition)
                     let itemGeometrySize = layoutGeometry.sizeForItem(withMozaikSize: itemSize, at: itemPosition)
