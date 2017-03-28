@@ -5,10 +5,12 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - Nimble (6.0.1)
+  - Sourcery (0.5.9)
 
 DEPENDENCIES:
   - FBSnapshotTestCase (from `https://github.com/facebook/ios-snapshot-test-case.git`, branch `master`)
   - Nimble (from `https://github.com/Quick/Nimble.git`, branch `master`)
+  - Sourcery (~> 0.5)
 
 EXTERNAL SOURCES:
   FBSnapshotTestCase:
@@ -29,7 +31,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: 1aafe036e5b03c5a30d07430fddca564af570696
+  Sourcery: 45e4b8ab587861e67de267957b16d91902f3a26f
 
-PODFILE CHECKSUM: 6e885da37e101575df960c67b3aad6ff486ae7e1
+PODFILE CHECKSUM: 5a889c6e436cf4d5b0caff8446311ea6b3d7a040
 
 COCOAPODS: 1.2.0

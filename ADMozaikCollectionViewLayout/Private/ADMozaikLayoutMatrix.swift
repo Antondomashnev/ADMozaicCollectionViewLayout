@@ -33,6 +33,18 @@ extension ADMozaikLayoutMatrixError : CustomStringConvertible {
 
 //*************************************************************************//
 
+/// The `ADMozaikLayoutMatrixPositionCacheKey` represents the key that will be used in `lastItemPositionOfSize` of `ADMozaikLayoutMatrix`
+struct ADMozaikLayoutMatrixPositionCacheKey {
+    
+    /// Size of the item
+    let size: ADMozaikLayoutSize
+    
+    // Section of the item
+    let section: ADMozaikLayoutSection
+}
+
+//*************************************************************************//
+
 /// The `ADMozaikLayoutMatrix` defines the class which describes the layout matrx
 class ADMozaikLayoutMatrix {
     
@@ -43,20 +55,28 @@ class ADMozaikLayoutMatrix {
     fileprivate var numberOfRows: Int = 0
     
     /// This is very important dictionary
-    /// It contains information of the last item with specific size position
+    /// It contains information of the last item with specific size position in specific section
     /// E.x. the following items in the following order are added into the matrix
-    /// (columns: 1, rows 1) at (column: 0, row: 0)
-    /// (columns: 2, rows 2) at (column: 1, row: 0)
-    /// (columns: 1, rows 2) at (column: 0, row: 1)
-    /// (columns: 3, rows 3) at (column: 0, row: 3)
-    /// (columns: 1, rows 1) at (column: 1, row: 1)
-    /// Then the dictionary contains the following info:
+    /// (columns: 1, rows 1) at (column: 0, row: 0, section: 0)
+    /// (columns: 2, rows 2) at (column: 1, row: 0, section: 0)
+    /// (columns: 1, rows 2) at (column: 0, row: 1, section: 0)
+    /// (columns: 3, rows 1) at (column: 0, row: 3, section: 0)
+    /// (columns: 1, rows 1) at (column: 1, row: 2, section: 0)
+    /// (columns: 1, rows 1) at (column: 0, row: 4, section: 1)
+    /// (columns: 2, rows 1) at (column: 1, row: 4, section: 1)
+    /// (columns: 1, rows 3) at (column: 0, row: 5, section: 1)
+    /// (columns: 2, rows 1) at (column: 1, row: 5, section: 1)
+    /// Then the array dictionary contains the following info:
     /// [
-    ///  (columns: 1, rows 1): (column: 1, row: 1),
-    ///  (columns: 2, rows 2): (column: 1, row: 0),
-    ///  (columns: 1, rows 2): (column: 0, row: 1),
-    ///  (columns: 3, rows 3): (column: 0, row: 3)
+    ///  (columns: 1, rows 1, section: 0): (column: 1, row: 2, section: 0),
+    ///  (columns: 2, rows 2, section: 0): (column: 1, row: 0, section: 0),
+    ///  (columns: 1, rows 2, section: 0): (column: 0, row: 1, section: 0),
+    ///  (columns: 3, rows 1, section: 0): (column: 0, row: 3, section: 0),
+    ///  (columns: 1, rows 1, section: 1): (column: 0, row: 4, section: 1),
+    ///  (columns: 2, rows 1, section: 1): (column: 1, row: 5, section: 1),
+    ///  (columns: 1, rows 3, section: 1): (column: 0, row: 5, section: 1),
     /// ]
+    ///
     /// The general idea of it, that e.x. for item with size (columns: 1, rows 1), 
     /// that we can not place it earlier that that position. So we can start iterating from that position
     fileprivate var lastItemPositionOfSize: [ADMozaikLayoutSize: ADMozaikLayoutPosition] = [:]

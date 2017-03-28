@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D3A43881E8AFE1000BDF6E4 /* AutoEquatable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A43831E8AFE1000BDF6E4 /* AutoEquatable.generated.swift */; };
+		6D3A43891E8AFE1000BDF6E4 /* AutoHashable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A43841E8AFE1000BDF6E4 /* AutoHashable.generated.swift */; };
+		6D3A438A1E8AFE1100BDF6E4 /* AutoEquatable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 6D3A43861E8AFE1000BDF6E4 /* AutoEquatable.stencil */; };
+		6D3A438B1E8AFE1100BDF6E4 /* AutoHashable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 6D3A43871E8AFE1000BDF6E4 /* AutoHashable.stencil */; };
 		6D3A4F5C1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A4F5B1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift */; };
 		6D7BE5B51CEA148400A41445 /* ADMozaikCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D7BE5BC1CEA148400A41445 /* ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */; };
@@ -37,6 +41,10 @@
 
 /* Begin PBXFileReference section */
 		21E3BBF7B49C76EE34AA3E0B /* Pods_ADMozaikCollectionViewLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADMozaikCollectionViewLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D3A43831E8AFE1000BDF6E4 /* AutoEquatable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoEquatable.generated.swift; sourceTree = "<group>"; };
+		6D3A43841E8AFE1000BDF6E4 /* AutoHashable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoHashable.generated.swift; sourceTree = "<group>"; };
+		6D3A43861E8AFE1000BDF6E4 /* AutoEquatable.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoEquatable.stencil; sourceTree = "<group>"; };
+		6D3A43871E8AFE1000BDF6E4 /* AutoHashable.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoHashable.stencil; sourceTree = "<group>"; };
 		6D3A4F5B1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutGeometryInfoTests.swift; sourceTree = "<group>"; };
 		6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMozaikCollectionViewLayout.h; sourceTree = "<group>"; };
@@ -93,9 +101,45 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6D3A43801E8AFE1000BDF6E4 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				6D3A43811E8AFE1000BDF6E4 /* Sourcery */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		6D3A43811E8AFE1000BDF6E4 /* Sourcery */ = {
+			isa = PBXGroup;
+			children = (
+				6D3A43821E8AFE1000BDF6E4 /* CodeGenerated */,
+				6D3A43851E8AFE1000BDF6E4 /* Templates */,
+			);
+			path = Sourcery;
+			sourceTree = "<group>";
+		};
+		6D3A43821E8AFE1000BDF6E4 /* CodeGenerated */ = {
+			isa = PBXGroup;
+			children = (
+				6D3A43831E8AFE1000BDF6E4 /* AutoEquatable.generated.swift */,
+				6D3A43841E8AFE1000BDF6E4 /* AutoHashable.generated.swift */,
+			);
+			path = CodeGenerated;
+			sourceTree = "<group>";
+		};
+		6D3A43851E8AFE1000BDF6E4 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				6D3A43861E8AFE1000BDF6E4 /* AutoEquatable.stencil */,
+				6D3A43871E8AFE1000BDF6E4 /* AutoHashable.stencil */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
 		6D7BE5A71CEA148400A41445 = {
 			isa = PBXGroup;
 			children = (
+				6D3A43801E8AFE1000BDF6E4 /* Vendor */,
 				6D7BE5B31CEA148400A41445 /* ADMozaikCollectionViewLayout */,
 				6D7BE5BF1CEA148400A41445 /* ADMozaikCollectionViewLayoutTests */,
 				6D7BE5B21CEA148400A41445 /* Products */,
@@ -186,6 +230,7 @@
 			buildConfigurationList = 6D7BE5C51CEA148400A41445 /* Build configuration list for PBXNativeTarget "ADMozaikCollectionViewLayout" */;
 			buildPhases = (
 				88E79A6DCE69D60D0BFD5B86 /* [CP] Check Pods Manifest.lock */,
+				6D3A437F1E8AFDA000BDF6E4 /* Sourcery */,
 				6D7BE5AC1CEA148400A41445 /* Sources */,
 				6D7BE5AD1CEA148400A41445 /* Frameworks */,
 				6D7BE5AE1CEA148400A41445 /* Headers */,
@@ -265,6 +310,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D3A438A1E8AFE1100BDF6E4 /* AutoEquatable.stencil in Resources */,
+				6D3A438B1E8AFE1100BDF6E4 /* AutoHashable.stencil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +339,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6D3A437F1E8AFDA000BDF6E4 /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Sourcery/bin/sourcery\" --sources \"${SRCROOT}/ADMozaikCollectionViewLayout\" --templates \"${SRCROOT}/Vendor/Sourcery/Templates\" --output \"${SRCROOT}/Vendor/Sourcery/CodeGenerated\"";
 		};
 		6FA5C5D4BC52F2855D7B58EC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -362,6 +423,8 @@
 			files = (
 				6D7BE5E51CEA3AA100A41445 /* ADMozaikLayoutMatrix.swift in Sources */,
 				6DEC646E1D109C2F002AAD54 /* ADMozaikLayoutAttributes.swift in Sources */,
+				6D3A43881E8AFE1000BDF6E4 /* AutoEquatable.generated.swift in Sources */,
+				6D3A43891E8AFE1000BDF6E4 /* AutoHashable.generated.swift in Sources */,
 				6DD7FBFE1CFB916D00E7F048 /* ADMozaikLayoutGeometry.swift in Sources */,
 				6D7BE5E21CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift in Sources */,
 				6D7BE5E31CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift in Sources */,
