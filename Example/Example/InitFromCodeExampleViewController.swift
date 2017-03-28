@@ -76,15 +76,17 @@ class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegat
     //MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10000
+        return 50
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ADMozaikLayoutCell", for: indexPath) as UICollectionViewCell
+        let sectionLabel: UILabel = cell.viewWithTag(1001) as! UILabel
+        sectionLabel.text = "\(indexPath.section)"
         let imageView: UIImageView = cell.viewWithTag(1000) as! UIImageView
         imageView.image = UIImage(named: "\((indexPath as NSIndexPath).item % ADMozaikCollectionViewLayoutExampleImagesCount)")
         return cell

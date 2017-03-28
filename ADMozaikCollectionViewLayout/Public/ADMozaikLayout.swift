@@ -152,7 +152,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     }
     
     open override var collectionViewContentSize : CGSize {
-        guard self.collectionView != nil else {
+        guard let collectionView = self.collectionView else {
             fatalError("self.collectionView expected to be not nil when execute collectionViewContentSize()")
         }
         guard let layoutGeometry = self.layoutGeometry else {
@@ -164,7 +164,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
             return CGSize.zero
         }
         let contentSize = super.collectionViewContentSize
-        let delta = self.collectionView!.bounds.height - self.collectionView!.contentInset.top - self.collectionView!.contentInset.bottom
+        let delta = collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom
         return CGSize(width: contentSize.width, height: max(layoutGeometry.contentHeight, delta));
     }
     
