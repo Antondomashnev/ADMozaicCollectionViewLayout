@@ -36,13 +36,6 @@ public func == (lhs: ADMozaikLayoutGeometryInfo, rhs: ADMozaikLayoutGeometryInfo
     guard lhs.rowHeight == rhs.rowHeight else { return false }
     return true
 }
-// MARK: - ADMozaikLayoutMatrixPositionCacheKey AutoEquatable
-extension ADMozaikLayoutMatrixPositionCacheKey: Equatable {} 
-internal func == (lhs: ADMozaikLayoutMatrixPositionCacheKey, rhs: ADMozaikLayoutMatrixPositionCacheKey) -> Bool {
-    guard lhs.size == rhs.size else { return false }
-    guard lhs.section == rhs.section else { return false }
-    return true
-}
 // MARK: - ADMozaikLayoutPosition AutoEquatable
 extension ADMozaikLayoutPosition: Equatable {} 
 public func == (lhs: ADMozaikLayoutPosition, rhs: ADMozaikLayoutPosition) -> Bool {

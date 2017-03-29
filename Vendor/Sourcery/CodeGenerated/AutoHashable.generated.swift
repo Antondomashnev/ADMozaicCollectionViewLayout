@@ -20,12 +20,6 @@ fileprivate func combineHashValues(_ initial: Int, _ other: Int) -> Int {
 }
 
 // MARK: - AutoHashable for classes, protocols, structs
-// MARK: - ADMozaikLayoutMatrixPositionCacheKey AutoHashable
-extension ADMozaikLayoutMatrixPositionCacheKey: Hashable {
-    internal var hashValue: Int {
-        return combineHashes([size.hashValue, section.hashValue, 0])
-    }
-}
 // MARK: - ADMozaikLayoutPosition AutoHashable
 extension ADMozaikLayoutPosition: Hashable {
     public var hashValue: Int {

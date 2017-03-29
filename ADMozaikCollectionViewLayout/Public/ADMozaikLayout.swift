@@ -59,8 +59,8 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     /// Current layout cache to speed up calculations
     fileprivate var layoutCache: ADMozaikLayoutCache?
     
-    /// `ADMozaikLayoutMatrix` object that represents current layout
-    fileprivate var layoutMatrix: ADMozaikLayoutMatrix?
+    /// `ADMozaikLayoutSectionMatrix` object that represents current layout
+    fileprivate var layoutMatrix: ADMozaikLayoutSectionMatrix?
     
     /// Keeps information about current layout attributes
     fileprivate var layoutAttrbutes: ADMozaikLayoutAttributes?
@@ -144,7 +144,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         self.layoutGeometry = ADMozaikLayoutGeometry(layoutColumns: self.geometryInfo.columns, rowHeight: self.geometryInfo.rowHeight)
         self.layoutGeometry?.minimumLineSpacing = self.minimumLineSpacing
         self.layoutGeometry?.minimumInteritemSpacing = self.minimumInteritemSpacing
-        self.layoutMatrix = ADMozaikLayoutMatrix(numberOfColumns: self.geometryInfo.columns.count)
+        self.layoutMatrix = ADMozaikLayoutSectionMatrix(numberOfColumns: self.geometryInfo.columns.count, section: 0)
         if let layoutCache = self.layoutCache, let layoutMatrix = self.layoutMatrix, let layoutGeometry = self.layoutGeometry {
             self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: layoutCache, layoutMatrix: layoutMatrix, layoutGeometry: layoutGeometry)
         }

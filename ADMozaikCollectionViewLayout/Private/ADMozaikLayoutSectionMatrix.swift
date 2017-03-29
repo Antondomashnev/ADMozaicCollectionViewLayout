@@ -1,5 +1,5 @@
 //
-//  ADMozaikLayoutMatrix.swift
+//  ADMozaikLayoutSectionMatrix.swift
 //  ADMozaikCollectionViewLayout
 //
 //  Created by Anton Domashnev on 16/05/16.
@@ -14,12 +14,12 @@ import Foundation
  - ColumnOutOfBounds: mozaic's layout column is out of bounds
  - RowOutOfBounds:    mozaic's layout row is out of bounds
  */
-enum ADMozaikLayoutMatrixError : Error {
+enum ADMozaikLayoutSectionMatrixError : Error {
     case columnOutOfBounds
     case rowOutOfBounds
 }
 
-extension ADMozaikLayoutMatrixError : CustomStringConvertible {
+extension ADMozaikLayoutSectionMatrixError : CustomStringConvertible {
     var description: String {
         switch self {
         case .columnOutOfBounds:
@@ -33,20 +33,8 @@ extension ADMozaikLayoutMatrixError : CustomStringConvertible {
 
 //*************************************************************************//
 
-/// The `ADMozaikLayoutMatrixPositionCacheKey` represents the key that will be used in `lastItemPositionOfSize` of `ADMozaikLayoutMatrix`
-struct ADMozaikLayoutMatrixPositionCacheKey: AutoEquatable, AutoHashable {
-    
-    /// Size of the item
-    let size: ADMozaikLayoutSize
-    
-    // Section of the item
-    let section: ADMozaikLayoutSection
-}
-
-//*************************************************************************//
-
-/// The `ADMozaikLayoutMatrix` defines the class which describes the layout matrx
-class ADMozaikLayoutMatrix {
+/// The `ADMozaikLayoutSectionMatrix` defines the class which describes the layout matrx
+class ADMozaikLayoutSectionMatrix {
     
     /// Array representation of the matrix: 1 if cell is not empty and 0 if it's empty
     fileprivate var arrayRepresentation: [[Bool]] = []
@@ -55,49 +43,45 @@ class ADMozaikLayoutMatrix {
     fileprivate var numberOfRows: Int = 0
     
     /// This is very important dictionary
-    /// It contains information of the last item with specific size position in specific section
+    /// It contains information of the last item with specific size position
     /// E.x. the following items in the following order are added into the matrix
-    /// (columns: 1, rows 1) at (column: 0, row: 0, section: 0)
-    /// (columns: 2, rows 2) at (column: 1, row: 0, section: 0)
-    /// (columns: 1, rows 2) at (column: 0, row: 1, section: 0)
-    /// (columns: 3, rows 1) at (column: 0, row: 3, section: 0)
-    /// (columns: 1, rows 1) at (column: 1, row: 2, section: 0)
-    /// (columns: 1, rows 1) at (column: 0, row: 4, section: 1)
-    /// (columns: 2, rows 1) at (column: 1, row: 4, section: 1)
-    /// (columns: 1, rows 3) at (column: 0, row: 5, section: 1)
-    /// (columns: 2, rows 1) at (column: 1, row: 5, section: 1)
-    /// Then the array dictionary contains the following info:
+    /// (columns: 1, rows 1) at (column: 0, row: 0)
+    /// (columns: 2, rows 2) at (column: 1, row: 0)
+    /// (columns: 1, rows 2) at (column: 0, row: 1)
+    /// (columns: 3, rows 3) at (column: 0, row: 3)
+    /// (columns: 1, rows 1) at (column: 1, row: 1)
+    /// Then the dictionary contains the following info:
     /// [
-    ///  (columns: 1, rows 1, section: 0): (column: 1, row: 2, section: 0),
-    ///  (columns: 2, rows 2, section: 0): (column: 1, row: 0, section: 0),
-    ///  (columns: 1, rows 2, section: 0): (column: 0, row: 1, section: 0),
-    ///  (columns: 3, rows 1, section: 0): (column: 0, row: 3, section: 0),
-    ///  (columns: 1, rows 1, section: 1): (column: 0, row: 4, section: 1),
-    ///  (columns: 2, rows 1, section: 1): (column: 1, row: 5, section: 1),
-    ///  (columns: 1, rows 3, section: 1): (column: 0, row: 5, section: 1),
+    ///  (columns: 1, rows 1): (column: 1, row: 1),
+    ///  (columns: 2, rows 2): (column: 1, row: 0),
+    ///  (columns: 1, rows 2): (column: 0, row: 1),
+    ///  (columns: 3, rows 3): (column: 0, row: 3)
     /// ]
-    ///
-    /// The general idea of it, that e.x. for item with size (columns: 1, rows 1), 
+    /// The general idea of it, that e.x. for item with size (columns: 1, rows 1),
     /// that we can not place it earlier that that position. So we can start iterating from that position
-    fileprivate var lastItemPositionOfSize: [ADMozaikLayoutMatrixPositionCacheKey: ADMozaikLayoutPosition] = [:]
+    fileprivate var lastItemPositionOfSize: [ADMozaikLayoutSize: ADMozaikLayoutPosition] = [:]
     
     /// Number of columns in the matrix
     fileprivate let numberOfColumns: Int
     
+    /// Representing section in `UICollectionView`
+    fileprivate let section: Int
+    
     //MARK: - Interface
     
     ///
-    /// Designated initializer to create new instance of `ADMozaikLayoutMatrix`
+    /// Designated initializer to create new instance of `ADMozaikLayoutSectionMatrix`
     ///
-    /// - parameter numberOfRows: expected number of rows in layout
-    /// - parameter columns:      number of coumns in layout
+    /// - parameter numberOfColumns: expected number of sections in layout
+    /// - parameter section:         section number for which the matrix is supposed to be used
     ///
-    /// - returns: newly created instance of `ADMozaikLayoutMatrix`
-    init(numberOfColumns: Int) {
+    /// - returns: newly created instance of `ADMozaikLayoutSectionMatrix`
+    init(numberOfColumns: Int, section: ADMozaikLayoutSection) {
         self.numberOfColumns = numberOfColumns
+        self.section = section
         self.arrayRepresentation = self.buildInitialArrayRepresentation(numberOfColumns: numberOfColumns)
     }
-
+    
     ///
     /// Adds item into the layout matrix
     /// Position must be obtained only via positionForItem
@@ -109,19 +93,18 @@ class ADMozaikLayoutMatrix {
     func addItem(of size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) throws -> Void {
         let lastColumn = position.column + size.columns - 1
         guard lastColumn < arrayRepresentation.count else {
-            throw ADMozaikLayoutMatrixError.columnOutOfBounds
+            throw ADMozaikLayoutSectionMatrixError.columnOutOfBounds
         }
         
         let lastRow = position.row + size.rows - 1
         guard lastRow < arrayRepresentation[lastColumn].count else {
-            throw ADMozaikLayoutMatrixError.rowOutOfBounds
+            throw ADMozaikLayoutSectionMatrixError.rowOutOfBounds
         }
         
         for column in position.column...lastColumn {
             for row in position.row...lastRow {
                 arrayRepresentation[column][row] = true
-                let cacheKey = ADMozaikLayoutMatrixPositionCacheKey(size: size, section: position.section)
-                lastItemPositionOfSize[cacheKey] = position
+                lastItemPositionOfSize[size] = position
             }
         }
     }
@@ -133,24 +116,23 @@ class ADMozaikLayoutMatrix {
     /// - parameter size: size of the adding item
     ///
     /// - returns: position of the item
-    func positionForItem(of size: ADMozaikLayoutSize, in section: ADMozaikLayoutSection) throws -> ADMozaikLayoutPosition {
+    func positionForItem(of size: ADMozaikLayoutSize) throws -> ADMozaikLayoutPosition {
         let maximumColumn = numberOfColumns - size.columns
         if maximumColumn < 0 {
-            throw ADMozaikLayoutMatrixError.columnOutOfBounds
+            throw ADMozaikLayoutSectionMatrixError.columnOutOfBounds
         }
-        let cacheKey = ADMozaikLayoutMatrixPositionCacheKey(size: size, section: section)
-        let latestPositionForItemOfSameSize: ADMozaikLayoutPosition? = lastItemPositionOfSize[cacheKey]
+        let latestPositionForItemOfSameSize: ADMozaikLayoutPosition? = lastItemPositionOfSize[size]
         if let latestRowPositionForItemOfSameSize = latestPositionForItemOfSameSize?.row {
-            return self.positionForItem(of: size, startingFrom: latestRowPositionForItemOfSameSize, maximumPositionColumn: maximumColumn, in: section)
+            return self.positionForItem(of: size, startingFrom: latestRowPositionForItemOfSameSize, maximumPositionColumn: maximumColumn)
         }
         else {
-            return self.positionForItem(of: size, startingFrom: 0, maximumPositionColumn: maximumColumn, in: section)
+            return self.positionForItem(of: size, startingFrom: 0, maximumPositionColumn: maximumColumn)
         }
     }
     
     //MARK: - Helpers
     
-    fileprivate func positionForItem(of size: ADMozaikLayoutSize, startingFrom startRow: Int, maximumPositionColumn maximumColumn: Int, in section: ADMozaikLayoutSection) -> ADMozaikLayoutPosition {
+    fileprivate func positionForItem(of size: ADMozaikLayoutSize, startingFrom startRow: Int, maximumPositionColumn maximumColumn: Int) -> ADMozaikLayoutPosition {
         for row in startRow...numberOfRows {
             for column in 0...maximumColumn {
                 let possiblePosition = ADMozaikLayoutPosition(atColumn: column, atRow: row, inSection: section)
@@ -158,9 +140,9 @@ class ADMozaikLayoutMatrix {
                 do {
                     isPositionFree = try self.isPositionFree(possiblePosition, forItemOf: size)
                 }
-                catch ADMozaikLayoutMatrixError.rowOutOfBounds {
+                catch ADMozaikLayoutSectionMatrixError.rowOutOfBounds {
                     self.extendMatrix(by: size.rows)
-                    return self.positionForItem(of: size, startingFrom: row, maximumPositionColumn: maximumColumn, in: section)
+                    return self.positionForItem(of: size, startingFrom: row, maximumPositionColumn: maximumColumn)
                 }
                 catch  {
                     print(error)
@@ -170,7 +152,7 @@ class ADMozaikLayoutMatrix {
                 }
             }
         }
-        return ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0)
+        return ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: section)
     }
     
     fileprivate func extendMatrix(by rowsCount: Int) {
@@ -196,12 +178,12 @@ class ADMozaikLayoutMatrix {
     fileprivate func isPositionFree(_ position: ADMozaikLayoutPosition, forItemOf size: ADMozaikLayoutSize) throws -> Bool {
         let lastColumn = position.column + size.columns - 1
         guard lastColumn < arrayRepresentation.count else {
-            throw ADMozaikLayoutMatrixError.columnOutOfBounds
+            throw ADMozaikLayoutSectionMatrixError.columnOutOfBounds
         }
         
         let lastRow = position.row + size.rows - 1
         guard lastRow < arrayRepresentation[lastColumn].count else {
-            throw ADMozaikLayoutMatrixError.rowOutOfBounds
+            throw ADMozaikLayoutSectionMatrixError.rowOutOfBounds
         }
         
         for column in position.column...lastColumn {

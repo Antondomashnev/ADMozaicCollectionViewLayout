@@ -19,7 +19,7 @@ class ADMozaikLayoutAttributes {
     /// Default number of attributes in one union
     fileprivate let ADMozaikLayoutUnionSize: Int = 20
     
-    init(layoutCache: ADMozaikLayoutCache, layoutMatrix: ADMozaikLayoutMatrix, layoutGeometry: ADMozaikLayoutGeometry) {
+    init(layoutCache: ADMozaikLayoutCache, layoutMatrix: ADMozaikLayoutSectionMatrix, layoutGeometry: ADMozaikLayoutGeometry) {
         self.layoutAttributesArray = self.buildLayoutAttributesForLayoutGeometry(layoutGeometry, withLayoutMatrix: layoutMatrix, andLayoutCache: layoutCache)
         self.unionRectsArray = self.buildUnionRectsFromLayoutAttributes(self.layoutAttributesArray)
     }
@@ -65,7 +65,7 @@ class ADMozaikLayoutAttributes {
     
     //MARK: - Helper
     
-    fileprivate func buildLayoutAttributesForLayoutGeometry(_ layoutGeometry: ADMozaikLayoutGeometry, withLayoutMatrix layoutMatrix: ADMozaikLayoutMatrix, andLayoutCache layoutCache: ADMozaikLayoutCache) -> [UICollectionViewLayoutAttributes] {
+    fileprivate func buildLayoutAttributesForLayoutGeometry(_ layoutGeometry: ADMozaikLayoutGeometry, withLayoutMatrix layoutMatrix: ADMozaikLayoutSectionMatrix, andLayoutCache layoutCache: ADMozaikLayoutCache) -> [UICollectionViewLayoutAttributes] {
         let numberOfSections = layoutCache.numberOfSections()
         var allAttributes: [UICollectionViewLayoutAttributes] = []
         var maximumContentBottom: CGFloat = 0
@@ -75,7 +75,7 @@ class ADMozaikLayoutAttributes {
                 let indexPath = IndexPath(item: item, section: section)
                 let itemSize = layoutCache.mozaikSizeForItem(atIndexPath: indexPath)
                 do {
-                    let itemPosition = try layoutMatrix.positionForItem(of: itemSize, in: section)
+                    let itemPosition = try layoutMatrix.positionForItem(of: itemSize)
                     let xOffset = layoutGeometry.xOffsetForItem(at: itemPosition)
                     let yOffset = layoutGeometry.yOffsetForItem(at: itemPosition)
                     let itemGeometrySize = layoutGeometry.sizeForItem(withMozaikSize: itemSize, at: itemPosition)
