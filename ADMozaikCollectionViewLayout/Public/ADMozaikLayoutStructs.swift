@@ -17,7 +17,7 @@ public typealias ADMozaikLayoutSizeColumns = Int
 /**
  *  Defines the structure to identify the position of the layout item
  */
-public struct ADMozaikLayoutPosition: Hashable {
+public struct ADMozaikLayoutPosition: AutoHashable, AutoEquatable {
     /// Column number of the item's position
     let column: ADMozaikLayoutPositionColumn
     /// Row number of the item's position
@@ -37,22 +37,12 @@ public struct ADMozaikLayoutPosition: Hashable {
         self.row = row
         self.section = section
     }
-    
-    //MARK: - Hashable
-    
-    public var hashValue: Int {
-        return column.hashValue ^ row.hashValue ^ section.hashValue
-    }
-    
-    public static func == (lhs: ADMozaikLayoutPosition, rhs: ADMozaikLayoutPosition) -> Bool {
-        return lhs.row == rhs.row && lhs.column == rhs.column && lhs.section == rhs.section
-    }
 }
 
 /**
  *  Defines the size of the layout item
  */
-public struct ADMozaikLayoutSize: Hashable {
+public struct ADMozaikLayoutSize: AutoHashable, AutoEquatable {
     /// Columns number that item requires
     let columns: Int
     /// Rows number that item requires
@@ -77,22 +67,12 @@ public struct ADMozaikLayoutSize: Hashable {
     public func totalCells() -> Int {
         return self.columns * self.rows
     }
-
-    //MARK: - Hashable
-    
-    public var hashValue: Int {
-        return columns.hashValue ^ rows.hashValue
-    }
-    
-    public static func == (lhs: ADMozaikLayoutSize, rhs: ADMozaikLayoutSize) -> Bool {
-        return lhs.rows == rhs.rows && lhs.columns == rhs.columns
-    }
 }
 
 /**
  *  Defines the layout's column
  */
-public struct ADMozaikLayoutColumn {
+public struct ADMozaikLayoutColumn: AutoEquatable {
     /// Width of the column in points
     let width: CGFloat
     
@@ -105,18 +85,12 @@ public struct ADMozaikLayoutColumn {
     public init(width: CGFloat) {
         self.width = width
     }
-    
-    //MARK: - Equatable
-    
-    public static func ==(lhs: ADMozaikLayoutColumn, rhs: ADMozaikLayoutColumn) -> Bool {
-        return lhs.width == rhs.width
-    }
 }
 
 /**
  *  Defines the layout's information
  */
-public struct ADMozaikLayoutGeometryInfo: Equatable {
+public struct ADMozaikLayoutGeometryInfo: AutoEquatable {
     /// array of `ADMozaikLayoutColumn` for the layout
     let columns: [ADMozaikLayoutColumn]
     
@@ -141,14 +115,6 @@ public struct ADMozaikLayoutGeometryInfo: Equatable {
     /// - returns: true if the info has non zero columns number and non zero rowHeight
     public func isValid() -> Bool {
         return self.columns.count > 0 && self.rowHeight > 0
-    }
-
-    //MARK: - Equatable
-    
-    public static func ==(lhs: ADMozaikLayoutGeometryInfo, rhs: ADMozaikLayoutGeometryInfo) -> Bool {
-        return lhs.rowHeight == rhs.rowHeight && lhs.columns.elementsEqual(rhs.columns, by: { (column1, column2) -> Bool in
-            return column1 == column2
-        })
     }
 }
 

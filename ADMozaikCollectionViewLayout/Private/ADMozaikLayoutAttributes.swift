@@ -87,7 +87,7 @@ class ADMozaikLayoutAttributes {
                     try layoutMatrix.addItem(of: itemSize, at: itemPosition)
                 }
                 catch {
-                    fatalError((error as! CustomStringConvertible).description)
+                    fatalError((error as CustomStringConvertible).description)
                 }
             }
         }

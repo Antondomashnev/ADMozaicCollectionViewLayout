@@ -34,7 +34,7 @@ extension ADMozaikLayoutMatrixError : CustomStringConvertible {
 //*************************************************************************//
 
 /// The `ADMozaikLayoutMatrixPositionCacheKey` represents the key that will be used in `lastItemPositionOfSize` of `ADMozaikLayoutMatrix`
-struct ADMozaikLayoutMatrixPositionCacheKey {
+struct ADMozaikLayoutMatrixPositionCacheKey: AutoEquatable, AutoHashable {
     
     /// Size of the item
     let size: ADMozaikLayoutSize
@@ -79,7 +79,7 @@ class ADMozaikLayoutMatrix {
     ///
     /// The general idea of it, that e.x. for item with size (columns: 1, rows 1), 
     /// that we can not place it earlier that that position. So we can start iterating from that position
-    fileprivate var lastItemPositionOfSize: [ADMozaikLayoutSize: ADMozaikLayoutPosition] = [:]
+    fileprivate var lastItemPositionOfSize: [ADMozaikLayoutMatrixPositionCacheKey: ADMozaikLayoutPosition] = [:]
     
     /// Number of columns in the matrix
     fileprivate let numberOfColumns: Int
@@ -120,7 +120,8 @@ class ADMozaikLayoutMatrix {
         for column in position.column...lastColumn {
             for row in position.row...lastRow {
                 arrayRepresentation[column][row] = true
-                lastItemPositionOfSize[size] = position
+                let cacheKey = ADMozaikLayoutMatrixPositionCacheKey(size: size, section: position.section)
+                lastItemPositionOfSize[cacheKey] = position
             }
         }
     }
@@ -137,7 +138,8 @@ class ADMozaikLayoutMatrix {
         if maximumColumn < 0 {
             throw ADMozaikLayoutMatrixError.columnOutOfBounds
         }
-        let latestPositionForItemOfSameSize: ADMozaikLayoutPosition? = lastItemPositionOfSize[size]
+        let cacheKey = ADMozaikLayoutMatrixPositionCacheKey(size: size, section: section)
+        let latestPositionForItemOfSameSize: ADMozaikLayoutPosition? = lastItemPositionOfSize[cacheKey]
         if let latestRowPositionForItemOfSameSize = latestPositionForItemOfSameSize?.row {
             return self.positionForItem(of: size, startingFrom: latestRowPositionForItemOfSameSize, maximumPositionColumn: maximumColumn, in: section)
         }
