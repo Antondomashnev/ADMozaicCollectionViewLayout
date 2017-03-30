@@ -13,7 +13,7 @@
 
 ## Why do anybody need yet another one?
 Because there are plenty of kind of the same layouts already:
-* [CHTCollectionViewWaterfallLayout](https://travis-ci.org/Antondomashnev/ADPuzzleAnimation.svg?branch=master)
+* [CHTCollectionViewWaterfallLayout](https://github.com/chiahsien/CHTCollectionViewWaterfallLayout)
 * [FMMosaicLayout](https://github.com/fmitech/FMMosaicLayout)
 * [Greedo Layout](https://github.com/500px/greedo-layout-for-ios)
 
