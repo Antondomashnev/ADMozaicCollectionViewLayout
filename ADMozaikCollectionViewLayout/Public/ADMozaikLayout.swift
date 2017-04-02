@@ -17,14 +17,14 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     //*******************************//
     
     @IBInspectable override open var minimumLineSpacing: CGFloat {
-        didSet {
-            self.layoutGeometries?.first?.minimumLineSpacing = minimumLineSpacing
+        willSet {
+            fatalError("ADMozaikLayout doesn't support setting minimumLineSpacing directly for layout. Please use ADMozaikLayoutDelegate method to return geometry info")
         }
     }
     
     @IBInspectable override open var minimumInteritemSpacing: CGFloat {
-        didSet {
-            self.layoutGeometries?.first?.minimumInteritemSpacing = minimumInteritemSpacing
+        willSet {
+            fatalError("ADMozaikLayout doesn't support setting minimumInteritemSpacing directly for layout. Please use ADMozaikLayoutDelegate method to return geometry info")
         }
     }
     
@@ -156,9 +156,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         var buildingLayoutMatrixes: [ADMozaikLayoutSectionMatrix] = []
         for section in 0..<cache.numberOfSections() {
             let sectionGeometryInfo = delegate.collectonView(collectionView, mozaik: self, geometryInfoFor: section)
-            let sectionGeometry = ADMozaikLayoutSectionGeometry(layoutColumns: sectionGeometryInfo.columns, rowHeight: sectionGeometryInfo.rowHeight)
-            sectionGeometry.minimumLineSpacing = sectionGeometryInfo.minimumLineSpacing
-            sectionGeometry.minimumInteritemSpacing = sectionGeometryInfo.minimumInteritemSpacing
+            let sectionGeometry = ADMozaikLayoutSectionGeometry(geometryInfo: sectionGeometryInfo)
             buildingLayoutGeometries.append(sectionGeometry)
             let sectionMatrix = ADMozaikLayoutSectionMatrix(numberOfColumns: sectionGeometryInfo.columns.count, section: section)
             buildingLayoutMatrixes.append(sectionMatrix)

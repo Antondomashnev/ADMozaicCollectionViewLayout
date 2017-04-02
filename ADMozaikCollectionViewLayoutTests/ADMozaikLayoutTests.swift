@@ -40,6 +40,15 @@ enum ADMozaikLayoutTestsUseCase {
     /// Use case when there are three sections with different use cases (a, c, e)
     case i
     
+    var sectionInset: UIEdgeInsets {
+        switch self {
+        case .d:
+            return UIEdgeInsets(top: 5, left: 3, bottom: 0, right: 3)
+        default:
+            return UIEdgeInsets.zero
+        }
+    }
+    
     var minimumLineSpacing: CGFloat {
         switch self {
         case .a:
@@ -95,7 +104,7 @@ enum ADMozaikLayoutTestsUseCase {
         case .c:
             return [ADMozaikLayoutColumn(width: 107), ADMozaikLayoutColumn(width: 106), ADMozaikLayoutColumn(width: 107)]
         case .d:
-            return [ADMozaikLayoutColumn(width: 105), ADMozaikLayoutColumn(width: 106), ADMozaikLayoutColumn(width: 105)]
+            return [ADMozaikLayoutColumn(width: 103), ADMozaikLayoutColumn(width: 104), ADMozaikLayoutColumn(width: 103)]
         case .e:
             return [ADMozaikLayoutColumn(width: 78.5), ADMozaikLayoutColumn(width: 78.5), ADMozaikLayoutColumn(width: 78.5), ADMozaikLayoutColumn(width: 78.5)]
         case .f:
@@ -118,7 +127,7 @@ enum ADMozaikLayoutTestsUseCase {
         case .c:
             return 107
         case .d:
-            return 105
+            return 103
         case .e:
             return 78.5
         case .f:
@@ -244,9 +253,9 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     
     func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
         if let underlyingUseCase = self.useCase.underlyingUseCases?[section] {
-            return ADMozaikLayoutSectionGeometryInfo(rowHeight: underlyingUseCase.rowHeight, columns: underlyingUseCase.columns, minimumInteritemSpacing: underlyingUseCase.minimumInteritemSpacing, minimumLineSpacing: underlyingUseCase.minimumLineSpacing)
+            return ADMozaikLayoutSectionGeometryInfo(rowHeight: underlyingUseCase.rowHeight, columns: underlyingUseCase.columns, minimumInteritemSpacing: underlyingUseCase.minimumInteritemSpacing, minimumLineSpacing: underlyingUseCase.minimumLineSpacing, sectionInset: underlyingUseCase.sectionInset)
         }
-        return ADMozaikLayoutSectionGeometryInfo(rowHeight: self.useCase.rowHeight, columns: self.useCase.columns, minimumInteritemSpacing: self.useCase.minimumInteritemSpacing, minimumLineSpacing: self.useCase.minimumLineSpacing)
+        return ADMozaikLayoutSectionGeometryInfo(rowHeight: useCase.rowHeight, columns: useCase.columns, minimumInteritemSpacing: useCase.minimumInteritemSpacing, minimumLineSpacing: useCase.minimumLineSpacing, sectionInset: useCase.sectionInset)
     }
     
     func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {

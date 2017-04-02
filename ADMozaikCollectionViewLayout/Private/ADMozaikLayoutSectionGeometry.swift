@@ -11,32 +11,21 @@ import CoreGraphics
 
 /// The `ADMozaikLayoutSectionGeometry` defines the class that represent the geometry of collection view layout
 class ADMozaikLayoutSectionGeometry {
- 
-    /// Minimum inter item spacing
-    var minimumInteritemSpacing: CGFloat = 0.0
-    
-    /// Minimum space between lines
-    var minimumLineSpacing: CGFloat = 0.0
     
     /// Layout content height
     var contentHeight: CGFloat = 0
     
-    /// Array that contains information about layout columns
-    fileprivate let layoutColumns: [ADMozaikLayoutColumn]
-    
-    /// Row height of the layout
-    fileprivate let rowHeight: CGFloat
+    /// Sections geometry information
+    fileprivate let geometryInfo: ADMozaikLayoutSectionGeometryInfo
     
     ///
     /// Initializes the layout geometry instance
     ///
-    /// - parameter layoutColumns: layout columns array
-    /// - parameter rowHeight:     row height of the layout
+    /// - parameter geometryInfo: section geometry information
     ///
     /// - returns: newly created layout geometry instance
-    init(layoutColumns: [ADMozaikLayoutColumn], rowHeight: CGFloat) {
-        self.layoutColumns = layoutColumns
-        self.rowHeight = rowHeight
+    init(geometryInfo: ADMozaikLayoutSectionGeometryInfo) {
+        self.geometryInfo = geometryInfo
     }
     
     //MARK: - Interface
@@ -51,10 +40,10 @@ class ADMozaikLayoutSectionGeometry {
     func sizeForItem(withMozaikSize size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) -> CGSize {
         var width: CGFloat = 0.0
         for column in position.column...(position.column + size.columns - 1) {
-            width += self.layoutColumns[column].width
+            width += geometryInfo.columns[column].width
         }
-        width += CGFloat(size.columns - 1) * self.minimumInteritemSpacing
-        let height = CGFloat(size.rows) * self.rowHeight + CGFloat(size.rows - 1) * self.minimumLineSpacing;
+        width += CGFloat(size.columns - 1) * geometryInfo.minimumInteritemSpacing
+        let height = CGFloat(size.rows) * geometryInfo.rowHeight + CGFloat(size.rows - 1) * geometryInfo.minimumLineSpacing;
         return CGSize(width: width, height: height)
     }
     
@@ -65,12 +54,12 @@ class ADMozaikLayoutSectionGeometry {
     ///
     /// - returns: geometry x offset of the item
     func xOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
-        var xOffset: CGFloat = 0.0
+        var xOffset: CGFloat = geometryInfo.sectionInset.left
         if position.column == 0 {
-            return 0.0
+            return xOffset
         }
         for column in 0...position.column - 1 {
-            xOffset += self.layoutColumns[column].width + self.minimumInteritemSpacing
+            xOffset += geometryInfo.columns[column].width + geometryInfo.minimumInteritemSpacing
         }
         return xOffset
     }
@@ -82,6 +71,6 @@ class ADMozaikLayoutSectionGeometry {
     ///
     /// - returns: geometry y offset of the item
     func yOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
-        return (self.rowHeight + self.minimumLineSpacing) * CGFloat(position.row)
+        return (geometryInfo.rowHeight + geometryInfo.minimumLineSpacing) * CGFloat(position.row) + geometryInfo.sectionInset.top
     }
 }

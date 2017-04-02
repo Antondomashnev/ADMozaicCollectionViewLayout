@@ -18,12 +18,11 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let layoutColumns: [ADMozaikLayoutColumn] = [ADMozaikLayoutColumn(width: 106.0),
-                                                     ADMozaikLayoutColumn(width: 105.0),
-                                                     ADMozaikLayoutColumn(width: 106.0)]
-        self.layoutGeometry = ADMozaikLayoutSectionGeometry(layoutColumns: layoutColumns, rowHeight: 106.0)
-        self.layoutGeometry.minimumInteritemSpacing = 1.0
-        self.layoutGeometry.minimumLineSpacing = 2.0
+        let layoutColumns: [ADMozaikLayoutColumn] = [ADMozaikLayoutColumn(width: 105.0),
+                                                     ADMozaikLayoutColumn(width: 106.0),
+                                                     ADMozaikLayoutColumn(width: 105.0)]
+        let geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: 105.0, columns: layoutColumns, minimumInteritemSpacing: 1.0, minimumLineSpacing: 2.0, sectionInset: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1))
+        self.layoutGeometry = ADMozaikLayoutSectionGeometry(geometryInfo: geometryInfo)
     }
 
     override func tearDown() {
@@ -34,26 +33,26 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
     func testThatSizeForItemWithMozaikSizeShouldReturnCorrectSize() {
         let size1 = self.layoutGeometry.sizeForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2), at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0))
         expect(size1.width).to(equal(212))
-        expect(size1.height).to(equal(214))
+        expect(size1.height).to(equal(212))
         
         let size2 = self.layoutGeometry.sizeForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: ADMozaikLayoutPosition(atColumn: 2, atRow: 0, inSection: 0))
-        expect(size2.width).to(equal(106))
-        expect(size2.height).to(equal(106))
+        expect(size2.width).to(equal(105))
+        expect(size2.height).to(equal(105))
     }
     
     func testThatXOffsetForItemAtPositionShouldReturnCorrectValue() {
         let xOffset1 = self.layoutGeometry.xOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0))
-        expect(xOffset1).to(equal(0))
+        expect(xOffset1).to(equal(1))
         
         let offset2 = self.layoutGeometry.xOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 2, atRow: 0, inSection: 0))
-        expect(offset2).to(equal(213))
+        expect(offset2).to(equal(214))
     }
     
     func testThatYOffsetForItemAtPositionShouldReturnCorrectValue() {
         let xOffset1 = self.layoutGeometry.yOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0))
-        expect(xOffset1).to(equal(0))
+        expect(xOffset1).to(equal(1))
         
         let offset2 = self.layoutGeometry.yOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 1, atRow: 2, inSection: 0))
-        expect(offset2).to(equal(216))
+        expect(offset2).to(equal(215))
     }
 }

@@ -103,6 +103,9 @@ public struct ADMozaikLayoutSectionGeometryInfo: AutoEquatable {
     /// minimum space between each row
     let minimumLineSpacing: CGFloat
     
+    /// Insets for the section from top, left, right, bottom
+    let sectionInset: UIEdgeInsets
+    
     ///
     /// Designated initializer for structure
     ///
@@ -112,11 +115,12 @@ public struct ADMozaikLayoutSectionGeometryInfo: AutoEquatable {
     /// - parameter minimumLineSpacing:      minimum space between each row
     ///
     /// - returns: newly created `ADMozaikLayoutColumn`
-    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn], minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0) {
+    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn], minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0, sectionInset: UIEdgeInsets = UIEdgeInsets.zero) {
         self.columns = columns
         self.rowHeight = rowHeight
         self.minimumLineSpacing = minimumLineSpacing
         self.minimumInteritemSpacing = minimumInteritemSpacing
+        self.sectionInset = sectionInset
     }
     
     ///
