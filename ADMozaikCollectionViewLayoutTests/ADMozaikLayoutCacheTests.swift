@@ -42,8 +42,8 @@ class ADMozaikLayoutCacheTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.collectionView = ADMozaikLayoutCacheTestsCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.layoutDelegate = ADMozaikLayoutCacheTestsADMozaikLayoutDelegate()
+        self.collectionView = ADMozaikLayoutCacheTestsCollectionView(frame: CGRect.zero, collectionViewLayout: ADMozaikLayout(delegate: self.layoutDelegate))
         self.layoutCache = ADMozaikLayoutCache(collectionView: self.collectionView, mozaikLayoutDelegate: self.layoutDelegate)
     }
     

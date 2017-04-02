@@ -92,10 +92,15 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
             return
         }
         self.createSectionInformations()
-//        if let layoutCache = self.layoutCache, let layoutMatrix = self.layoutMatrix, let layoutGeometry = self.layoutGeometry {
-//            self.layoutAttrbutes = ADMozaikLayoutAttributes(layoutCache: layoutCache, layoutMatrix: layoutMatrix, layoutGeometry: layoutGeometry)
-//        }
-        
+        guard let layoutCache = self.layoutCache, let layoutMatrixes = self.layoutMatrixes, let layoutGeometries = self.layoutGeometries else {
+            fatalError("layout is not prepared, because of internal setup error")
+        }
+        do {
+            self.layoutAttrbutes = try ADMozaikLayoutAttributes(layoutCache: layoutCache, layoutMatrixes: layoutMatrixes, layoutGeometries: layoutGeometries)
+        }
+        catch let error {
+            fatalError("Internal layout attributes error: \(error)")
+        }
     }
     
     open override var collectionViewContentSize : CGSize {

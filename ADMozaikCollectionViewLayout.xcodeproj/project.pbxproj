@@ -259,6 +259,7 @@
 				6D7BE5B91CEA148400A41445 /* Resources */,
 				0E65DB978CE2F4EFD35B898D /* [CP] Embed Pods Frameworks */,
 				C8F0184B852EE0FDDCDA062B /* [CP] Copy Pods Resources */,
+				6D23A85C1E90FC0000FB758D /* FBSnapshotsViewer */,
 			);
 			buildRules = (
 			);
@@ -342,6 +343,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6D23A85C1E90FC0000FB758D /* FBSnapshotsViewer */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = FBSnapshotsViewer;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $PODS_ROOT/FBSnapshotsViewerRunPhaseScript/FBSnapshotsViewerRunPhaseScript;
 		};
 		6D3A437F1E8AFDA000BDF6E4 /* Sourcery */ = {
 			isa = PBXShellScriptBuildPhase;
