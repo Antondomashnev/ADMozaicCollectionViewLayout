@@ -55,9 +55,9 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     ///
     /// Initializer to create new instance of `ADMozaikLayout` from storyboard or xib
     ///
-    /// - parameter coder: encoded information about layout
+    /// - Parameter coder: encoded information about layout
     ///
-    /// - returns: newly created instance of `ADMozaikLayout`
+    /// - Returns: newly created instance of `ADMozaikLayout`
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

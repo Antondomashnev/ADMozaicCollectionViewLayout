@@ -45,6 +45,8 @@ public func == (lhs: ADMozaikLayoutSectionGeometryInfo, rhs: ADMozaikLayoutSecti
     guard lhs.minimumInteritemSpacing == rhs.minimumInteritemSpacing else { return false }
     guard lhs.minimumLineSpacing == rhs.minimumLineSpacing else { return false }
     guard lhs.sectionInset == rhs.sectionInset else { return false }
+    guard lhs.headerHeight == rhs.headerHeight else { return false }
+    guard lhs.footerHeight == rhs.footerHeight else { return false }
     return true
 }
 // MARK: - ADMozaikLayoutSize AutoEquatable

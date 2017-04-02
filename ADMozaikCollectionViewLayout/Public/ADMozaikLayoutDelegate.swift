@@ -13,11 +13,11 @@ public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
     
     /// Method should return `ADMozaikLayoutSize` for specific indexPath
     ///
-    /// - parameter collectionView: collection view is using layout
-    /// - parameter layout:         layout itself
-    /// - parameter indexPath:      indexPath of item for the size it asks for
+    /// - Parameter collectionView: collection view is using layout
+    /// - Parameter layout:         layout itself
+    /// - Parameter indexPath:      indexPath of item for the size it asks for
     ///
-    /// - returns: `ADMozaikLayoutSize` struct object describes the size
+    /// - Returns: `ADMozaikLayoutSize` struct object describes the size
     func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize
     
     /// Method should return `ADMozaikLayoutSectionGeometryInfo` to describe specific section's geometry

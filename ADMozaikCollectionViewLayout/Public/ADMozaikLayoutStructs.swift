@@ -28,10 +28,10 @@ public struct ADMozaikLayoutPosition: AutoHashable, AutoEquatable {
     ///
     /// Designated initializer for structure
     ///
-    /// - parameter column: column number
-    /// - parameter row:    roe number
+    /// - Parameter column: column number
+    /// - Parameter row:    roe number
     ///
-    /// - returns: newly created `ADMozaikLayoutPosition`
+    /// - Returns: newly created `ADMozaikLayoutPosition`
     public init(atColumn column: ADMozaikLayoutPositionRow, atRow row: ADMozaikLayoutPositionColumn, inSection section: ADMozaikLayoutSection) {
         self.column = column
         self.row = row
@@ -51,10 +51,10 @@ public struct ADMozaikLayoutSize: AutoHashable, AutoEquatable {
     ///
     /// Designated initializer for structure
     ///
-    /// - parameter columns: number of colums (basically the width)
-    /// - parameter rows:    number of rows (basically the height)
+    /// - Parameter columns: number of colums (basically the width)
+    /// - Parameter rows:    number of rows (basically the height)
     ///
-    /// - returns: newly created `ADMozaikLayoutSize`
+    /// - Returns: newly created `ADMozaikLayoutSize`
     public init(numberOfColumns columns: Int, numberOfRows rows: Int) {
         self.columns = columns
         self.rows = rows
@@ -63,7 +63,7 @@ public struct ADMozaikLayoutSize: AutoHashable, AutoEquatable {
     ///
     /// Calculates number of total cells in mozaik layout that item fills
     ///
-    /// - returns: number of required mozaik cells for item
+    /// - Returns: number of required mozaik cells for item
     public func totalCells() -> Int {
         return self.columns * self.rows
     }
@@ -79,9 +79,9 @@ public struct ADMozaikLayoutColumn: AutoEquatable {
     ///
     /// Designated initializer for structure
     ///
-    /// - parameter width: column's width in points
+    /// - Parameter width: column's width in points
     ///
-    /// - returns: newly created `ADMozaikLayoutColumn`
+    /// - Returns: newly created `ADMozaikLayoutColumn`
     public init(width: CGFloat) {
         self.width = width
     }
@@ -106,27 +106,37 @@ public struct ADMozaikLayoutSectionGeometryInfo: AutoEquatable {
     /// Insets for the section from top, left, right, bottom
     let sectionInset: UIEdgeInsets
     
+    /// Height for header in section
+    /// Width is currently limited to the collection view width
+    let headerHeight: CGFloat
+    
+    /// Height for footer in section
+    /// Width is currently limited to the collection view width
+    let footerHeight: CGFloat
+    
     ///
     /// Designated initializer for structure
     ///
-    /// - parameter rowHeight:               height for each row in points
-    /// - parameter columns:                 array of `ADMozaikLayoutColumn` for the layout
-    /// - parameter minimumInteritemSpacing: minimum space between items
-    /// - parameter minimumLineSpacing:      minimum space between each row
+    /// - Parameter rowHeight:               height for each row in points
+    /// - Parameter columns:                 array of `ADMozaikLayoutColumn` for the layout
+    /// - Parameter minimumInteritemSpacing: minimum space between items
+    /// - Parameter minimumLineSpacing:      minimum space between each row
     ///
-    /// - returns: newly created `ADMozaikLayoutColumn`
-    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn], minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0, sectionInset: UIEdgeInsets = UIEdgeInsets.zero) {
+    /// - Returns: newly created `ADMozaikLayoutColumn`
+    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn], minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0, sectionInset: UIEdgeInsets = UIEdgeInsets.zero, headerHeight: CGFloat = 0, footerHeight: CGFloat = 0) {
         self.columns = columns
         self.rowHeight = rowHeight
         self.minimumLineSpacing = minimumLineSpacing
         self.minimumInteritemSpacing = minimumInteritemSpacing
         self.sectionInset = sectionInset
+        self.headerHeight = headerHeight
+        self.footerHeight = footerHeight
     }
     
     ///
     /// Checks whether the geometry info is valid
     ///
-    /// - returns: true if the info has non zero columns number and non zero rowHeight
+    /// - Returns: true if the info has non zero columns number and non zero rowHeight
     public func isValid() -> Bool {
         return self.columns.count > 0 && self.rowHeight > 0
     }

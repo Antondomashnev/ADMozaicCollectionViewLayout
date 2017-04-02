@@ -21,7 +21,7 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
         let layoutColumns: [ADMozaikLayoutColumn] = [ADMozaikLayoutColumn(width: 105.0),
                                                      ADMozaikLayoutColumn(width: 106.0),
                                                      ADMozaikLayoutColumn(width: 105.0)]
-        let geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: 105.0, columns: layoutColumns, minimumInteritemSpacing: 1.0, minimumLineSpacing: 2.0, sectionInset: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1))
+        let geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: 105.0, columns: layoutColumns, minimumInteritemSpacing: 1.0, minimumLineSpacing: 2.0, sectionInset: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1), headerHeight: 44, footerHeight: 88)
         self.layoutGeometry = ADMozaikLayoutSectionGeometry(geometryInfo: geometryInfo)
     }
 
@@ -54,5 +54,13 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
         
         let offset2 = self.layoutGeometry.yOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 1, atRow: 2, inSection: 0))
         expect(offset2).to(equal(215))
+    }
+    
+    func testThatSizeForSupplementaryViewShouldReturnCorrectSizeForFooter() {
+        expect(self.layoutGeometry.sizeForSupplementaryView(of: UICollectionElementKindSectionFooter)).to(equal(CGSize(width: 320, height: 88)))
+    }
+    
+    func testThatSizeForSupplementaryViewShouldReturnCorrectSizeForHeader() {
+        expect(self.layoutGeometry.sizeForSupplementaryView(of: UICollectionElementKindSectionHeader)).to(equal(CGSize(width: 320, height: 44)))
     }
 }

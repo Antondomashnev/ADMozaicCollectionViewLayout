@@ -72,10 +72,10 @@ class ADMozaikLayoutSectionMatrix {
     ///
     /// Designated initializer to create new instance of `ADMozaikLayoutSectionMatrix`
     ///
-    /// - parameter numberOfColumns: expected number of sections in layout
-    /// - parameter section:         section number for which the matrix is supposed to be used
+    /// - Parameter numberOfColumns: expected number of sections in layout
+    /// - Parameter section:         section number for which the matrix is supposed to be used
     ///
-    /// - returns: newly created instance of `ADMozaikLayoutSectionMatrix`
+    /// - Returns: newly created instance of `ADMozaikLayoutSectionMatrix`
     init(numberOfColumns: Int, section: ADMozaikLayoutSection) {
         self.numberOfColumns = numberOfColumns
         self.section = section
@@ -86,8 +86,8 @@ class ADMozaikLayoutSectionMatrix {
     /// Adds item into the layout matrix
     /// Position must be obtained only via positionForItem
     ///
-    /// - parameter size:     size of the adding item
-    /// - parameter position: position to be added at
+    /// - Parameter size:     size of the adding item
+    /// - Parameter position: position to be added at
     ///
     /// - throws: error if item (size.width + position.x) or (size.height + position.y) is out if bounds of the matrix or
     func addItem(of size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) throws -> Void {
@@ -113,9 +113,9 @@ class ADMozaikLayoutSectionMatrix {
     /// Calculates the first available position for the item with the given size
     /// It extends the matrix array representation if the current number of rows is not enough
     ///
-    /// - parameter size: size of the adding item
+    /// - Parameter size: size of the adding item
     ///
-    /// - returns: position of the item
+    /// - Returns: position of the item
     func positionForItem(of size: ADMozaikLayoutSize) throws -> ADMozaikLayoutPosition {
         let maximumColumn = numberOfColumns - size.columns
         if maximumColumn < 0 {

@@ -18,13 +18,19 @@ class ADMozaikLayoutSectionGeometry {
     /// Sections geometry information
     fileprivate let geometryInfo: ADMozaikLayoutSectionGeometryInfo
     
+    /// Layout content width
+    fileprivate let contentWidth: CGFloat
+    
     ///
     /// Initializes the layout geometry instance
     ///
-    /// - parameter geometryInfo: section geometry information
+    /// - Parameter geometryInfo: section geometry information
     ///
-    /// - returns: newly created layout geometry instance
+    /// - Returns: newly created layout geometry instance
     init(geometryInfo: ADMozaikLayoutSectionGeometryInfo) {
+        let columnsWidth = geometryInfo.columns.reduce(0) { return $0 + $1.width }
+        let interitemSpacing = geometryInfo.minimumInteritemSpacing * CGFloat(geometryInfo.columns.count - 1)
+        self.contentWidth = columnsWidth + interitemSpacing + geometryInfo.sectionInset.left + geometryInfo.sectionInset.right
         self.geometryInfo = geometryInfo
     }
     
@@ -33,10 +39,10 @@ class ADMozaikLayoutSectionGeometry {
     ///
     /// Calculates the geometry size in points for the item with the given size at the given position
     ///
-    /// - parameter size:     size of the item in terms of mozaik layout
-    /// - parameter position: position of the item in mozaik layout
+    /// - Parameter size:     size of the item in terms of mozaik layout
+    /// - Parameter position: position of the item in mozaik layout
     ///
-    /// - returns: geometry size of the item
+    /// - Returns: geometry size of the item
     func sizeForItem(withMozaikSize size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) -> CGSize {
         var width: CGFloat = 0.0
         for column in position.column...(position.column + size.columns - 1) {
@@ -50,9 +56,9 @@ class ADMozaikLayoutSectionGeometry {
     ///
     /// Calculates the x origin for the item at the given position
     ///
-    /// - parameter position: position of the item in mozaik layout
+    /// - Parameter position: position of the item in mozaik layout
     ///
-    /// - returns: geometry x offset of the item
+    /// - Returns: geometry x offset of the item
     func xOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
         var xOffset: CGFloat = geometryInfo.sectionInset.left
         if position.column == 0 {
@@ -67,10 +73,25 @@ class ADMozaikLayoutSectionGeometry {
     ///
     /// Calculates the y origin for the item at the given position
     ///
-    /// - parameter position: position of the item in mozaik layout
+    /// - Parameter position: position of the item in mozaik layout
     ///
-    /// - returns: geometry y offset of the item
+    /// - Returns: geometry y offset of the item
     func yOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
         return (geometryInfo.rowHeight + geometryInfo.minimumLineSpacing) * CGFloat(position.row) + geometryInfo.sectionInset.top
+    }
+    
+    /// Calculates the size of supplementary view in section
+    ///
+    /// - Parameter kind: kind of the supplementary view to calculate size for
+    ///
+    /// - Returns: size for the view
+    func sizeForSupplementaryView(of kind: String) -> CGSize {
+        if kind == UICollectionElementKindSectionFooter {
+            return CGSize(width: contentWidth, height: geometryInfo.footerHeight)
+        }
+        else if kind == UICollectionElementKindSectionHeader {
+            return CGSize(width: contentWidth, height: geometryInfo.headerHeight)
+        }
+        fatalError("Unknown supplementary view kind: \(kind)")
     }
 }
