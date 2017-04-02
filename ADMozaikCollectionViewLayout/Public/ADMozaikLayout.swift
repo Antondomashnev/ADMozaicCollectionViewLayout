@@ -47,6 +47,11 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     
     //*******************************//
     
+    init(delegate: ADMozaikLayoutDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+    
     ///
     /// Initializer to create new instance of `ADMozaikLayout` from storyboard or xib
     ///

@@ -155,12 +155,7 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     //MARK: - UI
     
     func setUpCollectionView() {
-        
-        let layout = ADMozaikLayout(rowHeight: self.useCase.rowHeight, columns: self.useCase.columns)
-        layout.delegate = self
-        layout.minimumLineSpacing = self.useCase.minimumLineSpacing
-        layout.minimumInteritemSpacing = self.useCase.minimumInteritemSpacing
-        
+        let layout = ADMozaikLayout(delegate: self)
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         self.view.addSubview(self.collectionView)
         self.collectionView.dataSource = self
@@ -169,7 +164,11 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(_ collectionView: UICollectionView, mozaik layout: UICollectionViewLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
+    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
+        return ADMozaikLayoutSectionGeometryInfo(rowHeight: self.useCase.rowHeight, columns: self.useCase.columns, minimumInteritemSpacing: self.useCase.minimumInteritemSpacing, minimumLineSpacing: self.useCase.minimumLineSpacing)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
         switch self.useCase! {
         case .f:
             if (indexPath as NSIndexPath).item % 8 == 0 {
@@ -299,25 +298,3 @@ class ADMozaikLayoutSnapshotTests: FBSnapshotTestCase {
     }
     
 }
-
-//******************************************************//
-
-class ADMozaikLayoutTests: XCTestCase {
-    
-    func testThatRowHeightShouldReturnRowHeightFromGeometryInfo() {
-        let geometryInfo1 = ADMozaikLayoutSectionGeometryInfo(rowHeight: 10, columns: [ADMozaikLayoutColumn(width: 10)])
-        let layout = ADMozaikLayout(geometryInfo: geometryInfo1, for: UIDeviceOrientation.portrait)
-        
-        XCTAssertTrue(layout.rowHeight == geometryInfo1.rowHeight)
-    }
-    
-    func testThatColumnsShouldReturnColumnsFromGeometryInfo() {
-        let geometryInfo1 = ADMozaikLayoutSectionGeometryInfo(rowHeight: 10, columns: [ADMozaikLayoutColumn(width: 10)])
-        let layout = ADMozaikLayout(geometryInfo: geometryInfo1, for: UIDeviceOrientation.portrait)
-        
-        XCTAssertTrue(layout.columns.elementsEqual(geometryInfo1.columns, by: { (column1, column2) -> Bool in
-            return column1 == column2
-        }))
-    }
-}
-

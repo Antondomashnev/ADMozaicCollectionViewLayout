@@ -24,11 +24,14 @@ private class ADMozaikLayoutCacheTestsCollectionView: UICollectionView {
 }
 
 private class ADMozaikLayoutCacheTestsADMozaikLayoutDelegate: NSObject, ADMozaikLayoutDelegate {
-    
-    fileprivate func collectionView(_ collectionView: UICollectionView, mozaik layout: UICollectionViewLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
-        return ADMozaikLayoutSize(numberOfColumns: (indexPath as NSIndexPath).section, numberOfRows: (indexPath as NSIndexPath).item)
+    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
+        let column = ADMozaikLayoutColumn(width: 20)
+        return ADMozaikLayoutSectionGeometryInfo(rowHeight: 10, columns: [column], minimumInteritemSpacing: 2, minimumLineSpacing: 2)
     }
     
+    func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
+        return ADMozaikLayoutSize(numberOfColumns: (indexPath as NSIndexPath).section, numberOfRows: (indexPath as NSIndexPath).item)
+    }
 }
 
 class ADMozaikLayoutCacheTests: XCTestCase {
