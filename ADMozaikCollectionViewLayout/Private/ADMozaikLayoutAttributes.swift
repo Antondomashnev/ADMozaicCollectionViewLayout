@@ -19,7 +19,7 @@ class ADMozaikLayoutAttributes {
     /// Default number of attributes in one union
     fileprivate let ADMozaikLayoutUnionSize: Int = 20
     
-    init(layoutCache: ADMozaikLayoutCache, layoutMatrix: ADMozaikLayoutSectionMatrix, layoutGeometry: ADMozaikLayoutGeometry) {
+    init(layoutCache: ADMozaikLayoutCache, layoutMatrix: ADMozaikLayoutSectionMatrix, layoutGeometry: ADMozaikLayoutSectionGeometry) {
         self.layoutAttributesArray = self.buildLayoutAttributesForLayoutGeometry(layoutGeometry, withLayoutMatrix: layoutMatrix, andLayoutCache: layoutCache)
         self.unionRectsArray = self.buildUnionRectsFromLayoutAttributes(self.layoutAttributesArray)
     }
@@ -65,7 +65,7 @@ class ADMozaikLayoutAttributes {
     
     //MARK: - Helper
     
-    fileprivate func buildLayoutAttributesForLayoutGeometry(_ layoutGeometry: ADMozaikLayoutGeometry, withLayoutMatrix layoutMatrix: ADMozaikLayoutSectionMatrix, andLayoutCache layoutCache: ADMozaikLayoutCache) -> [UICollectionViewLayoutAttributes] {
+    fileprivate func buildLayoutAttributesForLayoutGeometry(_ layoutGeometry: ADMozaikLayoutSectionGeometry, withLayoutMatrix layoutMatrix: ADMozaikLayoutSectionMatrix, andLayoutCache layoutCache: ADMozaikLayoutCache) -> [UICollectionViewLayoutAttributes] {
         let numberOfSections = layoutCache.numberOfSections()
         var allAttributes: [UICollectionViewLayoutAttributes] = []
         var maximumContentBottom: CGFloat = 0

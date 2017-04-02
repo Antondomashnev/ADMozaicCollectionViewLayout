@@ -19,7 +19,7 @@ class InitFromStoryboardExampleViewController: UIViewController, ADMozaikLayoutD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        mozaikLayout.geometryInfo = ADMozaikLayoutGeometryInfo(rowHeight: 110, columns: [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)])
+        mozaikLayout.geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: 110, columns: [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)])
         mozaikLayout.delegate = self
     }
     

@@ -1,5 +1,5 @@
 //
-//  ADMozaikLayoutGeometry.swift
+//  ADMozaikLayoutSectionGeometry.swift
 //  ADMozaikCollectionViewLayout
 //
 //  Created by Anton Domashnev on 29/05/16.
@@ -9,8 +9,8 @@
 import Foundation
 import CoreGraphics
 
-/// The `ADMozaikLayoutGeometry` defines the class that represent the geometry of collection view layout
-class ADMozaikLayoutGeometry {
+/// The `ADMozaikLayoutSectionGeometry` defines the class that represent the geometry of collection view layout
+class ADMozaikLayoutSectionGeometry {
  
     /// Minimum inter item spacing
     var minimumInteritemSpacing: CGFloat = 0.0

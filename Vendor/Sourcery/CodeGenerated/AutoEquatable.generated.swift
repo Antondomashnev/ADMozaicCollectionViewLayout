@@ -29,19 +29,21 @@ public func == (lhs: ADMozaikLayoutColumn, rhs: ADMozaikLayoutColumn) -> Bool {
     guard lhs.width == rhs.width else { return false }
     return true
 }
-// MARK: - ADMozaikLayoutGeometryInfo AutoEquatable
-extension ADMozaikLayoutGeometryInfo: Equatable {} 
-public func == (lhs: ADMozaikLayoutGeometryInfo, rhs: ADMozaikLayoutGeometryInfo) -> Bool {
-    guard lhs.columns == rhs.columns else { return false }
-    guard lhs.rowHeight == rhs.rowHeight else { return false }
-    return true
-}
 // MARK: - ADMozaikLayoutPosition AutoEquatable
 extension ADMozaikLayoutPosition: Equatable {} 
 public func == (lhs: ADMozaikLayoutPosition, rhs: ADMozaikLayoutPosition) -> Bool {
     guard lhs.column == rhs.column else { return false }
     guard lhs.row == rhs.row else { return false }
     guard lhs.section == rhs.section else { return false }
+    return true
+}
+// MARK: - ADMozaikLayoutSectionGeometryInfo AutoEquatable
+extension ADMozaikLayoutSectionGeometryInfo: Equatable {} 
+public func == (lhs: ADMozaikLayoutSectionGeometryInfo, rhs: ADMozaikLayoutSectionGeometryInfo) -> Bool {
+    guard lhs.columns == rhs.columns else { return false }
+    guard lhs.rowHeight == rhs.rowHeight else { return false }
+    guard lhs.minimumInteritemSpacing == rhs.minimumInteritemSpacing else { return false }
+    guard lhs.minimumLineSpacing == rhs.minimumLineSpacing else { return false }
     return true
 }
 // MARK: - ADMozaikLayoutSize AutoEquatable

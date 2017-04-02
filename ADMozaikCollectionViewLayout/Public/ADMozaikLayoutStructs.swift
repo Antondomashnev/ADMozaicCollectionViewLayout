@@ -90,23 +90,33 @@ public struct ADMozaikLayoutColumn: AutoEquatable {
 /**
  *  Defines the layout's information
  */
-public struct ADMozaikLayoutGeometryInfo: AutoEquatable {
+public struct ADMozaikLayoutSectionGeometryInfo: AutoEquatable {
     /// array of `ADMozaikLayoutColumn` for the layout
     let columns: [ADMozaikLayoutColumn]
     
     /// height for each row in points
     let rowHeight: CGFloat
     
+    /// minimum space between items
+    let minimumInteritemSpacing: CGFloat
+    
+    /// minimum space between each row
+    let minimumLineSpacing: CGFloat
+    
     ///
     /// Designated initializer for structure
     ///
-    /// - parameter rowHeight: height for each row in points
-    /// - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
+    /// - parameter rowHeight:               height for each row in points
+    /// - parameter columns:                 array of `ADMozaikLayoutColumn` for the layout
+    /// - parameter minimumInteritemSpacing: minimum space between items
+    /// - parameter minimumLineSpacing:      minimum space between each row
     ///
     /// - returns: newly created `ADMozaikLayoutColumn`
-    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn]) {
+    public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn], minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0) {
         self.columns = columns
         self.rowHeight = rowHeight
+        self.minimumLineSpacing = minimumLineSpacing
+        self.minimumInteritemSpacing = minimumInteritemSpacing
     }
     
     ///

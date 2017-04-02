@@ -14,14 +14,14 @@ import Nimble
 
 class ADMozaikLayoutGeometryTests: XCTestCase {
 
-    var layoutGeometry: ADMozaikLayoutGeometry!
+    var layoutGeometry: ADMozaikLayoutSectionGeometry!
     
     override func setUp() {
         super.setUp()
         let layoutColumns: [ADMozaikLayoutColumn] = [ADMozaikLayoutColumn(width: 106.0),
                                                      ADMozaikLayoutColumn(width: 105.0),
                                                      ADMozaikLayoutColumn(width: 106.0)]
-        self.layoutGeometry = ADMozaikLayoutGeometry(layoutColumns: layoutColumns, rowHeight: 106.0)
+        self.layoutGeometry = ADMozaikLayoutSectionGeometry(layoutColumns: layoutColumns, rowHeight: 106.0)
         self.layoutGeometry.minimumInteritemSpacing = 1.0
         self.layoutGeometry.minimumLineSpacing = 2.0
     }
