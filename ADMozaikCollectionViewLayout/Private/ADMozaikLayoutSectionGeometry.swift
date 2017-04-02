@@ -13,13 +13,13 @@ import CoreGraphics
 class ADMozaikLayoutSectionGeometry {
     
     /// Layout content height
-    var contentHeight: CGFloat = 0
+    private(set) var contentHeight: CGFloat = 0
     
     /// Sections geometry information
-    fileprivate let geometryInfo: ADMozaikLayoutSectionGeometryInfo
+    private let geometryInfo: ADMozaikLayoutSectionGeometryInfo
     
     /// Layout content width
-    fileprivate let contentWidth: CGFloat
+    private let contentWidth: CGFloat
     
     ///
     /// Initializes the layout geometry instance
@@ -43,14 +43,42 @@ class ADMozaikLayoutSectionGeometry {
     /// - Parameter position: position of the item in mozaik layout
     ///
     /// - Returns: geometry size of the item
-    func sizeForItem(withMozaikSize size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) -> CGSize {
+    func frameForItem(withMozaikSize size: ADMozaikLayoutSize, at position: ADMozaikLayoutPosition) -> CGRect {
         var width: CGFloat = 0.0
         for column in position.column...(position.column + size.columns - 1) {
             width += geometryInfo.columns[column].width
         }
         width += CGFloat(size.columns - 1) * geometryInfo.minimumInteritemSpacing
         let height = CGFloat(size.rows) * geometryInfo.rowHeight + CGFloat(size.rows - 1) * geometryInfo.minimumLineSpacing;
-        return CGSize(width: width, height: height)
+        let xOffset = xOffsetForItem(at: position)
+        let yOffset = yOffsetForItem(at: position)
+        updateContentHeight(withLastlyCalculated: height + yOffsetForItem(at: position))
+        return CGRect(x: xOffset, y: yOffset, width: width, height: height)
+    }
+    
+    /// Calculates the size of supplementary view in section
+    ///
+    /// - Parameter kind: kind of the supplementary view to calculate size for
+    ///
+    /// - Returns: size for the view
+    func sizeForSupplementaryView(of kind: String) -> CGSize {
+        if kind == UICollectionElementKindSectionFooter {
+            return CGSize(width: contentWidth, height: geometryInfo.footerHeight)
+        }
+        else if kind == UICollectionElementKindSectionHeader {
+            return CGSize(width: contentWidth, height: geometryInfo.headerHeight)
+        }
+        fatalError("Unknown supplementary view kind: \(kind)")
+    }
+    
+    // MARK: - Helpers
+    
+    /// This method inteds to update the conten height after each y or size calculation of the item:
+    /// By item it means: cell or supplementary view
+    ///
+    /// - Parameter maxY: bottom of the lastly calculated frame
+    private func updateContentHeight(withLastlyCalculated maxY: CGFloat) {
+        contentHeight = max(maxY, contentHeight) + geometryInfo.sectionInset.bottom
     }
     
     ///
@@ -59,7 +87,7 @@ class ADMozaikLayoutSectionGeometry {
     /// - Parameter position: position of the item in mozaik layout
     ///
     /// - Returns: geometry x offset of the item
-    func xOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
+    private func xOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
         var xOffset: CGFloat = geometryInfo.sectionInset.left
         if position.column == 0 {
             return xOffset
@@ -76,22 +104,7 @@ class ADMozaikLayoutSectionGeometry {
     /// - Parameter position: position of the item in mozaik layout
     ///
     /// - Returns: geometry y offset of the item
-    func yOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
-        return (geometryInfo.rowHeight + geometryInfo.minimumLineSpacing) * CGFloat(position.row) + geometryInfo.sectionInset.top
-    }
-    
-    /// Calculates the size of supplementary view in section
-    ///
-    /// - Parameter kind: kind of the supplementary view to calculate size for
-    ///
-    /// - Returns: size for the view
-    func sizeForSupplementaryView(of kind: String) -> CGSize {
-        if kind == UICollectionElementKindSectionFooter {
-            return CGSize(width: contentWidth, height: geometryInfo.footerHeight)
-        }
-        else if kind == UICollectionElementKindSectionHeader {
-            return CGSize(width: contentWidth, height: geometryInfo.headerHeight)
-        }
-        fatalError("Unknown supplementary view kind: \(kind)")
+    private func yOffsetForItem(at position: ADMozaikLayoutPosition) -> CGFloat {
+        return (geometryInfo.rowHeight + geometryInfo.minimumLineSpacing) * CGFloat(position.row) + geometryInfo.sectionInset.top + geometryInfo.headerHeight
     }
 }

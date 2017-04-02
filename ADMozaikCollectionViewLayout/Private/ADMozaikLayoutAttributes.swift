@@ -26,8 +26,12 @@ class ADMozaikLayoutAttributes {
     /// Default number of attributes in one union
     fileprivate let ADMozaikLayoutUnionSize: Int = 20
     
+    /// ADMozaikLayout cache reference
+    fileprivate let layoutCache: ADMozaikLayoutCache
+    
     init(layoutCache: ADMozaikLayoutCache, layoutMatrixes: [ADMozaikLayoutSectionMatrix], layoutGeometries: [ADMozaikLayoutSectionGeometry]) throws {
-        self.layoutAttributesArray = try self.buildLayoutAttributesForLayoutGeometries(layoutGeometries, withLayoutMatrixes: layoutMatrixes, andLayoutCache: layoutCache)
+        self.layoutCache = layoutCache
+        self.layoutAttributesArray = try self.buildLayoutAttributesForLayoutGeometries(layoutGeometries, withLayoutMatrixes: layoutMatrixes)
         self.unionRectsArray = self.buildUnionRectsFromLayoutAttributes(self.layoutAttributesArray)
     }
     
@@ -72,39 +76,49 @@ class ADMozaikLayoutAttributes {
     
     //MARK: - Helper
     
-    fileprivate func buildLayoutAttributesForLayoutGeometries(_ layoutGeometries: [ADMozaikLayoutSectionGeometry], withLayoutMatrixes layoutMatrixes: [ADMozaikLayoutSectionMatrix], andLayoutCache layoutCache: ADMozaikLayoutCache) throws -> [UICollectionViewLayoutAttributes] {
+    fileprivate func buildLayoutAttributesForLayoutGeometries(_ layoutGeometries: [ADMozaikLayoutSectionGeometry], withLayoutMatrixes layoutMatrixes: [ADMozaikLayoutSectionMatrix]) throws -> [UICollectionViewLayoutAttributes] {
         let numberOfSections = layoutCache.numberOfSections()
         guard layoutGeometries.count == numberOfSections && layoutMatrixes.count == numberOfSections else {
             throw ADMozaikLayoutAttributesError.notAllSectionsPrepared
         }
         var allAttributes: [UICollectionViewLayoutAttributes] = []
-        var maximumContentBottom: CGFloat = 0
+        var layoutSectionGeometryOffsetY: CGFloat = 0
         for section in 0..<numberOfSections {
-            let layoutSectionGeometryOffsetY = maximumContentBottom
             let itemsCount = layoutCache.numberOfItemsInSection(section)
             let layoutGeometry = layoutGeometries[section]
             let layoutMatrix = layoutMatrixes[section]
+            
+            if layoutGeometry.sizeForSupplementaryView(of: UICollectionElementKindSectionHeader) != CGSize.zero {
+            }
+            
             for item in 0..<itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
-                let itemSize = layoutCache.mozaikSizeForItem(atIndexPath: indexPath)
                 do {
-                    let itemPosition = try layoutMatrix.positionForItem(of: itemSize)
-                    let xOffset = layoutGeometry.xOffsetForItem(at: itemPosition)
-                    let yOffset = layoutGeometry.yOffsetForItem(at: itemPosition) + layoutSectionGeometryOffsetY
-                    let itemGeometrySize = layoutGeometry.sizeForItem(withMozaikSize: itemSize, at: itemPosition)
-                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                    attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemGeometrySize.width, height: itemGeometrySize.height)
+                    let attributes = try buildLayoutAttributesForItem(at: indexPath, geometry: layoutGeometry, matrix: layoutMatrix, additionalOffsetY: layoutSectionGeometryOffsetY)
                     allAttributes.append(attributes)
-                    maximumContentBottom = max(attributes.frame.maxY, maximumContentBottom)
-                    try layoutMatrix.addItem(of: itemSize, at: itemPosition)
                 }
                 catch {
                     fatalError((error as CustomStringConvertible).description)
                 }
             }
-            layoutGeometry.contentHeight = max(layoutGeometry.contentHeight, maximumContentBottom)
+            
+            if layoutGeometry.sizeForSupplementaryView(of: UICollectionElementKindSectionFooter) != CGSize.zero {
+            }
+            
+            layoutSectionGeometryOffsetY += layoutGeometry.contentHeight
         }
         return allAttributes
+    }
+    
+    fileprivate func buildLayoutAttributesForItem(at indexPath: IndexPath, geometry: ADMozaikLayoutSectionGeometry, matrix: ADMozaikLayoutSectionMatrix, additionalOffsetY: CGFloat) throws -> UICollectionViewLayoutAttributes {
+        let itemSize = layoutCache.mozaikSizeForItem(atIndexPath: indexPath)
+        let itemPosition = try matrix.positionForItem(of: itemSize)
+        let itemGeometryFrame = geometry.frameForItem(withMozaikSize: itemSize, at: itemPosition)
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        attributes.frame = CGRect(x: itemGeometryFrame.origin.x, y: itemGeometryFrame.origin.y + additionalOffsetY, width: itemGeometryFrame.width, height: itemGeometryFrame.height)
+        try matrix.addItem(of: itemSize, at: itemPosition)
+        return attributes
+        
     }
     
     fileprivate func buildUnionRectsFromLayoutAttributes(_ attributes: [UICollectionViewLayoutAttributes]) -> [CGRect] {

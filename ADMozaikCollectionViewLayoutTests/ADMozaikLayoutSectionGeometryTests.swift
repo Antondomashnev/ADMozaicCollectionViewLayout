@@ -30,30 +30,18 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
         super.tearDown()
     }
     
-    func testThatSizeForItemWithMozaikSizeShouldReturnCorrectSize() {
-        let size1 = self.layoutGeometry.sizeForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2), at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0))
-        expect(size1.width).to(equal(212))
-        expect(size1.height).to(equal(212))
+    func testThatFrameForItemWithMozaikSizeShouldReturnCorrectFrame() {
+        let frame1 = self.layoutGeometry.frameForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2), at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0))
+        expect(frame1.width).to(equal(212))
+        expect(frame1.height).to(equal(212))
+        expect(frame1.origin.y).to(equal(45))
+        expect(frame1.origin.x).to(equal(1))
         
-        let size2 = self.layoutGeometry.sizeForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: ADMozaikLayoutPosition(atColumn: 2, atRow: 0, inSection: 0))
-        expect(size2.width).to(equal(105))
-        expect(size2.height).to(equal(105))
-    }
-    
-    func testThatXOffsetForItemAtPositionShouldReturnCorrectValue() {
-        let xOffset1 = self.layoutGeometry.xOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0))
-        expect(xOffset1).to(equal(1))
-        
-        let offset2 = self.layoutGeometry.xOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 2, atRow: 0, inSection: 0))
-        expect(offset2).to(equal(214))
-    }
-    
-    func testThatYOffsetForItemAtPositionShouldReturnCorrectValue() {
-        let xOffset1 = self.layoutGeometry.yOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 0, atRow: 0, inSection: 0))
-        expect(xOffset1).to(equal(1))
-        
-        let offset2 = self.layoutGeometry.yOffsetForItem(at: ADMozaikLayoutPosition(atColumn: 1, atRow: 2, inSection: 0))
-        expect(offset2).to(equal(215))
+        let frame2 = self.layoutGeometry.frameForItem(withMozaikSize: ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1), at: ADMozaikLayoutPosition(atColumn: 2, atRow: 2, inSection: 0))
+        expect(frame2.width).to(equal(105))
+        expect(frame2.height).to(equal(105))
+        expect(frame2.origin.x).to(equal(214))
+        expect(frame2.origin.y).to(equal(259))
     }
     
     func testThatSizeForSupplementaryViewShouldReturnCorrectSizeForFooter() {
