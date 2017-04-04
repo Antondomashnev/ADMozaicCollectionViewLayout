@@ -12,6 +12,28 @@ import UIKit
 
 @testable import ADMozaikCollectionViewLayout
 
+class ADMozaikLayoutHeader: UICollectionReusableView {
+    override var reuseIdentifier: String? {
+        return "ADMozaikLayoutHeader"
+    }
+    
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+        self.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+    }
+}
+
+class ADMozaikLayoutFooter: UICollectionReusableView {
+    override var reuseIdentifier: String? {
+        return "ADMozaikLayoutFooter"
+    }
+    
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+        self.backgroundColor = UIColor.yellow.withAlphaComponent(0.5)
+    }
+}
+
 enum ADMozaikLayoutTestsUseCase {
     /// Use case when there are three columns and interitem and interline space are zero
     case a
@@ -40,12 +62,40 @@ enum ADMozaikLayoutTestsUseCase {
     /// Use case when there are three sections with different use cases (a, c, e)
     case i
     
+    /// Use case when there is one section with header and d use case
+    case j
+    
+    /// Use case when there is one section with header, footer and a use case
+    case k
+    
     var sectionInset: UIEdgeInsets {
         switch self {
         case .d:
             return UIEdgeInsets(top: 5, left: 3, bottom: 0, right: 3)
+        case .k:
+            return UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
         default:
             return UIEdgeInsets.zero
+        }
+    }
+    
+    var headerHeight: CGFloat {
+        switch self {
+        case .j:
+            return 22
+        case .k:
+            return 33
+        default:
+            return 0
+        }
+    }
+    
+    var footerHeight: CGFloat {
+        switch self {
+        case .k:
+            return 44
+        default:
+            return 0
         }
     }
     
@@ -69,6 +119,10 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.f.minimumLineSpacing
         case .i:
             return 0
+        case .j:
+            return ADMozaikLayoutTestsUseCase.d.minimumLineSpacing
+        case .k:
+            return ADMozaikLayoutTestsUseCase.a.minimumLineSpacing
         }
     }
     
@@ -90,8 +144,12 @@ enum ADMozaikLayoutTestsUseCase {
             return 1
         case .h:
             return ADMozaikLayoutTestsUseCase.f.minimumInteritemSpacing
-        case.i:
+        case .i:
             return 0
+        case .j:
+            return ADMozaikLayoutTestsUseCase.d.minimumInteritemSpacing
+        case .k:
+            return ADMozaikLayoutTestsUseCase.a.minimumInteritemSpacing
         }
     }
     
@@ -115,6 +173,10 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.f.columns
         case .i:
             return []
+        case .j:
+            return ADMozaikLayoutTestsUseCase.d.columns
+        case .k:
+            return ADMozaikLayoutTestsUseCase.a.columns
         }
     }
     
@@ -138,6 +200,10 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.f.rowHeight
         case .i:
             return 0
+        case .j:
+            return ADMozaikLayoutTestsUseCase.d.rowHeight
+        case .k:
+            return ADMozaikLayoutTestsUseCase.a.rowHeight
         }
     }
     
@@ -161,6 +227,10 @@ enum ADMozaikLayoutTestsUseCase {
             return 10
         case .i:
             return 5
+        case .j:
+            return ADMozaikLayoutTestsUseCase.a.numberOfItems
+        case .k:
+            return 7
         }
     }
     
@@ -184,6 +254,10 @@ enum ADMozaikLayoutTestsUseCase {
             return 2
         case .i:
             return 3
+        case .j:
+            return 1
+        case .k:
+            return 1
         }
     }
     
@@ -247,15 +321,38 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
         self.view.addSubview(self.collectionView)
         self.collectionView.dataSource = self
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ADMozaikLayoutCell")
+        self.collectionView.register(ADMozaikLayoutFooter.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "ADMozaikLayoutFooter")
+        self.collectionView.register(ADMozaikLayoutHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ADMozaikLayoutHeader")
     }
     
     //MARK: - ADMozaikLayoutDelegate
     
     func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
         if let underlyingUseCase = self.useCase.underlyingUseCases?[section] {
-            return ADMozaikLayoutSectionGeometryInfo(rowHeight: underlyingUseCase.rowHeight, columns: underlyingUseCase.columns, minimumInteritemSpacing: underlyingUseCase.minimumInteritemSpacing, minimumLineSpacing: underlyingUseCase.minimumLineSpacing, sectionInset: underlyingUseCase.sectionInset)
+            return ADMozaikLayoutSectionGeometryInfo(rowHeight: underlyingUseCase.rowHeight, columns: underlyingUseCase.columns, minimumInteritemSpacing: underlyingUseCase.minimumInteritemSpacing, minimumLineSpacing: underlyingUseCase.minimumLineSpacing, sectionInset: underlyingUseCase.sectionInset, headerHeight: useCase.headerHeight, footerHeight: useCase.footerHeight)
         }
-        return ADMozaikLayoutSectionGeometryInfo(rowHeight: useCase.rowHeight, columns: useCase.columns, minimumInteritemSpacing: useCase.minimumInteritemSpacing, minimumLineSpacing: useCase.minimumLineSpacing, sectionInset: useCase.sectionInset)
+        return ADMozaikLayoutSectionGeometryInfo(rowHeight: useCase.rowHeight, columns: useCase.columns, minimumInteritemSpacing: useCase.minimumInteritemSpacing, minimumLineSpacing: useCase.minimumLineSpacing, sectionInset: useCase.sectionInset, headerHeight: useCase.headerHeight, footerHeight: useCase.footerHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: useCase.footerHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: useCase.headerHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutHeader", for: indexPath)
+            view.backgroundColor = UIColor.blue
+            return view
+        }
+        else {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutFooter", for: indexPath)
+            view.backgroundColor = UIColor.yellow
+            return view
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
@@ -386,6 +483,28 @@ class ADMozaikLayoutSnapshotTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithThreeSectionsWithDifferentLayout() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .i
+        self.viewController.view.frame = self.testingFrame()
+        self.viewController.collectionView.reloadData()
+        
+        self.FBSnapshotVerifyView(self.viewController.view)
+    }
+    
+    func testADMozaikLayoutRepresentationWithOneSectionAndHeader() {
+        self.recordMode = true
+        
+        self.viewController = ADMozaikLayoutTestsViewController()
+        self.viewController.useCase = .j
+        self.viewController.view.frame = self.testingFrame()
+        self.viewController.collectionView.reloadData()
+        
+        self.FBSnapshotVerifyView(self.viewController.view)
+    }
+    
+    func testADMozaikLayoutRepresentationWithOneSectionAndHeaderAndFooter() {
+        self.recordMode = true
+        
+        self.viewController = ADMozaikLayoutTestsViewController()
+        self.viewController.useCase = .k
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         

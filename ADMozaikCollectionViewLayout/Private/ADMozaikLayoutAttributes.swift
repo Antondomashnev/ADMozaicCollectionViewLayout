@@ -88,7 +88,8 @@ class ADMozaikLayoutAttributes {
             let layoutGeometry = layoutGeometries[section]
             let layoutMatrix = layoutMatrixes[section]
             
-            if layoutGeometry.sizeForSupplementaryView(of: UICollectionElementKindSectionHeader) != CGSize.zero {
+            if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionElementKindSectionHeader, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
+                allAttributes.append(attributes)
             }
             
             for item in 0..<itemsCount {
@@ -102,12 +103,24 @@ class ADMozaikLayoutAttributes {
                 }
             }
             
-            if layoutGeometry.sizeForSupplementaryView(of: UICollectionElementKindSectionFooter) != CGSize.zero {
+            if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionElementKindSectionFooter, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
+                allAttributes.append(attributes)
             }
             
             layoutSectionGeometryOffsetY += layoutGeometry.contentHeight
         }
         return allAttributes
+    }
+    
+    fileprivate func buildLayoutAttributesForSupplementaryView(of kind: String, in section: ADMozaikLayoutSection, geometry: ADMozaikLayoutSectionGeometry, additionalOffsetY: CGFloat) -> UICollectionViewLayoutAttributes? {
+        guard let frame = geometry.frameForSupplementaryView(of: kind) else {
+            return nil
+        }
+        let indexPath = IndexPath(item: 0, section: section)
+        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: kind, with: indexPath)
+        attributes.frame = CGRect(x: frame.origin.x, y: frame.origin.y + additionalOffsetY, width: frame.width, height: frame.height)
+        geometry.registerElement(with: frame)
+        return attributes
     }
     
     fileprivate func buildLayoutAttributesForItem(at indexPath: IndexPath, geometry: ADMozaikLayoutSectionGeometry, matrix: ADMozaikLayoutSectionMatrix, additionalOffsetY: CGFloat) throws -> UICollectionViewLayoutAttributes {
@@ -116,6 +129,7 @@ class ADMozaikLayoutAttributes {
         let itemGeometryFrame = geometry.frameForItem(withMozaikSize: itemSize, at: itemPosition)
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attributes.frame = CGRect(x: itemGeometryFrame.origin.x, y: itemGeometryFrame.origin.y + additionalOffsetY, width: itemGeometryFrame.width, height: itemGeometryFrame.height)
+        geometry.registerElement(with: itemGeometryFrame)
         try matrix.addItem(of: itemSize, at: itemPosition)
         return attributes
         

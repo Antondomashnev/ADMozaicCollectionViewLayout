@@ -12,7 +12,7 @@ import CoreGraphics
 /// The `ADMozaikLayoutSectionGeometry` defines the class that represent the geometry of collection view layout
 class ADMozaikLayoutSectionGeometry {
     
-    /// Layout content height
+    /// Layout content height (dynamically calculated)
     private(set) var contentHeight: CGFloat = 0
     
     /// Sections geometry information
@@ -30,13 +30,23 @@ class ADMozaikLayoutSectionGeometry {
     init(geometryInfo: ADMozaikLayoutSectionGeometryInfo) {
         let columnsWidth = geometryInfo.columns.reduce(0) { return $0 + $1.width }
         let interitemSpacing = geometryInfo.minimumInteritemSpacing * CGFloat(geometryInfo.columns.count - 1)
-        self.contentWidth = columnsWidth + interitemSpacing + geometryInfo.sectionInset.left + geometryInfo.sectionInset.right
+        self.contentWidth = columnsWidth + interitemSpacing
         self.geometryInfo = geometryInfo
     }
     
     //MARK: - Interface
- 
+    
+    /// Registers the given geometry `CGRect` as a part of a section's geometry
+    /// The method helps to maintain the `contentHeight` valid
+    /// Please always register only frames that were calculated with the following methods:
+    /// frameForItem(withMozaikSize:at:)
     ///
+    ///
+    /// - Parameter geometry: <#geometry description#>
+    func registerElement(with geometry: CGRect) {
+        contentHeight = max(geometry.maxY, contentHeight - geometryInfo.sectionInset.bottom) + geometryInfo.sectionInset.bottom
+    }
+ 
     /// Calculates the geometry size in points for the item with the given size at the given position
     ///
     /// - Parameter size:     size of the item in terms of mozaik layout
@@ -52,7 +62,6 @@ class ADMozaikLayoutSectionGeometry {
         let height = CGFloat(size.rows) * geometryInfo.rowHeight + CGFloat(size.rows - 1) * geometryInfo.minimumLineSpacing;
         let xOffset = xOffsetForItem(at: position)
         let yOffset = yOffsetForItem(at: position)
-        updateContentHeight(withLastlyCalculated: height + yOffsetForItem(at: position))
         return CGRect(x: xOffset, y: yOffset, width: width, height: height)
     }
     
@@ -60,26 +69,18 @@ class ADMozaikLayoutSectionGeometry {
     ///
     /// - Parameter kind: kind of the supplementary view to calculate size for
     ///
-    /// - Returns: size for the view
-    func sizeForSupplementaryView(of kind: String) -> CGSize {
+    /// - Returns: frame for the view, nil in case of no presense of the supplementary view of given kind
+    func frameForSupplementaryView(of kind: String) -> CGRect? {
         if kind == UICollectionElementKindSectionFooter {
-            return CGSize(width: contentWidth, height: geometryInfo.footerHeight)
+            return geometryInfo.footerHeight > 0 ? CGRect(x: geometryInfo.sectionInset.left, y: contentHeight - geometryInfo.sectionInset.bottom, width: contentWidth, height: geometryInfo.footerHeight) : nil
         }
         else if kind == UICollectionElementKindSectionHeader {
-            return CGSize(width: contentWidth, height: geometryInfo.headerHeight)
+            return geometryInfo.headerHeight > 0 ? CGRect(x: geometryInfo.sectionInset.left, y: geometryInfo.sectionInset.top, width: contentWidth, height: geometryInfo.headerHeight) : nil
         }
         fatalError("Unknown supplementary view kind: \(kind)")
     }
     
     // MARK: - Helpers
-    
-    /// This method inteds to update the conten height after each y or size calculation of the item:
-    /// By item it means: cell or supplementary view
-    ///
-    /// - Parameter maxY: bottom of the lastly calculated frame
-    private func updateContentHeight(withLastlyCalculated maxY: CGFloat) {
-        contentHeight = max(maxY, contentHeight) + geometryInfo.sectionInset.bottom
-    }
     
     ///
     /// Calculates the x origin for the item at the given position
