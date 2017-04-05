@@ -13,24 +13,32 @@ import UIKit
 @testable import ADMozaikCollectionViewLayout
 
 class ADMozaikLayoutHeader: UICollectionReusableView {
-    override var reuseIdentifier: String? {
-        return "ADMozaikLayoutHeader"
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.red.withAlphaComponent(0.5)
     }
     
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-        self.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var reuseIdentifier: String? {
+        return "ADMozaikLayoutHeader"
     }
 }
 
 class ADMozaikLayoutFooter: UICollectionReusableView {
-    override var reuseIdentifier: String? {
-        return "ADMozaikLayoutFooter"
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.yellow.withAlphaComponent(0.5)
     }
     
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-        self.backgroundColor = UIColor.yellow.withAlphaComponent(0.5)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var reuseIdentifier: String? {
+        return "ADMozaikLayoutFooter"
     }
 }
 
@@ -67,6 +75,9 @@ enum ADMozaikLayoutTestsUseCase {
     
     /// Use case when there is one section with header, footer and a use case
     case k
+    
+    /// Use case when there are two sections with header, footer and (j, k) use case
+    case l
     
     var sectionInset: UIEdgeInsets {
         switch self {
@@ -123,6 +134,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.d.minimumLineSpacing
         case .k:
             return ADMozaikLayoutTestsUseCase.a.minimumLineSpacing
+        case .l:
+            return 0
         }
     }
     
@@ -150,6 +163,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.d.minimumInteritemSpacing
         case .k:
             return ADMozaikLayoutTestsUseCase.a.minimumInteritemSpacing
+        case .l:
+            return 0
         }
     }
     
@@ -177,6 +192,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.d.columns
         case .k:
             return ADMozaikLayoutTestsUseCase.a.columns
+        case .l:
+            return []
         }
     }
     
@@ -204,6 +221,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.d.rowHeight
         case .k:
             return ADMozaikLayoutTestsUseCase.a.rowHeight
+        case .l:
+            return 0
         }
     }
     
@@ -231,6 +250,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.a.numberOfItems
         case .k:
             return 7
+        case .l:
+            return 5
         }
     }
     
@@ -258,6 +279,8 @@ enum ADMozaikLayoutTestsUseCase {
             return 1
         case .k:
             return 1
+        case .l:
+            return 2
         }
     }
     
@@ -265,6 +288,8 @@ enum ADMozaikLayoutTestsUseCase {
         switch self {
         case .i:
             return [ADMozaikLayoutTestsUseCase.a, ADMozaikLayoutTestsUseCase.c, ADMozaikLayoutTestsUseCase.e]
+        case .l:
+            return [ADMozaikLayoutTestsUseCase.k, ADMozaikLayoutTestsUseCase.k]
         default:
             return nil
         }
@@ -329,28 +354,32 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     
     func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
         if let underlyingUseCase = self.useCase.underlyingUseCases?[section] {
-            return ADMozaikLayoutSectionGeometryInfo(rowHeight: underlyingUseCase.rowHeight, columns: underlyingUseCase.columns, minimumInteritemSpacing: underlyingUseCase.minimumInteritemSpacing, minimumLineSpacing: underlyingUseCase.minimumLineSpacing, sectionInset: underlyingUseCase.sectionInset, headerHeight: useCase.headerHeight, footerHeight: useCase.footerHeight)
+            return ADMozaikLayoutSectionGeometryInfo(rowHeight: underlyingUseCase.rowHeight, columns: underlyingUseCase.columns, minimumInteritemSpacing: underlyingUseCase.minimumInteritemSpacing, minimumLineSpacing: underlyingUseCase.minimumLineSpacing, sectionInset: underlyingUseCase.sectionInset, headerHeight: underlyingUseCase.headerHeight, footerHeight: underlyingUseCase.footerHeight)
         }
         return ADMozaikLayoutSectionGeometryInfo(rowHeight: useCase.rowHeight, columns: useCase.columns, minimumInteritemSpacing: useCase.minimumInteritemSpacing, minimumLineSpacing: useCase.minimumLineSpacing, sectionInset: useCase.sectionInset, headerHeight: useCase.headerHeight, footerHeight: useCase.footerHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if let underlyingUseCase = self.useCase.underlyingUseCases?[section] {
+            return CGSize(width: 0, height: underlyingUseCase.footerHeight)
+        }
         return CGSize(width: 0, height: useCase.footerHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if let underlyingUseCase = self.useCase.underlyingUseCases?[section] {
+            return CGSize(width: 0, height: underlyingUseCase.headerHeight)
+        }
         return CGSize(width: 0, height: useCase.headerHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutHeader", for: indexPath)
-            view.backgroundColor = UIColor.blue
             return view
         }
         else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutFooter", for: indexPath)
-            view.backgroundColor = UIColor.yellow
             return view
         }
     }
@@ -386,7 +415,7 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     //MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.useCase!.numberOfSections
+        return self.useCase.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -490,8 +519,6 @@ class ADMozaikLayoutSnapshotTests: FBSnapshotTestCase {
     }
     
     func testADMozaikLayoutRepresentationWithOneSectionAndHeader() {
-        self.recordMode = true
-        
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .j
         self.viewController.view.frame = self.testingFrame()
@@ -501,10 +528,17 @@ class ADMozaikLayoutSnapshotTests: FBSnapshotTestCase {
     }
     
     func testADMozaikLayoutRepresentationWithOneSectionAndHeaderAndFooter() {
-        self.recordMode = true
-        
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .k
+        self.viewController.view.frame = self.testingFrame()
+        self.viewController.collectionView.reloadData()
+        
+        self.FBSnapshotVerifyView(self.viewController.view)
+    }
+    
+    func testADMozaikLayoutRepresentationWithTwoSectionsWithHeaderAndFooters() {
+        self.viewController = ADMozaikLayoutTestsViewController()
+        self.viewController.useCase = .l
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         
