@@ -16,13 +16,13 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     
     //*******************************//
     
-    @IBInspectable override open var minimumLineSpacing: CGFloat {
+    override open var minimumLineSpacing: CGFloat {
         willSet {
             fatalError("ADMozaikLayout doesn't support setting minimumLineSpacing directly for layout. Please use ADMozaikLayoutDelegate method to return geometry info")
         }
     }
     
-    @IBInspectable override open var minimumInteritemSpacing: CGFloat {
+    override open var minimumInteritemSpacing: CGFloat {
         willSet {
             fatalError("ADMozaikLayout doesn't support setting minimumInteritemSpacing directly for layout. Please use ADMozaikLayoutDelegate method to return geometry info")
         }
@@ -47,7 +47,7 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     
     //*******************************//
     
-    init(delegate: ADMozaikLayoutDelegate) {
+    public init(delegate: ADMozaikLayoutDelegate) {
         self.delegate = delegate
         super.init()
     }

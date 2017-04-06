@@ -11,25 +11,28 @@ import ADMozaikCollectionViewLayout
 
 class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegate, UICollectionViewDataSource {
     fileprivate let ADMozaikCollectionViewLayoutExampleImagesCount = 22
+    
+    fileprivate var layoutType: ADMozaikLayoutType = .portrait
+    
     fileprivate var portraitLayout: ADMozaikLayout {
-        let columns = [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)]
-        let layout = ADMozaikLayout(rowHeight: 93, columns: columns)
-        layout.delegate = self
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
+        let layout = ADMozaikLayout(delegate: self)
         return layout;
     }
     
     fileprivate var landscapeLayout: ADMozaikLayout {
-        let columns = [ADMozaikLayoutColumn(width: 110), ADMozaikLayoutColumn(width: 110), ADMozaikLayoutColumn(width: 111), ADMozaikLayoutColumn(width: 111), ADMozaikLayoutColumn(width: 110), ADMozaikLayoutColumn(width: 110)]
-        let layout = ADMozaikLayout(rowHeight: 110, columns: columns)
-        layout.delegate = self
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
+        let layout = ADMozaikLayout(delegate: self)
         return layout;
     }
     
     @IBOutlet var collectionView: UICollectionView!
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +41,8 @@ class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setCollectionViewLayout(animated: false, of: UIScreen.main.bounds.width > UIScreen.main.bounds.height ? .landscape : .portrait)
+        layoutType = UIScreen.main.bounds.width > UIScreen.main.bounds.height ? .landscape : .portrait
+        self.setCollectionViewLayout(animated: false, of: layoutType)
     }
     
     //MARK: - Helpers
@@ -55,7 +59,7 @@ class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegat
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(_ collectionView: UICollectionView, mozaik layout: UICollectionViewLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
+    func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
         if indexPath.item == 0 {
             return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
         }
@@ -73,6 +77,29 @@ class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegat
         }
     }
     
+    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
+        let rowHeight: CGFloat = layoutType == .portrait ? 93 : 110
+        let columns = layoutType == .portrait ? [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)] : [ADMozaikLayoutColumn(width: 110), ADMozaikLayoutColumn(width: 110), ADMozaikLayoutColumn(width: 111), ADMozaikLayoutColumn(width: 111), ADMozaikLayoutColumn(width: 110), ADMozaikLayoutColumn(width: 110)]
+        let geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: rowHeight,
+                                                             columns: columns,
+                                                             minimumInteritemSpacing: 1,
+                                                             minimumLineSpacing: 1,
+                                                             sectionInset: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0),
+                                                             headerHeight: 44, footerHeight: 22)
+        return geometryInfo
+    }
+    
+    //MARK: - UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutHeader", for: indexPath)
+        }
+        else {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutFooter", for: indexPath)
+        }
+    }
+    
     //MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -80,7 +107,7 @@ class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return 100
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -97,7 +124,8 @@ class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegat
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: nil) { context in
-            self.setCollectionViewLayout(animated: false, of: size.width > size.height ? .landscape : .portrait)
+            self.layoutType = size.width > size.height ? .landscape : .portrait
+            self.setCollectionViewLayout(animated: false, of: self.layoutType)
         }
     }
 }

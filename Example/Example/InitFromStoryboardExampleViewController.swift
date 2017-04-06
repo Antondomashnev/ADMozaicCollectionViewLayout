@@ -19,13 +19,24 @@ class InitFromStoryboardExampleViewController: UIViewController, ADMozaikLayoutD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        mozaikLayout.geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: 110, columns: [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)])
         mozaikLayout.delegate = self
     }
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(_ collectionView: UICollectionView, mozaik layout: UICollectionViewLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
+    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
+        let rowHeight: CGFloat = 93
+        let columns = [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)]
+        let geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: rowHeight,
+                                                             columns: columns,
+                                                             minimumInteritemSpacing: 1,
+                                                             minimumLineSpacing: 1,
+                                                             sectionInset: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0),
+                                                             headerHeight: 44, footerHeight: 22)
+        return geometryInfo
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
         if indexPath.item == 0 {
             return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
         }
@@ -40,6 +51,17 @@ class InitFromStoryboardExampleViewController: UIViewController, ADMozaikLayoutD
         }
         else {
             return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
+        }
+    }
+    
+    //MARK: - UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutHeader", for: indexPath)
+        }
+        else {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutFooter", for: indexPath)
         }
     }
     

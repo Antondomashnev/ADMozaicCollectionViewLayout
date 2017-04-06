@@ -194,16 +194,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KAI-AE-HWf">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <collectionViewLayout key="collectionViewLayout" id="GTb-Sh-lRo" customClass="ADMozaikLayout" customModule="ADMozaikCollectionViewLayout">
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="minimumLineSpacing">
-                                            <real key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="minimumInteritemSpacing">
-                                            <real key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </collectionViewLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="GTb-Sh-lRo" customClass="ADMozaikLayout" customModule="ADMozaikCollectionViewLayout"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ADMozaikLayoutCell" id="lqv-Yx-RuB">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
