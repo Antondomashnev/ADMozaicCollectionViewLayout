@@ -19,13 +19,24 @@ class InitFromStoryboardExampleViewController: UIViewController, ADMozaikLayoutD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        mozaikLayout.geometryInfo = ADMozaikLayoutGeometryInfo(rowHeight: 110, columns: [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)])
         mozaikLayout.delegate = self
     }
     
     //MARK: - ADMozaikLayoutDelegate
     
-    func collectionView(_ collectionView: UICollectionView, mozaik layout: UICollectionViewLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
+    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
+        let rowHeight: CGFloat = 93
+        let columns = [ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93), ADMozaikLayoutColumn(width: 93)]
+        let geometryInfo = ADMozaikLayoutSectionGeometryInfo(rowHeight: rowHeight,
+                                                             columns: columns,
+                                                             minimumInteritemSpacing: 1,
+                                                             minimumLineSpacing: 1,
+                                                             sectionInset: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0),
+                                                             headerHeight: 44, footerHeight: 22)
+        return geometryInfo
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize {
         if indexPath.item == 0 {
             return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
         }
@@ -43,18 +54,31 @@ class InitFromStoryboardExampleViewController: UIViewController, ADMozaikLayoutD
         }
     }
     
+    //MARK: - UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutHeader", for: indexPath)
+        }
+        else {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutFooter", for: indexPath)
+        }
+    }
+    
     //MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10000
+        return 50
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ADMozaikLayoutCell", for: indexPath) as UICollectionViewCell
+        let sectionLabel: UILabel = cell.viewWithTag(1001) as! UILabel
+        sectionLabel.text = "\(indexPath.section)"
         let imageView: UIImageView = cell.viewWithTag(1000) as! UIImageView
         imageView.image = UIImage(named: "\((indexPath as NSIndexPath).item % ADMozaikCollectionViewLayoutExampleImagesCount)")
         return cell

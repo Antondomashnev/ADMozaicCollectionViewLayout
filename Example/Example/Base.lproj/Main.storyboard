@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YS1-Fl-REK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YS1-Fl-REK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,13 +72,13 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DuI-1u-r8i">
                                     <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ADMozaikLayoutCell" id="yJC-m0-Jni">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -87,9 +87,18 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IL3-bm-v9o">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbJ-MV-R7J">
+                                                    <rect key="frame" x="7" y="33" width="35.5" height="17"/>
+                                                    <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="xbJ-MV-R7J" firstAttribute="centerX" secondItem="yJC-m0-Jni" secondAttribute="centerX" id="8jx-LK-xnf"/>
+                                            <constraint firstItem="xbJ-MV-R7J" firstAttribute="bottom" secondItem="IL3-bm-v9o" secondAttribute="bottom" id="97h-HP-s1o"/>
                                             <constraint firstItem="IL3-bm-v9o" firstAttribute="top" secondItem="yJC-m0-Jni" secondAttribute="top" id="LyG-qK-WXj"/>
                                             <constraint firstAttribute="trailing" secondItem="IL3-bm-v9o" secondAttribute="trailing" id="XC4-cU-ru8"/>
                                             <constraint firstItem="IL3-bm-v9o" firstAttribute="leading" secondItem="yJC-m0-Jni" secondAttribute="leading" id="cbL-aU-hlF"/>
@@ -97,6 +106,40 @@
                                         </constraints>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ADMozaikLayoutHeader" id="K7Q-fb-eLU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEADER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TG7-Mk-E4f">
+                                            <rect key="frame" x="152" y="14" width="71" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="TG7-Mk-E4f" firstAttribute="centerY" secondItem="K7Q-fb-eLU" secondAttribute="centerY" id="d1B-jG-8uN"/>
+                                        <constraint firstItem="TG7-Mk-E4f" firstAttribute="centerX" secondItem="K7Q-fb-eLU" secondAttribute="centerX" id="xCg-WK-0E9"/>
+                                    </constraints>
+                                </collectionReusableView>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ADMozaikLayoutFooter" id="JqE-gZ-egq">
+                                    <rect key="frame" x="0.0" y="100" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOOTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8B-ZM-35e">
+                                            <rect key="frame" x="152.5" y="14" width="69.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="V8B-ZM-35e" firstAttribute="centerY" secondItem="JqE-gZ-egq" secondAttribute="centerY" id="xfb-QX-jI2"/>
+                                        <constraint firstItem="V8B-ZM-35e" firstAttribute="centerX" secondItem="JqE-gZ-egq" secondAttribute="centerX" id="yuM-Xf-oUC"/>
+                                    </constraints>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="hGq-Bt-xHs" id="Erq-VA-2qP"/>
                                     <outlet property="delegate" destination="hGq-Bt-xHs" id="TBJ-Kn-BMt"/>
@@ -151,16 +194,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KAI-AE-HWf">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <collectionViewLayout key="collectionViewLayout" id="GTb-Sh-lRo" customClass="ADMozaikLayout" customModule="ADMozaikCollectionViewLayout">
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="minimumLineSpacing">
-                                            <real key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="minimumInteritemSpacing">
-                                            <real key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </collectionViewLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="GTb-Sh-lRo" customClass="ADMozaikLayout" customModule="ADMozaikCollectionViewLayout"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ADMozaikLayoutCell" id="lqv-Yx-RuB">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -172,9 +206,18 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1QO-XE-kjm">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzJ-uT-igL">
+                                                    <rect key="frame" x="8" y="33" width="35.5" height="17"/>
+                                                    <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="PzJ-uT-igL" firstAttribute="centerX" secondItem="lqv-Yx-RuB" secondAttribute="centerX" id="GRy-M0-q4s"/>
+                                            <constraint firstItem="PzJ-uT-igL" firstAttribute="bottom" secondItem="1QO-XE-kjm" secondAttribute="bottom" id="Txs-0l-2bP"/>
                                             <constraint firstAttribute="bottom" secondItem="1QO-XE-kjm" secondAttribute="bottom" id="Ufa-JY-ubB"/>
                                             <constraint firstItem="1QO-XE-kjm" firstAttribute="top" secondItem="lqv-Yx-RuB" secondAttribute="top" id="WeK-q1-TV9"/>
                                             <constraint firstItem="1QO-XE-kjm" firstAttribute="leading" secondItem="lqv-Yx-RuB" secondAttribute="leading" id="auC-Zd-DHO"/>

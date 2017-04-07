@@ -22,78 +22,113 @@ But this project is pure `swift` implementation, so if you don't want to mess up
 ## Usage
 
 The idea behind this layout is to split `UICollectionView` bounds into some kind of "matrix".
-To do this `ADMozaikCollectionViewLayout` requires `height` for rows and `width` for columns.
+To do this `ADMozaikCollectionViewLayout` requires `height` for rows and `width` for columns in specific section.
 ```swift
-/**
- Designated initializer to create new instance of `ADMozaikLayout`
-
- - parameter rowHeight: height for each row
- - parameter columns:   array of `ADMozaikLayoutColumn` for the layout
-
- - returns: newly created instance of `ADMozaikLayout`
- */
-public init(rowHeight: CGFloat, columns: [ADMozaikLayoutColumn])
-```
-Where `ADMozaikLayoutColumn` is the column description
-```swift
-/**
- *  Defines the layout's column
- */
-public struct ADMozaikLayoutColumn {
-    /// Width of the column in points
-    let width: CGFloat
-}
+/// Designated initializer for `ADMozaikLayout`
+///
+/// - Parameter delegate: delegate/datasource for the layout
+public init(delegate: ADMozaikLayoutDelegate)
 ```
 
-Also, it requires the delegate object that is conformed to protocol `ADMozaikLayoutDelegate` to get the size of each cell
+It requires the delegate object conforms to protocol `ADMozaikLayoutDelegate`.
+The first required method is to return the size of each item in layout:
 ```swift
-/**
- Method should return `ADMozaikLayoutSize` for specific indexPath
-
- - parameter collectionView: collection view is using layout
- - parameter layout:         layout itself
- - parameter indexPath:      indexPath of an item for the size it asks for
-
- - returns: `ADMozaikLayoutSize` struct object describes the size
- */
-func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, mozaikSizeForItemAtIndexPath indexPath: NSIndexPath) -> ADMozaikLayoutSize
+/// Method should return `ADMozaikLayoutSize` for specific indexPath
+///
+/// - Parameter collectionView: collection view is using layout
+/// - Parameter layout:         layout itself
+/// - Parameter indexPath:      indexPath of item for the size it asks for
+///
+/// - Returns: `ADMozaikLayoutSize` struct object describes the size
+func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize
 ```
+
 Where `ADMozaikLayoutSize` describes the size of each cell in terms of `ADMozaikCollectionViewLayout`
 ```swift
 /**
  *  Defines the size of the layout item
  */
 public struct ADMozaikLayoutSize {
-    /// Columns number that item requires
-    let columns: Int
-    /// Rows number that item requires
-    let rows: Int
+  /// Columns number that item requires
+  let columns: Int
+  /// Rows number that item requires
+  let rows: Int
 }
 ```
+
+The second method is to get the geometry information for each specific section of layout:
+```swift
+/// Method should return `ADMozaikLayoutSectionGeometryInfo` to describe specific section's geometry
+///
+/// - Parameters:
+///   - collectionView: collection view is using layout
+///   - layoyt:         layout itself
+///   - section:        section to calculate geometry info for
+///
+/// - Returns: `ADMozaikLayoutSectionGeometryInfo` struct object describes the section's geometry
+func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo
+```
+
+Where `ADMozaikLayoutSectionGeometryInfo` describes the all geometry parameters of the section
+```swift
+/**
+ *  Defines the layout's information
+ */
+public struct ADMozaikLayoutSectionGeometryInfo {
+  /// array of `ADMozaikLayoutColumn` for the layout
+  let columns: [ADMozaikLayoutColumn]
+
+  /// height for each row in points
+  let rowHeight: CGFloat
+
+  /// minimum space between items
+  let minimumInteritemSpacing: CGFloat
+
+  /// minimum space between each row
+  let minimumLineSpacing: CGFloat
+
+  /// Insets for the section from top, left, right, bottom
+  let sectionInset: UIEdgeInsets
+
+  /// Height for header in section
+  /// Width is currently limited to the collection view width
+  let headerHeight: CGFloat
+
+  /// Height for footer in section
+  /// Width is currently limited to the collection view width
+  let footerHeight: CGFloat
+}
+```
+
 For the complete example please check the example project. Note that current example project is supposed to be run on iPhone 6 screen's size.
 
-## Limitation
-This is the early bird release so this layout doesn't support headers, footers and sections at the moment. It's on my roadmap but PRs are very welcome=)
-
-## Easy to install
+## Install
 
 ### CocoaPods
 
-To integrate ADPuzzleAnimation into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate ADMozaicCollectionViewLayout into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'ADMozaicCollectionViewLayout', '~> 2.0'
+pod 'ADMozaicCollectionViewLayout', '~> 4.0'
 ```
 ### Carthage
 
 To integrate ADMozaicCollectionViewLayout into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ruby
-github "Antondomashnev/ADMozaicCollectionViewLayout" ~> 2.0
+github "Antondomashnev/ADMozaicCollectionViewLayout" ~> 4.0
 ```
 
 Run `carthage update` to build the framework and drag the built `ADMozaikCollectionViewLayout.framework` into your Xcode project.
+
+## Migration guide
+
+* [From 3.x to 4.x](./Docs/4_Migration_guide.md)
+
+## License
+
+ADMozaicCollectionViewLayout is available under the MIT license. See [LICENSE](LICENSE) for more information.

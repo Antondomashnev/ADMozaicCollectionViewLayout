@@ -29,10 +29,10 @@ class ADMozaikLayoutCache {
     ///
     /// Designated initializer for the `ADMozaikLayoutCache`
     ///
-    /// - parameter collectionView:       attached to layout collection view
-    /// - parameter mozaikLayoutDelegate: layout delegate
+    /// - Parameter collectionView:       attached to layout collection view
+    /// - Parameter mozaikLayoutDelegate: layout delegate
     ///
-    /// - returns: newly created class `ADMozaikLayoutCache`
+    /// - Returns: newly created class `ADMozaikLayoutCache`
     init(collectionView: UICollectionView, mozaikLayoutDelegate: ADMozaikLayoutDelegate) {
         self.collectionView = collectionView
         self.mozaikLayoutDelegate = mozaikLayoutDelegate
@@ -46,9 +46,9 @@ class ADMozaikLayoutCache {
     /// Returns number of items in the given section
     /// It either uses the cached value or the value from collectionView and caches it
     ///
-    /// - parameter section: section number to get number of items in
+    /// - Parameter section: section number to get number of items in
     ///
-    /// - returns: number of items in the given section
+    /// - Returns: number of items in the given section
     func numberOfItemsInSection(_ section: Int) -> Int {
         if self.cachedNumberOfItemsInSectionDictionary[section] == nil {
             self.cachedNumberOfItemsInSectionDictionary[section] = self.collectionView.numberOfItems(inSection: section)
@@ -60,7 +60,7 @@ class ADMozaikLayoutCache {
     /// Returns number of sections in attached collectionView
     /// It either uses the cached value or the value from collectionView and caches it
     ///
-    /// - returns: number of sections in attached collectionView
+    /// - Returns: number of sections in attached collectionView
     func numberOfSections() -> Int {
         if self.cachedNumberOfSections == nil {
             self.cachedNumberOfSections = self.collectionView.numberOfSections
@@ -72,14 +72,16 @@ class ADMozaikLayoutCache {
     /// Returns size for an item at the given indexPath
     /// It either uses the cached value or the value from collectionView and caches it
     ///
-    /// - parameter indexPath: index path to get the size of an item at
+    /// - Parameter indexPath: index path to get the size of an item at
     ///
-    /// - returns: size for an item at the given indexPath
+    /// - Returns: size for an item at the given indexPath
     func mozaikSizeForItem(atIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize {
-        var size: ADMozaikLayoutSize? = self.cachedSizeOfItemAtIndexPathDictionary[indexPath]
-        if size == nil {
-            size = self.mozaikLayoutDelegate.collectionView(self.collectionView, mozaik: self.collectionView.collectionViewLayout, mozaikSizeForItemAt: indexPath)
+        guard let layout = self.collectionView.collectionViewLayout as? ADMozaikLayout else {
+            fatalError("collectionView must have ADMozaikLayout")
         }
-        return size!
+        if let size = self.cachedSizeOfItemAtIndexPathDictionary[indexPath] {
+            return size
+        }
+        return self.mozaikLayoutDelegate.collectionView(self.collectionView, mozaik: layout, mozaikSizeForItemAt: indexPath)
     }
 }
