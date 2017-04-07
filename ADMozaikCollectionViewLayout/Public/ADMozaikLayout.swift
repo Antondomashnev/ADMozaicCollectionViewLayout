@@ -47,6 +47,9 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
     
     //*******************************//
     
+    /// Designated initializer for `ADMozaikLayout`
+    ///
+    /// - Parameter delegate: delegate/datasource for the layout
     public init(delegate: ADMozaikLayoutDelegate) {
         self.delegate = delegate
         super.init()
