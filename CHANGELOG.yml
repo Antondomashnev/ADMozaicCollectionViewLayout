@@ -1,9 +1,11 @@
 ---
 upcoming:
-  version: 4.0.1
+  version:
+  notes:
+releases:
+- version: 4.0.1
   notes:
   - Swift 3.1 updates
-releases:
 - version: 4.0.0
   notes:
   - Add supplementary view support [#21](https://github.com/Antondomashnev/ADMozaicCollectionViewLayout/issues/21)

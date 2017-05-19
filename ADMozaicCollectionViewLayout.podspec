@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'ADMozaicCollectionViewLayout'
-  s.version      = '4.0.0'
+  s.version      = '4.0.1'
   s.summary      = "Custom mozaic style collection view layout"
 
   s.description  = <<-DESC

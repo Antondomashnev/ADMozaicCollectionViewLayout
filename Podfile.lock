@@ -5,8 +5,8 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Nimble (6.0.1)
-  - Sourcery (0.5.9)
+  - Nimble (7.0.0)
+  - Sourcery (0.6.0)
 
 DEPENDENCIES:
   - FBSnapshotsViewerRunPhaseScript (~> 0.1)
@@ -24,18 +24,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FBSnapshotTestCase:
-    :commit: c1808fb4435ffc3db2203e7623935f39fc31aa8f
+    :commit: d9ec82be11d473576258f107489f7013ee321771
     :git: https://github.com/facebook/ios-snapshot-test-case.git
   Nimble:
-    :commit: 16a9a31918596b03ad88e6ec9a5cd7f90f0e4d93
+    :commit: 40e892ccd43d82b5eed1b9944822945fb5c4965f
     :git: https://github.com/Quick/Nimble.git
 
 SPEC CHECKSUMS:
   FBSnapshotsViewerRunPhaseScript: 9f91d09b6373896903e6eefc23232f16a03418e5
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Nimble: 1aafe036e5b03c5a30d07430fddca564af570696
-  Sourcery: 45e4b8ab587861e67de267957b16d91902f3a26f
+  Nimble: 67063ced9dad28bd882c7faa39f46a1409cf7296
+  Sourcery: b3a93fcdf9c256feeb16e85f4d1bbf46baa42464
 
 PODFILE CHECKSUM: 6511e20895d718a8abe2ae5c56e13aa071e6fb48
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
