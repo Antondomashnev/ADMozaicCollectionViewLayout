@@ -98,8 +98,8 @@ class ADMozaikLayoutAttributes {
                     let attributes = try buildLayoutAttributesForItem(at: indexPath, geometry: layoutGeometry, matrix: layoutMatrix, additionalOffsetY: layoutSectionGeometryOffsetY)
                     allAttributes.append(attributes)
                 }
-                catch {
-                    fatalError((error as CustomStringConvertible).description)
+                catch let error as CustomStringConvertible {
+                    fatalError(error.description)
                 }
             }
             
