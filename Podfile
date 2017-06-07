@@ -14,3 +14,5 @@ target 'ADMozaikCollectionViewLayout' do
     pod 'Nimble', :git=>'https://github.com/Quick/Nimble.git', :branch=>'master'
   end
 end
+
+
