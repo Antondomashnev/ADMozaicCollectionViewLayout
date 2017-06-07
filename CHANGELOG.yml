@@ -1,7 +1,8 @@
 ---
 upcoming:
-  version:
+  version: 4.0.2
   notes:
+  - Swift 3.2 updates
 releases:
 - version: 4.0.1
   notes:
