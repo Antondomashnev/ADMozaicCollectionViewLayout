@@ -1,7 +1,8 @@
 ---
 upcoming:
-  version:
+  version: 4.0.3
   notes:
+  - Fix crash in init from storyboard example
 releases:
 - version: 4.0.2
   notes:
