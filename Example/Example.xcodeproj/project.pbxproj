@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D109DF11F044033003DACE7 /* ReusableSupplementaryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D109DF01F044033003DACE7 /* ReusableSupplementaryFooterView.xib */; };
+		6D109DF41F044107003DACE7 /* ReusableSupplementaryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D109DF31F044107003DACE7 /* ReusableSupplementaryHeaderView.xib */; };
 		6D65C61F1E5F9A6B00733118 /* InitFromCodeExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D65C61E1E5F9A6B00733118 /* InitFromCodeExampleViewController.swift */; };
 		6D65C6221E5F9A7900733118 /* InitFromStoryboardExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D65C6211E5F9A7900733118 /* InitFromStoryboardExampleViewController.swift */; };
 		6DC978051CFE211A00B7679E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC978041CFE211A00B7679E /* AppDelegate.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D109DF01F044033003DACE7 /* ReusableSupplementaryFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableSupplementaryFooterView.xib; sourceTree = "<group>"; };
+		6D109DF31F044107003DACE7 /* ReusableSupplementaryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableSupplementaryHeaderView.xib; sourceTree = "<group>"; };
 		6D65C61E1E5F9A6B00733118 /* InitFromCodeExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitFromCodeExampleViewController.swift; sourceTree = "<group>"; };
 		6D65C6211E5F9A7900733118 /* InitFromStoryboardExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitFromStoryboardExampleViewController.swift; sourceTree = "<group>"; };
 		6DC978011CFE211A00B7679E /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +91,8 @@
 				6DC978041CFE211A00B7679E /* AppDelegate.swift */,
 				6DC978061CFE211A00B7679E /* ViewController.swift */,
 				6DC978081CFE211A00B7679E /* Main.storyboard */,
+				6D109DF01F044033003DACE7 /* ReusableSupplementaryFooterView.xib */,
+				6D109DF31F044107003DACE7 /* ReusableSupplementaryHeaderView.xib */,
 				6DC9780B1CFE211A00B7679E /* Assets.xcassets */,
 				6DC9780D1CFE211A00B7679E /* LaunchScreen.storyboard */,
 				6DC978101CFE211A00B7679E /* Info.plist */,
@@ -189,8 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DC9780F1CFE211A00B7679E /* LaunchScreen.storyboard in Resources */,
+				6D109DF11F044033003DACE7 /* ReusableSupplementaryFooterView.xib in Resources */,
 				6DC9780C1CFE211A00B7679E /* Assets.xcassets in Resources */,
 				6DC9780A1CFE211A00B7679E /* Main.storyboard in Resources */,
+				6D109DF41F044107003DACE7 /* ReusableSupplementaryHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

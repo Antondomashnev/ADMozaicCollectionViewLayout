@@ -20,6 +20,8 @@ class InitFromStoryboardExampleViewController: UIViewController, ADMozaikLayoutD
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         mozaikLayout.delegate = self
+        collectionView.register(UINib.init(nibName: "ReusableSupplementaryHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ADMozaikLayoutHeader")
+        collectionView.register(UINib.init(nibName: "ReusableSupplementaryFooterView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "ADMozaikLayoutFooter")
     }
     
     //MARK: - ADMozaikLayoutDelegate
