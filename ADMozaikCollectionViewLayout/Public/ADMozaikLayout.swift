@@ -168,9 +168,3 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
         self.layoutMatrixes = buildingLayoutMatrixes
     }
 }
-
-extension ADMozaikLayout {
-    internal func currentDeviceOrientation() -> UIDeviceOrientation {
-        return UIDevice.current.orientation
-    }
-}
