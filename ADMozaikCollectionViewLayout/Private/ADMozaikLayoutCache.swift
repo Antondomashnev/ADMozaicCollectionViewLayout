@@ -24,7 +24,7 @@ class ADMozaikLayoutCache {
     fileprivate let collectionView: UICollectionView
     
     /// Reference to mozaik layout delegate
-    fileprivate let mozaikLayoutDelegate: ADMozaikLayoutDelegate
+    fileprivate weak var mozaikLayoutDelegate: ADMozaikLayoutDelegate?
     
     ///
     /// Designated initializer for the `ADMozaikLayoutCache`
@@ -82,6 +82,9 @@ class ADMozaikLayoutCache {
         if let size = self.cachedSizeOfItemAtIndexPathDictionary[indexPath] {
             return size
         }
-        return self.mozaikLayoutDelegate.collectionView(self.collectionView, mozaik: layout, mozaikSizeForItemAt: indexPath)
+        guard let delegate = self.mozaikLayoutDelegate else {
+            fatalError("ADMozaikLayoutCache must have delegate")
+        }
+        return delegate.collectionView(self.collectionView, mozaik: layout, mozaikSizeForItemAt: indexPath)
     }
 }
