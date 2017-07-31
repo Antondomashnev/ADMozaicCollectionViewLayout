@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
   s.author       = { 'Anton Domashnev' => 'antondomashnev@gmail.com' }
 
   s.source       = { :git => "https://github.com/Antondomashnev/ADMozaicCollectionViewLayout.git", :tag => s.version.to_s}
-  s.platform = :ios, '8.0'
   s.ios.deployment_target = '8.0'
+  s.tvos.deployment_target = '9.0'
   s.source_files = 'ADMozaikCollectionViewLayout/**/*.swift'
   s.frameworks = 'UIKit'
 
