@@ -1,11 +1,13 @@
 ---
 upcoming:
-  version: 4.0.3
+  version:
+  notes:
+releases:
+- version: 4.0.3
   notes:
   - Fix crash in init from storyboard example
   - Fixed ADMozaikLayoutCache's retain cycle
   - Added tvOS support
-releases:
 - version: 4.0.2
   notes:
   - Swift 3.2 updates
