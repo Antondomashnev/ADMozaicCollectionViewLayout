@@ -76,14 +76,14 @@ class ADMozaikLayoutCache {
     ///
     /// - Returns: size for an item at the given indexPath
     func mozaikSizeForItem(atIndexPath indexPath: IndexPath) -> ADMozaikLayoutSize {
+        guard let delegate = self.mozaikLayoutDelegate else {
+            fatalError("ADMozaikLayoutCache must have delegate")
+        }
         guard let layout = self.collectionView.collectionViewLayout as? ADMozaikLayout else {
             fatalError("collectionView must have ADMozaikLayout")
         }
         if let size = self.cachedSizeOfItemAtIndexPathDictionary[indexPath] {
             return size
-        }
-        guard let delegate = self.mozaikLayoutDelegate else {
-            fatalError("ADMozaikLayoutCache must have delegate")
         }
         return delegate.collectionView(self.collectionView, mozaik: layout, mozaikSizeForItemAt: indexPath)
     }
