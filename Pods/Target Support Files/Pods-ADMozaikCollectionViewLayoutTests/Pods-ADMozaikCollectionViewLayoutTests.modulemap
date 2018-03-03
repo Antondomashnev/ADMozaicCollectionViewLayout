@@ -1,0 +1,6 @@
+framework module Pods_ADMozaikCollectionViewLayoutTests {
+  umbrella header "Pods-ADMozaikCollectionViewLayoutTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
