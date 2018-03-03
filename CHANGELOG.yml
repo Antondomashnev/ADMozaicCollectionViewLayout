@@ -3,6 +3,9 @@ upcoming:
   version:
   notes:
 releases:
+- version: 4.0.4
+  notes:
+  - Remove pod dependencies from .gitignore
 - version: 4.0.3
   notes:
   - Fix crash in init from storyboard example
