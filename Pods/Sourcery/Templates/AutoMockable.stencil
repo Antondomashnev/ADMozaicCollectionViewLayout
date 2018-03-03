@@ -1,0 +1,55 @@
+// swiftlint:disable line_length
+
+import Foundation
+#if os(iOS) || os(tvOS) || os(watchOS)
+import UIKit
+#elseif os(OSX)
+import AppKit
+#endif
+
+{% macro methodReceivedParameters method %}
+    {%if method.parameters.count == 1 %}
+        {{ method.shortName }}Received{% for param in method.parameters %}{{ param.name|upperFirst }} = {{ param.name }}{% endfor %}
+    {% else %}
+    {% if not method.parameters.count == 0 %}
+        {{ method.shortName }}ReceivedArguments = ({% for param in method.parameters %}{{ param.name }}: {{ param.name }}{% if not forloop.last%}, {% endif %}{% endfor %})
+    {% endif %}
+    {% endif %}
+{% endmacro %}
+{% macro methodReturnValueVariableName method %}
+{{ method.shortName }}ReturnValue
+{% endmacro %}
+
+{% for type in types.based.AutoMockable %}{% if type.kind == 'protocol' %}
+{% if not type.name == "AutoMockable" %}
+class {{ type.name }}Mock: {{ type.name }} {
+    {% for variable in type.allVariables %}
+    var {{ variable.name }}: {{ variable.typeName }}{% if not variable.isOptional %}{% if not variable.isArray and not variable.isDictionary %}!{% elif variable.isArray %} = []{% elif variable.isDictionary %} = [:]{% endif %}{% endif %}
+    {% endfor %}
+
+{% for method in type.allMethods %}
+    //MARK: - {{ method.shortName }}
+
+    {% if not method.isInitializer %}var {{ method.shortName }}Called = false{% endif %}
+    {% if method.parameters.count == 1 %}
+    var {{ method.shortName }}Received{% for param in method.parameters %}{{ param.name|upperFirst }}: {{ param.typeName.unwrappedTypeName }}?{% endfor %}
+    {% else %}{% if not method.parameters.count == 0 %}
+    var {{ method.shortName }}ReceivedArguments: ({% for param in method.parameters %}{{ param.name }}: {% if param.typeAttributes.escaping %}{{ param.unwrappedTypeName }}{% else %}{{ param.typeName }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %})?
+    {% endif %}{% endif %}
+    {% if not method.returnTypeName.isVoid and not method.isInitializer %}var {{ method.shortName }}ReturnValue: {{ method.returnTypeName }}!{% endif %}
+
+{% if method.isInitializer %}
+    required {{ method.name }} {
+        {% call methodReceivedParameters method %}
+    }
+{% else %}
+    func {{ method.name }}{% if not method.returnTypeName.isVoid %} -> {{ method.returnTypeName }}{% endif %} {
+        {{ method.shortName }}Called = true
+        {% call methodReceivedParameters method %}
+        {% if not method.returnTypeName.isVoid %}return {{ method.shortName }}ReturnValue{% endif %}
+    }
+{% endif %}
+{% endfor %}
+}
+{% endif %}{% endif %}
+{% endfor %}

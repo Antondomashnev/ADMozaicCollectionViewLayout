@@ -6,7 +6,6 @@ inhibit_all_warnings!
 
 target 'ADMozaikCollectionViewLayout' do
   pod 'Sourcery', '~> 0.5'
-  pod 'FBSnapshotsViewerRunPhaseScript', '~> 0.1'
 
   target 'ADMozaikCollectionViewLayoutTests' do
     inherit! :search_paths
@@ -14,5 +13,3 @@ target 'ADMozaikCollectionViewLayout' do
     pod 'Nimble', :git=>'https://github.com/Quick/Nimble.git', :branch=>'master'
   end
 end
-
-
