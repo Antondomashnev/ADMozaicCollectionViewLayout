@@ -141,5 +141,3 @@ public struct ADMozaikLayoutSectionGeometryInfo: AutoEquatable {
         return self.columns.count > 0 && self.rowHeight > 0
     }
 }
-
-

@@ -58,5 +58,16 @@ public func == (lhs: ADMozaikLayoutSize, rhs: ADMozaikLayoutSize) -> Bool {
 }
 
 // MARK: - AutoEquatable for Enums
+// MARK: - ADMozaikLayoutSectionContentMode AutoEquatable
+extension ADMozaikLayoutSectionContentMode: Equatable {}
+public func == (lhs: ADMozaikLayoutSectionContentMode, rhs: ADMozaikLayoutSectionContentMode) -> Bool {
+    switch (lhs, rhs) {
+    case (.fill, .fill): 
+         return true 
+    case (.ordered, .ordered): 
+         return true 
+    default: return false
+    }
+}
 
 // MARK: -
