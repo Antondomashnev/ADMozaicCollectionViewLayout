@@ -100,7 +100,25 @@ public struct ADMozaikLayoutSectionGeometryInfo {
 }
 ```
 
-For the complete example please check the example project. Note that current example project is supposed to be run on iPhone 6 screen's size.
+### Content mode options
+
+```
+/// Method should return `ADMozaikLayoutSectionContentMode` to describe specific section's geometry
+///
+/// - Parameters:
+///   - collectionView: collection view is using layout
+///   - layout:         layout itself
+///   - section:        section to return content mode for
+///
+/// - Returns: `ADMozaikLayoutSectionContentMode` enum describes the section's content mode and how to position cells
+func collectonView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode
+```
+
+The `contentMode` option controls the way how the Mozaik layout if filled with items:
+1. `fill` - tries to fill vacant spaces with item;
+2. `ordered` - keeps order of the provided items, so empty space can appear in the collection view.
+
+For the complete example please check the example project. Note that current example project is supposed to be run on iPhone 8 screen's size.
 
 ## Install
 

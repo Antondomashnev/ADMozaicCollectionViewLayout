@@ -34,11 +34,11 @@ public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
     ///
     /// - Parameters:
     ///   - collectionView: collection view is using layout
-    ///   - layoyt:         layout itself
+    ///   - layout:         layout itself
     ///   - section:        section to return content mode for
     ///
     /// - Returns: `ADMozaikLayoutSectionContentMode` enum describes the section's content mode and how to position cells
-    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode
+    func collectonView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode
 }
 
 public extension ADMozaikLayoutDelegate {

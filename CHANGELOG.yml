@@ -1,7 +1,8 @@
 ---
 upcoming:
-  version:
+  version: 4.1.0
   notes:
+  - Add contentMode option
 releases:
 - version: 4.0.4
   notes:
