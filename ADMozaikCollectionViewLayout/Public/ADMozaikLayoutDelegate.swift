@@ -29,4 +29,21 @@ public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
     ///
     /// - Returns: `ADMozaikLayoutSectionGeometryInfo` struct object describes the section's geometry
     func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo
+    
+    /// Method should return `ADMozaikLayoutSectionContentMode` to describe specific section's geometry
+    ///
+    /// - Parameters:
+    ///   - collectionView: collection view is using layout
+    ///   - layout:         layout itself
+    ///   - section:        section to return content mode for
+    ///
+    /// - Returns: `ADMozaikLayoutSectionContentMode` enum describes the section's content mode and how to position cells
+    func collectonView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode
+}
+
+public extension ADMozaikLayoutDelegate {
+    
+    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode {
+        return ADMozaikLayoutSectionContentMode.fill;
+    }
 }

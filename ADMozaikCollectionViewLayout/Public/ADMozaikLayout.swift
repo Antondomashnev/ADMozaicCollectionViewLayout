@@ -161,7 +161,8 @@ open class ADMozaikLayout: UICollectionViewFlowLayout {
             let sectionGeometryInfo = delegate.collectonView(collectionView, mozaik: self, geometryInfoFor: section)
             let sectionGeometry = ADMozaikLayoutSectionGeometry(geometryInfo: sectionGeometryInfo)
             buildingLayoutGeometries.append(sectionGeometry)
-            let sectionMatrix = ADMozaikLayoutSectionMatrix(numberOfColumns: sectionGeometryInfo.columns.count, section: section)
+            let sectionContentMode = delegate.collectonView(collectionView, mozaik: self, contentModeFor: section)
+            let sectionMatrix = ADMozaikLayoutSectionMatrix(numberOfColumns: sectionGeometryInfo.columns.count, section: section, contentMode: sectionContentMode)
             buildingLayoutMatrixes.append(sectionMatrix)
         }
         self.layoutGeometries = buildingLayoutGeometries

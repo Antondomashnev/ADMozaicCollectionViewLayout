@@ -61,11 +61,17 @@ class ADMozaikLayoutSectionMatrix {
     /// that we can not place it earlier that that position. So we can start iterating from that position
     fileprivate var lastItemPositionOfSize: [ADMozaikLayoutSize: ADMozaikLayoutPosition] = [:]
     
+    /// Saved information about last added position
+    fileprivate var lastItemPosition: ADMozaikLayoutPosition?
+    
     /// Number of columns in the matrix
     fileprivate let numberOfColumns: Int
     
     /// Representing section in `UICollectionView`
     fileprivate let section: Int
+    
+    /// Representing content mode for the section
+    fileprivate let contentMode: ADMozaikLayoutSectionContentMode
     
     //MARK: - Interface
     
@@ -76,7 +82,8 @@ class ADMozaikLayoutSectionMatrix {
     /// - Parameter section:         section number for which the matrix is supposed to be used
     ///
     /// - Returns: newly created instance of `ADMozaikLayoutSectionMatrix`
-    init(numberOfColumns: Int, section: ADMozaikLayoutSection) {
+    init(numberOfColumns: Int, section: ADMozaikLayoutSection, contentMode: ADMozaikLayoutSectionContentMode) {
+        self.contentMode = contentMode
         self.numberOfColumns = numberOfColumns
         self.section = section
         self.arrayRepresentation = self.buildInitialArrayRepresentation(numberOfColumns: numberOfColumns)
@@ -121,13 +128,8 @@ class ADMozaikLayoutSectionMatrix {
         if maximumColumn < 0 {
             throw ADMozaikLayoutSectionMatrixError.columnOutOfBounds
         }
-        let latestPositionForItemOfSameSize: ADMozaikLayoutPosition? = lastItemPositionOfSize[size]
-        if let latestRowPositionForItemOfSameSize = latestPositionForItemOfSameSize?.row {
-            return self.positionForItem(of: size, startingFrom: latestRowPositionForItemOfSameSize, maximumPositionColumn: maximumColumn)
-        }
-        else {
-            return self.positionForItem(of: size, startingFrom: 0, maximumPositionColumn: maximumColumn)
-        }
+        let startingRow = lastItemPositionOfSize[size]?.row ?? 0
+        return self.positionForItem(of: size, startingFrom: startingRow, maximumPositionColumn: maximumColumn)
     }
     
     //MARK: - Helpers
@@ -186,9 +188,20 @@ class ADMozaikLayoutSectionMatrix {
             throw ADMozaikLayoutSectionMatrixError.rowOutOfBounds
         }
         
-        for column in position.column...lastColumn {
-            for row in position.row...lastRow {
-                if arrayRepresentation[column][row] {
+        switch contentMode {
+        case .fill:
+            for column in position.column...lastColumn {
+                for row in position.row...lastRow {
+                    if arrayRepresentation[column][row] {
+                        return false
+                    }
+                }
+            }
+        case .ordered:
+            for column in position.column...lastColumn {
+                let rowArray = arrayRepresentation[column]
+                let columnSlice = rowArray[position.row..<rowArray.count]
+                if let _ = columnSlice.first(where: { $0 }) {
                     return false
                 }
             }

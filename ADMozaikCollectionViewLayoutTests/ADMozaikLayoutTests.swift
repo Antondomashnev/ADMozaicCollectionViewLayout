@@ -79,6 +79,9 @@ enum ADMozaikLayoutTestsUseCase {
     /// Use case when there are two sections with header, footer and (j, k) use case
     case l
     
+    /// Use case when the content mode is ordered there are two columns and interitem and interline space are zero
+    case m
+    
     var sectionInset: UIEdgeInsets {
         switch self {
         case .d:
@@ -136,6 +139,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.a.minimumLineSpacing
         case .l:
             return 0
+        case .m:
+            return 0
         }
     }
     
@@ -164,6 +169,8 @@ enum ADMozaikLayoutTestsUseCase {
         case .k:
             return ADMozaikLayoutTestsUseCase.a.minimumInteritemSpacing
         case .l:
+            return 0
+        case .m:
             return 0
         }
     }
@@ -194,6 +201,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.a.columns
         case .l:
             return []
+        case .m:
+            return [ADMozaikLayoutColumn(width: 160), ADMozaikLayoutColumn(width: 160)]
         }
     }
     
@@ -223,6 +232,8 @@ enum ADMozaikLayoutTestsUseCase {
             return ADMozaikLayoutTestsUseCase.a.rowHeight
         case .l:
             return 0
+        case .m:
+            return 60
         }
     }
     
@@ -252,6 +263,8 @@ enum ADMozaikLayoutTestsUseCase {
             return 7
         case .l:
             return 5
+        case .m:
+            return 6
         }
     }
     
@@ -281,6 +294,8 @@ enum ADMozaikLayoutTestsUseCase {
             return 1
         case .l:
             return 2
+        case .m:
+            return 1
         }
     }
     
@@ -292,6 +307,15 @@ enum ADMozaikLayoutTestsUseCase {
             return [ADMozaikLayoutTestsUseCase.k, ADMozaikLayoutTestsUseCase.k]
         default:
             return nil
+        }
+    }
+    
+    var contentMode: ADMozaikLayoutSectionContentMode {
+        switch self {
+        case .m:
+            return .ordered
+        default:
+            return .fill
         }
     }
 }
@@ -352,6 +376,13 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     
     //MARK: - ADMozaikLayoutDelegate
     
+    func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode {
+        if let underlyingUseCase = self.useCase.underlyingUseCases?[section] {
+            return underlyingUseCase.contentMode
+        }
+        return useCase.contentMode
+    }
+    
     func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo {
         if let underlyingUseCase = self.useCase.underlyingUseCases?[section] {
             return ADMozaikLayoutSectionGeometryInfo(rowHeight: underlyingUseCase.rowHeight, columns: underlyingUseCase.columns, minimumInteritemSpacing: underlyingUseCase.minimumInteritemSpacing, minimumLineSpacing: underlyingUseCase.minimumLineSpacing, sectionInset: underlyingUseCase.sectionInset, headerHeight: underlyingUseCase.headerHeight, footerHeight: underlyingUseCase.footerHeight)
@@ -406,10 +437,19 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
             else {
                 return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
             }
+        case .m:
+            if (indexPath as NSIndexPath).item == 3 {
+                return ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 1)
+            }
+            else if (indexPath as NSIndexPath).item == 4 {
+                return ADMozaikLayoutSize(numberOfColumns: 2, numberOfRows: 2)
+            }
+            else {
+                return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
+            }
         default:
             return ADMozaikLayoutSize(numberOfColumns: 1, numberOfRows: 1)
         }
-        
     }
     
     //MARK: - UICollectionViewDataSource
@@ -548,6 +588,15 @@ class ADMozaikLayoutSnapshotTests: FBSnapshotTestCase {
     func testADMozaikLayoutRepresentationWithZeroNumberOfSections() {
         self.viewController = ADMozaikLayoutTestsViewController()
         self.viewController.useCase = .g
+        self.viewController.view.frame = self.testingFrame()
+        self.viewController.collectionView.reloadData()
+        
+        self.FBSnapshotVerifyView(self.viewController.view)
+    }
+    
+    func testADMozaikLayoutRepresentationWithOrderedContentMode() {
+        self.viewController = ADMozaikLayoutTestsViewController()
+        self.viewController.useCase = .m
         self.viewController.view.frame = self.testingFrame()
         self.viewController.collectionView.reloadData()
         

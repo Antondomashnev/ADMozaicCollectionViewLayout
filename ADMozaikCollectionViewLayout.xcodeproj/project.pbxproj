@@ -11,6 +11,7 @@
 		6D3A438A1E8AFE1100BDF6E4 /* AutoEquatable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 6D3A43861E8AFE1000BDF6E4 /* AutoEquatable.stencil */; };
 		6D3A438B1E8AFE1100BDF6E4 /* AutoHashable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 6D3A43871E8AFE1000BDF6E4 /* AutoHashable.stencil */; };
 		6D3A4F5C1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A4F5B1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift */; };
+		6D52AB3D20FE9C1800A2E440 /* ADMozaikLayoutEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D52AB3C20FE9C1800A2E440 /* ADMozaikLayoutEnums.swift */; };
 		6D7BE5B51CEA148400A41445 /* ADMozaikCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D7BE5BC1CEA148400A41445 /* ADMozaikCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */; };
 		6D7BE5E11CEA3A8F00A41445 /* ADMozaikLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BE5DE1CEA3A8F00A41445 /* ADMozaikLayout.swift */; };
@@ -46,6 +47,7 @@
 		6D3A43861E8AFE1000BDF6E4 /* AutoEquatable.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoEquatable.stencil; sourceTree = "<group>"; };
 		6D3A43871E8AFE1000BDF6E4 /* AutoHashable.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoHashable.stencil; sourceTree = "<group>"; };
 		6D3A4F5B1D96920C008E5175 /* ADMozaikLayoutGeometryInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutGeometryInfoTests.swift; sourceTree = "<group>"; };
+		6D52AB3C20FE9C1800A2E440 /* ADMozaikLayoutEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADMozaikLayoutEnums.swift; sourceTree = "<group>"; };
 		6D7BE5B11CEA148400A41445 /* ADMozaikCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ADMozaikCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7BE5B41CEA148400A41445 /* ADMozaikCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMozaikCollectionViewLayout.h; sourceTree = "<group>"; };
 		6D7BE5B61CEA148400A41445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				6D7BE5DF1CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift */,
 				6D7BE5E01CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift */,
 				6D09E03C1E8C525F00E8D153 /* PhantomProtocols.swift */,
+				6D52AB3C20FE9C1800A2E440 /* ADMozaikLayoutEnums.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -246,7 +249,6 @@
 				6D7BE5AD1CEA148400A41445 /* Frameworks */,
 				6D7BE5AE1CEA148400A41445 /* Headers */,
 				6D7BE5AF1CEA148400A41445 /* Resources */,
-				FF33B20BD9FD0AFBE378E5BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,8 +268,6 @@
 				6D7BE5B81CEA148400A41445 /* Frameworks */,
 				6D7BE5B91CEA148400A41445 /* Resources */,
 				0E65DB978CE2F4EFD35B898D /* [CP] Embed Pods Frameworks */,
-				C8F0184B852EE0FDDCDA062B /* [CP] Copy Pods Resources */,
-				6D23A85C1E90FC0000FB758D /* FBSnapshotsViewer */,
 			);
 			buildRules = (
 			);
@@ -343,28 +343,19 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		6D23A85C1E90FC0000FB758D /* FBSnapshotsViewer */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = FBSnapshotsViewer;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = $PODS_ROOT/FBSnapshotsViewerRunPhaseScript/FBSnapshotsViewerRunPhaseScript;
 		};
 		6D3A437F1E8AFDA000BDF6E4 /* Sourcery */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -386,13 +377,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ADMozaikCollectionViewLayoutTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		88E79A6DCE69D60D0BFD5B86 /* [CP] Check Pods Manifest.lock */ = {
@@ -401,43 +395,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ADMozaikCollectionViewLayout-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C8F0184B852EE0FDDCDA062B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayoutTests/Pods-ADMozaikCollectionViewLayoutTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF33B20BD9FD0AFBE378E5BC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ADMozaikCollectionViewLayout/Pods-ADMozaikCollectionViewLayout-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -453,6 +420,7 @@
 				6DEC646E1D109C2F002AAD54 /* ADMozaikLayoutAttributes.swift in Sources */,
 				6DD7FBFE1CFB916D00E7F048 /* ADMozaikLayoutSectionGeometry.swift in Sources */,
 				6D7BE5E21CEA3A8F00A41445 /* ADMozaikLayoutDelegate.swift in Sources */,
+				6D52AB3D20FE9C1800A2E440 /* ADMozaikLayoutEnums.swift in Sources */,
 				6D7BE5E31CEA3A8F00A41445 /* ADMozaikLayoutStructs.swift in Sources */,
 				6D7BE5E11CEA3A8F00A41445 /* ADMozaikLayout.swift in Sources */,
 				6DD7FBFC1CFB7BC500E7F048 /* ADMozaikLayoutCache.swift in Sources */,

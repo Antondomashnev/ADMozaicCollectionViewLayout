@@ -12,6 +12,10 @@ DEPENDENCIES:
   - Nimble (from `https://github.com/Quick/Nimble.git`, branch `master`)
   - Sourcery (~> 0.5)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Sourcery
+
 EXTERNAL SOURCES:
   FBSnapshotTestCase:
     :branch: master
@@ -29,10 +33,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Quick/Nimble.git
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: f8cda7a16ec2180b57905dd50b28127220f66a17
   Sourcery: 1426fbb5fe2d53f1e03845e989a89b6b67ce4e33
 
 PODFILE CHECKSUM: 5a889c6e436cf4d5b0caff8446311ea6b3d7a040
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.3
