@@ -92,7 +92,7 @@ class InitFromCodeExampleViewController: UIViewController, ADMozaikLayoutDelegat
     //MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutHeader", for: indexPath)
         }
         else {
