@@ -4,7 +4,7 @@
   "summary": "Snapshot view unit tests for iOS",
   "description": "A \"snapshot test case\" takes a configured UIView or CALayer\nand uses the renderInContext: method to get an image snapshot\nof its contents. It compares this snapshot to a \"reference image\"\nstored in your source code repository and fails the test if the\ntwo images don't match.",
   "homepage": "https://github.com/facebook/ios-snapshot-test-case",
-  "license": "BSD",
+  "license": "MIT",
   "authors": "Facebook",
   "source": {
     "git": "https://github.com/facebook/ios-snapshot-test-case.git",

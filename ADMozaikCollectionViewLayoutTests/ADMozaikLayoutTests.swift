@@ -370,8 +370,8 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
         self.view.addSubview(self.collectionView)
         self.collectionView.dataSource = self
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ADMozaikLayoutCell")
-        self.collectionView.register(ADMozaikLayoutFooter.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "ADMozaikLayoutFooter")
-        self.collectionView.register(ADMozaikLayoutHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ADMozaikLayoutHeader")
+        self.collectionView.register(ADMozaikLayoutFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "ADMozaikLayoutFooter")
+        self.collectionView.register(ADMozaikLayoutHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ADMozaikLayoutHeader")
     }
     
     //MARK: - ADMozaikLayoutDelegate
@@ -405,7 +405,7 @@ class ADMozaikLayoutTestsViewController: UIViewController, ADMozaikLayoutDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ADMozaikLayoutHeader", for: indexPath)
             return view
         }

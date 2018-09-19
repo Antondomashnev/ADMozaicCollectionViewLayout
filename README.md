@@ -114,7 +114,7 @@ public struct ADMozaikLayoutSectionGeometryInfo {
 func collectonView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode
 ```
 
-The `contentMode` option controls the way how the Mozaik layout if filled with items:
+The `contentMode` option controls the way how the Mozaik layout is filled with items:
 1. `fill` - tries to fill vacant spaces with item;
 2. `ordered` - keeps order of the provided items, so empty space can appear in the collection view.
 

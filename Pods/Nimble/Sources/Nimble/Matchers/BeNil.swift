@@ -8,11 +8,11 @@ public func beNil<T>() -> Predicate<T> {
     }
 }
 
-#if _runtime(_ObjC)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 extension NMBObjCMatcher {
-    public class func beNilMatcher() -> NMBObjCMatcher {
-        return NMBObjCMatcher { actualExpression, failureMessage in
-            return try! beNil().matches(actualExpression, failureMessage: failureMessage)
+    @objc public class func beNilMatcher() -> NMBMatcher {
+        return NMBPredicate { actualExpression in
+            return try beNil().satisfies(actualExpression).toObjectiveC()
         }
     }
 }

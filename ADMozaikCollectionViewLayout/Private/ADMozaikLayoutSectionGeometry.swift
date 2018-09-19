@@ -71,10 +71,10 @@ class ADMozaikLayoutSectionGeometry {
     ///
     /// - Returns: frame for the view, nil in case of no presense of the supplementary view of given kind
     func frameForSupplementaryView(of kind: String) -> CGRect? {
-        if kind == UICollectionElementKindSectionFooter {
+        if kind == UICollectionView.elementKindSectionFooter {
             return geometryInfo.footerHeight > 0 ? CGRect(x: geometryInfo.sectionInset.left, y: contentHeight - geometryInfo.sectionInset.bottom, width: contentWidth, height: geometryInfo.footerHeight) : nil
         }
-        else if kind == UICollectionElementKindSectionHeader {
+        else if kind == UICollectionView.elementKindSectionHeader {
             return geometryInfo.headerHeight > 0 ? CGRect(x: geometryInfo.sectionInset.left, y: geometryInfo.sectionInset.top, width: contentWidth, height: geometryInfo.headerHeight) : nil
         }
         fatalError("Unknown supplementary view kind: \(kind)")

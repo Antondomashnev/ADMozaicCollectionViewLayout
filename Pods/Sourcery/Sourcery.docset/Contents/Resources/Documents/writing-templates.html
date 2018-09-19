@@ -60,6 +60,9 @@
                 <a href="mocks.html">Mocks</a>
               </li>
               <li class="nav-group-task">
+                <a href="codable.html">Codable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="diffable.html">Diffable</a>
               </li>
               <li class="nav-group-task">
@@ -107,6 +110,9 @@
                 <a href="Classes/MethodParameter.html">MethodParameter</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Subscript.html">Subscript</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/TypeName.html">TypeName</a>
               </li>
               <li class="nav-group-task">
@@ -125,15 +131,13 @@
                 <a href="Classes/ClosureType.html">ClosureType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Attribute.html">Attribute</a>
+                <a href="Classes/GenericType.html">GenericType</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Other Extensions.html">Other Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Typealias.html">Typealias</a>
+                <a href="Classes/GenericTypeParameter.html">GenericTypeParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Attribute.html">Attribute</a>
               </li>
             </ul>
           </li>
@@ -142,6 +146,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Protocols/Annotated.html">Annotated</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Definition.html">Definition</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/Typed.html">Typed</a>
@@ -161,7 +168,7 @@
 <p>Dicsovered types can be accessed in templates via global context with following properties:</p>
 
 <ul>
-<li><code>types: Types</code> - access collections of types, i.e. <code>types.implementing.AutoCoding</code> (<code>types.implementing[&quot;AutoCoding&quot;]</code> in swift templates). See <a href="Classes/Types.html">Types</a>.</li>
+<li><code>types: Types</code> - access collections of types, i.e. <code>types.implementing.AutoCoding</code> (<code>types.implementing[&quot;AutoCoding&quot;]</code> in swift templates). See <a href="https://cdn.rawgit.com/krzysztofzablocki/Sourcery/master/docs/Classes/Types.html">Types</a>.</li>
 <li><code>type: [String: Type]</code> - access types by their names, i.e. <code>type.MyType</code> (<code>type[&quot;MyType&quot;]</code> in swift templates)</li>
 <li><code>arguments: [String: NSObject]</code> - access additional parameters passed with <code>--args</code> command line flag or set in <code>.sourcery.yml</code> file</li>
 </ul>
@@ -188,8 +195,8 @@ Sourcery also uses its extension <a href="https://github.com/SwiftGen/StencilSwi
 <h3 id='custom-stencil-tags-and-filters' class='heading'>Custom Stencil tags and filters</h3>
 
 <ul>
-<li><code>{{ name|upperFirst }}</code> - makes first letter in <code>name</code> uppercase</li>
-<li><code>{{ name|lowerFirst }}</code> - makes first letter in <code>name</code> lowercase</li>
+<li><code>{{ name|upperFirstLetter }}</code> - makes first letter in <code>name</code> uppercase</li>
+<li><code>{{ name|lowerFirstLetter }}</code> - makes first letter in <code>name</code> lowercase</li>
 <li><code>{{ name|replace:&quot;substring&quot;,&quot;replacement&quot; }}</code> - replaces occurances of <code>substring</code> with <code>replacement</code> in <code>name</code> (case sensitive)</li>
 <li><code>{% if name|contains:&quot;Foo&quot; %}</code> - check if <code>name</code> contains arbitrary substring, can be negated with <code>!</code> prefix.</li>
 <li><code>{% if name|hasPrefix:&quot;Foo&quot; %}</code>- check if <code>name</code> starts with arbitrary substring, can be negated with <code>!</code> prefix.</li>
@@ -203,16 +210,25 @@ Sourcery also uses its extension <a href="https://github.com/SwiftGen/StencilSwi
 <li><code>public</code>, <code>open</code>, <code>internal</code>, <code>private</code>, <code>fileprivate</code> - can be used on Type[s] and Method[s] to filter by access level, can be negated with <code>!</code> prefix.</li>
 <li><code>publicGet</code>, <code>publicSet</code>, .etc - can be used on Variable[s] to filter by getter or setter access level, can be nagated with <code>!</code> prefix</li>
 </ul>
+
+<p>You can also use partial templates using <code>include</code> tag. Partial template is loaded from the path of a template that inculdes it. <code>include</code> tags also supports loading templates from relative path, i.e. <code>{% include &quot;partials/MyPartial.stencil&quot;%}</code> used in the template located in <code>templates</code> directory will load template from <code>templates/partials</code> directory.</p>
+
+<blockquote>
+<p>Note: You can only load partial templates from child directories of the including template directory, so <code>{% include &quot;../MyPartial.stencil&quot;%}</code> is not supported.</p>
+</blockquote>
+
+<p>Sourcery treat all the templates as independent and so will generate files based on partial templates too. To avoid that use <code>exclude</code> in <a href="usage.html#configuration-file">configuration file</a>.</p>
 <h2 id='swift-templates' class='heading'>Swift templates</h2>
 
 <p>Swift templates syntax is very similar to EJS:</p>
 
 <ul>
 <li>Control flow with <code>&lt;% %&gt;</code></li>
-<li>Output value withn <code>&lt;%= %&gt;</code></li>
+<li>Output value with <code>&lt;%= %&gt;</code></li>
 <li>Trim extra new line after control flow tag with <code>-%&gt;</code></li>
 <li>Trim <em>all</em> whitespaces before/after control flow tag with <code>&lt;%_</code> and <code>_%&gt;</code></li>
 <li>Use <code>&lt;%# %&gt;</code> for comments</li>
+<li>Use <code>&lt;%- include(&quot;relative_path_to_template.swifttemplate&quot;) %&gt;</code> to include another template. The <code>swifttemplate</code> extension can be omitted. The path is relative to the including template.</li>
 </ul>
 
 <p><strong>Example</strong>: <a href="https://github.com/krzysztofzablocki/Sourcery/blob/master/SourceryTests/Stub/SwiftTemplates/Equality.swifttemplate">Equality.swifttemplate</a></p>
@@ -232,6 +248,12 @@ Sourcery also uses its extension <a href="https://github.com/SwiftGen/StencilSwi
 <p>JavaScript templates are powered by <a href="http://ejs.co">EJS</a> and support all the features available in this template engine.</p>
 
 <p><strong>Example</strong>: <a href="https://github.com/krzysztofzablocki/Sourcery/blob/master/Sourcery/Templates/JSExport.ejs">JSExport.ejs</a></p>
+
+<blockquote>
+<p>Note: when using JavaScript templates with Sourcery built using Swift Package Manager you must provide path to EJS source code using <code>--ejsPath</code> command line argument. Download EJS source code <a href="https://github.com/krzysztofzablocki/Sourcery/blob/master/SourceryJS/Sources/ejs.js">here</a>, put it in some path and pass it when running Sourcery. Otherwise JavaScript templates will be ignored (you will see a warning in the console output).</p>
+</blockquote>
+
+<p>You can also use <code>SourceryJS</code> framework independently of Sourcery. You can add it as a Carthge or SPM dependency.</p>
 <h2 id='using-source-annotations' class='heading'>Using Source Annotations</h2>
 
 <p>Sourcery supports annotating your classes and variables with special annotations, similar to how attributes work in Rust / Java</p>
@@ -253,6 +275,13 @@ Sourcery also uses its extension <a href="https://github.com/SwiftGen/StencilSwi
   <span class="k">var</span> <span class="nv">firstVariable</span><span class="p">:</span> <span class="kt">Int</span>
   <span class="k">var</span> <span class="nv">secondVariable</span><span class="p">:</span> <span class="kt">Int</span>
 </code></pre>
+
+<p>To group annotations of the same domain you can use annotation namespcases:</p>
+<pre class="highlight swift"><code><span class="c1">// sourcery:decoding: key="first", default=0</span>
+  <span class="k">var</span> <span class="nv">firstVariable</span><span class="p">:</span> <span class="kt">Int</span>
+</code></pre>
+
+<p>This will effectively annotate with <code>decoding.key</code> and <code>decoding.default</code> annotations</p>
 <h4 id='rules' class='heading'>Rules:</h4>
 
 <ul>

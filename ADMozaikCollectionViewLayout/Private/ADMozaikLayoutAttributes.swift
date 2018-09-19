@@ -88,7 +88,7 @@ class ADMozaikLayoutAttributes {
             let layoutGeometry = layoutGeometries[section]
             let layoutMatrix = layoutMatrixes[section]
             
-            if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionElementKindSectionHeader, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
+            if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionView.elementKindSectionHeader, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
                 allAttributes.append(attributes)
             }
             
@@ -103,7 +103,7 @@ class ADMozaikLayoutAttributes {
                 }
             }
             
-            if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionElementKindSectionFooter, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
+            if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionView.elementKindSectionFooter, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
                 allAttributes.append(attributes)
             }
             

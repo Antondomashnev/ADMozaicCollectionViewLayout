@@ -61,6 +61,9 @@
                 <a href="../mocks.html">Mocks</a>
               </li>
               <li class="nav-group-task">
+                <a href="../codable.html">Codable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../diffable.html">Diffable</a>
               </li>
               <li class="nav-group-task">
@@ -108,6 +111,9 @@
                 <a href="../Classes/MethodParameter.html">MethodParameter</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Subscript.html">Subscript</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/TypeName.html">TypeName</a>
               </li>
               <li class="nav-group-task">
@@ -126,15 +132,13 @@
                 <a href="../Classes/ClosureType.html">ClosureType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Attribute.html">Attribute</a>
+                <a href="../Classes/GenericType.html">GenericType</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Other Extensions.html">Other Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Typealias.html">Typealias</a>
+                <a href="../Classes/GenericTypeParameter.html">GenericTypeParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Attribute.html">Attribute</a>
               </li>
             </ul>
           </li>
@@ -143,6 +147,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Protocols/Annotated.html">Annotated</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Definition.html">Definition</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Typed.html">Typed</a>
@@ -157,7 +164,7 @@
             <h1>ClosureType</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ClosureType</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">SourceryModel</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">@objcMembers</span> <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ClosureType</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">SourceryModel</span></code></pre>
 
                 </div>
               </div>
@@ -170,9 +177,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType4nameSS"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)name"></a>
                     <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType4nameSS">name</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)name">name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -197,9 +204,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType10parametersGSaCS_15MethodParameter_"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)parameters"></a>
                     <a name="//apple_ref/swift/Property/parameters" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType10parametersGSaCS_15MethodParameter_">parameters</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)parameters">parameters</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -224,9 +231,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType14returnTypeNameCS_8TypeName"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)returnTypeName"></a>
                     <a name="//apple_ref/swift/Property/returnTypeName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType14returnTypeNameCS_8TypeName">returnTypeName</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)returnTypeName">returnTypeName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -251,9 +258,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType20actualReturnTypeNameCS_8TypeName"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)actualReturnTypeName"></a>
                     <a name="//apple_ref/swift/Property/actualReturnTypeName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType20actualReturnTypeNameCS_8TypeName">actualReturnTypeName</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)actualReturnTypeName">actualReturnTypeName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -261,7 +268,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Actual return value type name if declaration uses typealias, otherwise just a <code><a href="../Classes/ClosureType.html#/s:vC15SourceryRuntime11ClosureType14returnTypeNameCS_8TypeName">returnTypeName</a></code></p>
+                        <p>Actual return value type name if declaration uses typealias, otherwise just a <code><a href="../Classes/ClosureType.html#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)returnTypeName">returnTypeName</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -278,9 +285,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType10returnTypeGSqCS_4Type_"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)returnType"></a>
                     <a name="//apple_ref/swift/Property/returnType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType10returnTypeGSqCS_4Type_">returnType</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)returnType">returnType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -305,9 +312,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType20isOptionalReturnTypeSb"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)isOptionalReturnType"></a>
                     <a name="//apple_ref/swift/Property/isOptionalReturnType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType20isOptionalReturnTypeSb">isOptionalReturnType</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)isOptionalReturnType">isOptionalReturnType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -332,9 +339,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType39isImplicitlyUnwrappedOptionalReturnTypeSb"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)isImplicitlyUnwrappedOptionalReturnType"></a>
                     <a name="//apple_ref/swift/Property/isImplicitlyUnwrappedOptionalReturnType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType39isImplicitlyUnwrappedOptionalReturnTypeSb">isImplicitlyUnwrappedOptionalReturnType</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)isImplicitlyUnwrappedOptionalReturnType">isImplicitlyUnwrappedOptionalReturnType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -359,9 +366,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType23unwrappedReturnTypeNameSS"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)unwrappedReturnTypeName"></a>
                     <a name="//apple_ref/swift/Property/unwrappedReturnTypeName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType23unwrappedReturnTypeNameSS">unwrappedReturnTypeName</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)unwrappedReturnTypeName">unwrappedReturnTypeName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -386,9 +393,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime11ClosureType6throwsSb"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)ClosureType(py)throws"></a>
                     <a name="//apple_ref/swift/Property/throws" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime11ClosureType6throwsSb">throws</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)ClosureType(py)throws">throws</a>
                     </code>
                   </div>
                   <div class="height-container">

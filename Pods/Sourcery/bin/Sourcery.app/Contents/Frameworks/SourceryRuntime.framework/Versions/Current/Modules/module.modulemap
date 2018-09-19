@@ -7,4 +7,5 @@ framework module SourceryRuntime {
 
 module SourceryRuntime.Swift {
     header "SourceryRuntime-Swift.h"
+    requires objc
 }

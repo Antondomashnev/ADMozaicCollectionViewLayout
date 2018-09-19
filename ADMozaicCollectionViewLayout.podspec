@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'ADMozaicCollectionViewLayout'
-  s.version      = '4.0.4'
+  s.version      = '4.1.0'
   s.summary      = "Custom mozaic style collection view layout"
 
   s.description  = <<-DESC
@@ -17,5 +17,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.source_files = 'ADMozaikCollectionViewLayout/**/*.swift'
   s.frameworks = 'UIKit'
+
+  s.swift_version = '4.2'
 
 end

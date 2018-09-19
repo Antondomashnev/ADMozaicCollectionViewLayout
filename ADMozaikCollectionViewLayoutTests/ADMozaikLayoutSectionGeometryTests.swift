@@ -56,13 +56,13 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
     func testThatFrameForSupplementaryViewShouldReturnNilForFooterWithZeroHeight() {
         layoutGeometry = buildLayoutGeometryWith(header: true, footer: false)
         
-        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionElementKindSectionFooter)).to(beNil())
+        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionView.elementKindSectionFooter)).to(beNil())
     }
     
     func testThatFrameForSupplementaryViewShouldReturnNilForHeaderWithZeroHeight() {
         layoutGeometry = buildLayoutGeometryWith(header: false, footer: true)
         
-        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionElementKindSectionHeader)).to(beNil())
+        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionView.elementKindSectionHeader)).to(beNil())
     }
     
     func testThatFrameForSupplementaryViewShouldReturnCorrectFrameForHeaderWithNonZeroHeight() {
@@ -70,7 +70,7 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
         layoutGeometry.registerElement(with: CGRect(x: 0, y: 45, width: 212, height: 212))
         
         let expectedFrame = CGRect(x: 1, y: 3, width: 318, height: 44)
-        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionElementKindSectionHeader)).to(equal(expectedFrame))
+        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionView.elementKindSectionHeader)).to(equal(expectedFrame))
     }
     
     func testThatFrameForSupplementaryViewShouldReturnCorrectFrameForFooterWithNonZeroHeight() {
@@ -80,7 +80,7 @@ class ADMozaikLayoutGeometryTests: XCTestCase {
         layoutGeometry.registerElement(with: CGRect(x: 214, y: 154, width: 105, height: 212))
         
         let expectedFrame = CGRect(x: 1, y: 366, width: 318, height: 88)
-        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionElementKindSectionFooter)).to(equal(expectedFrame))
+        expect(self.layoutGeometry.frameForSupplementaryView(of: UICollectionView.elementKindSectionFooter)).to(equal(expectedFrame))
     }
     
     func testThatRegisterElementShouldCalculateContentHeightCorrectly() {

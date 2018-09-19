@@ -20,6 +20,7 @@ internal class NimbleEnvironment {
         }
     }
 
+    // swiftlint:disable:next todo
     // TODO: eventually migrate the global to this environment value
     var assertionHandler: AssertionHandler {
         get { return NimbleAssertionHandler }
@@ -30,13 +31,7 @@ internal class NimbleEnvironment {
     var awaiter: Awaiter
 
     init() {
-        let timeoutQueue: DispatchQueue
-        if #available(OSX 10.10, *) {
-            timeoutQueue = DispatchQueue.global(qos: .userInitiated)
-        } else {
-            timeoutQueue = DispatchQueue.global(priority: .high)
-        }
-
+        let timeoutQueue = DispatchQueue.global(qos: .userInitiated)
         awaiter = Awaiter(
             waitLock: AssertionWaitLock(),
             asyncQueue: .main,

@@ -61,6 +61,9 @@
                 <a href="../mocks.html">Mocks</a>
               </li>
               <li class="nav-group-task">
+                <a href="../codable.html">Codable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../diffable.html">Diffable</a>
               </li>
               <li class="nav-group-task">
@@ -108,6 +111,9 @@
                 <a href="../Classes/MethodParameter.html">MethodParameter</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Subscript.html">Subscript</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/TypeName.html">TypeName</a>
               </li>
               <li class="nav-group-task">
@@ -126,15 +132,13 @@
                 <a href="../Classes/ClosureType.html">ClosureType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Attribute.html">Attribute</a>
+                <a href="../Classes/GenericType.html">GenericType</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Other Extensions.html">Other Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Typealias.html">Typealias</a>
+                <a href="../Classes/GenericTypeParameter.html">GenericTypeParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Attribute.html">Attribute</a>
               </li>
             </ul>
           </li>
@@ -143,6 +147,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Protocols/Annotated.html">Annotated</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Definition.html">Definition</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Typed.html">Typed</a>
@@ -157,7 +164,7 @@
             <h1>MethodParameter</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">MethodParameter</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">SourceryModel</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Typed.html">Typed</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Annotated.html">Annotated</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">@objcMembers</span> <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">MethodParameter</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">SourceryModel</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Typed.html">Typed</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Annotated.html">Annotated</a></span></code></pre>
 
                 </div>
               </div>
@@ -170,9 +177,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter13argumentLabelGSqSS_"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)argumentLabel"></a>
                     <a name="//apple_ref/swift/Property/argumentLabel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter13argumentLabelGSqSS_">argumentLabel</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)argumentLabel">argumentLabel</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -197,9 +204,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter4nameSS"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)name"></a>
                     <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter4nameSS">name</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)name">name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -224,9 +231,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter8typeNameCS_8TypeName"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)typeName"></a>
                     <a name="//apple_ref/swift/Property/typeName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter8typeNameCS_8TypeName">typeName</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)typeName">typeName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -251,9 +258,36 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter4typeGSqCS_4Type_"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)inout"></a>
+                    <a name="//apple_ref/swift/Property/inout" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)inout">inout</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parameter flag whether it&rsquo;s inout or not</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">let</span> <span class="err">`</span><span class="k">inout</span><span class="err">`</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)type"></a>
                     <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter4typeGSqCS_4Type_">type</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)type">type</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -278,9 +312,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter14typeAttributesGVs10DictionarySSCS_9Attribute_"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)typeAttributes"></a>
                     <a name="//apple_ref/swift/Property/typeAttributes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter14typeAttributesGVs10DictionarySSCS_9Attribute_">typeAttributes</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)typeAttributes">typeAttributes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -305,9 +339,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter12defaultValueGSqSS_"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)defaultValue"></a>
                     <a name="//apple_ref/swift/Property/defaultValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter12defaultValueGSqSS_">defaultValue</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)defaultValue">defaultValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -332,9 +366,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter11annotationsGVs10DictionarySSCSo8NSObject_"></a>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)annotations"></a>
                     <a name="//apple_ref/swift/Property/annotations" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter11annotationsGVs10DictionarySSCSo8NSObject_">annotations</a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)MethodParameter(py)annotations">annotations</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -350,226 +384,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">annotations</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter10isOptionalSb"></a>
-                    <a name="//apple_ref/swift/Property/isOptional" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter10isOptionalSb">isOptional</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether type is optional. Shorthand for <code>typeName.isOptional</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isOptional</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter29isImplicitlyUnwrappedOptionalSb"></a>
-                    <a name="//apple_ref/swift/Property/isImplicitlyUnwrappedOptional" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter29isImplicitlyUnwrappedOptionalSb">isImplicitlyUnwrappedOptional</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether type is implicitly unwrapped optional. Shorthand for <code>typeName.isImplicitlyUnwrappedOptional</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isImplicitlyUnwrappedOptional</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter17unwrappedTypeNameSS"></a>
-                    <a name="//apple_ref/swift/Property/unwrappedTypeName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter17unwrappedTypeNameSS">unwrappedTypeName</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Type name without attributes and optional type information. Shorthand for <code>typeName.unwrappedTypeName</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">unwrappedTypeName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter14actualTypeNameGSqCS_8TypeName_"></a>
-                    <a name="//apple_ref/swift/Property/actualTypeName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter14actualTypeNameGSqCS_8TypeName_">actualTypeName</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Actual type name if declaration uses typealias, otherwise just a <code><a href="../Classes/MethodParameter.html#/s:vC15SourceryRuntime15MethodParameter8typeNameCS_8TypeName">typeName</a></code>. Shorthand for <code>typeName.actualTypeName</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">actualTypeName</span><span class="p">:</span> <span class="kt"><a href="../Classes/TypeName.html">TypeName</a></span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter7isTupleSb"></a>
-                    <a name="//apple_ref/swift/Property/isTuple" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter7isTupleSb">isTuple</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether type is a tuple. Shorthand for <code>typeName.isTuple</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isTuple</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter9isClosureSb"></a>
-                    <a name="//apple_ref/swift/Property/isClosure" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter9isClosureSb">isClosure</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether type is a closure. Shorthand for <code>typeName.isClosure</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isClosure</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter7isArraySb"></a>
-                    <a name="//apple_ref/swift/Property/isArray" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter7isArraySb">isArray</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether type is an array. Shorthand for <code>typeName.isArray</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isArray</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15SourceryRuntime15MethodParameter12isDictionarySb"></a>
-                    <a name="//apple_ref/swift/Property/isDictionary" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15SourceryRuntime15MethodParameter12isDictionarySb">isDictionary</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether type is a dictionary. Shorthand for <code>typeName.isDictionary</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isDictionary</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
